@@ -1,0 +1,8 @@
+[ProjectFiles]
+HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo
+[Others]
+Define=NUCLEO_WL33CC
+HALModule=TIM;IWDG
+[Groups]
+Doc=../README.md;
+Drivers/BSP/STM32WL3x-Nucleo=../../../../../../Drivers/BSP/STM32WL3x-Nucleo/stm32wl3x_nucleo.c;

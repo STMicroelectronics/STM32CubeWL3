@@ -1,0 +1,12 @@
+[submodule "Drivers/CMSIS/Device/ST/STM32WL3X"]
+	path = Drivers/CMSIS/Device/ST/STM32WL3X
+	url = https://github.com/STMicroelectronics/cmsis-device-wl3.git
+	branch = main
+[submodule "Drivers/STM32WL3x_HAL_Driver"]
+	path = Drivers/STM32WL3x_HAL_Driver
+	url = https://github.com/STMicroelectronics/stm32wl3x-hal-driver.git
+	branch = main
+[submodule "Drivers/BSP/STM32WL3x-Nucleo"]
+	path = Drivers/BSP/STM32WL3x-Nucleo
+	url = https://github.com/STMicroelectronics/stm32wl3x-nucleo-bsp.git
+	branch = main

@@ -1,0 +1,8 @@
+[ProjectFiles]
+HeaderPath=
+[Others]
+Define=
+HALModule=
+[Groups]
+Doc=../README.md;
+Application/User=../Src/cpu_context_switch.s;../Src/device_context_switch.c;../Src/osal.c;../Src/stm32_lpm_if.c;

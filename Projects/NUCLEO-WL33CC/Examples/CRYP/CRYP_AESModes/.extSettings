@@ -1,0 +1,8 @@
+[ProjectFiles]
+HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo
+[Others]
+Define=NUCLEO_WL33CC
+HALModule=UART
+[Groups]
+Doc=../README.md;../Expected_Results.md;
+Drivers/BSP/STM32WL3x-Nucleo=../../../../../../Drivers/BSP/STM32WL3x-Nucleo/stm32wl3x_nucleo.c;
