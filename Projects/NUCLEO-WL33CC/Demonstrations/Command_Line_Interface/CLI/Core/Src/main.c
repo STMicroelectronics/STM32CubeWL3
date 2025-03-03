@@ -61,6 +61,7 @@ static void MX_GPIO_Init(void);
 void Process_InputData(uint8_t* data_buffer, uint16_t Nb_bytes);
 static uint8_t processCmdInput (uint8_t interactive);
 uint8_t Read_Buffer_Pop(uint8_t *byte);
+void Read_Buffer_Push(uint8_t byte);
 extern uint8_t responsePrintf(const char* formatString, ...);
 extern uint8_t responseHeaderPrintf(const char* formatString, ...);
 
@@ -303,7 +304,7 @@ void helpAction(void)
 void fwVersionAction(void)
 {
   responsePrintf("{&N API call...&ts}\r\n",
-     "fwVersionAction",
+     "fwVersion",
      "value", FW_VERSION);
 }
 

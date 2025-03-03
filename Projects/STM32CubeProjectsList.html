@@ -27,7 +27,7 @@
     <p>The STM32CubeWL3x Firmware package comes with a rich set of examples running on STMicroelectronics boards, organized by board and provided with preconfigured projects for the main supported toolchains.</p>
 
     <div class="picture">
-      <img alt="" src="../_htmresc/STM32Cube.bmp"/>
+      <img alt="" src="../_htmresc/STM32Cube_2020.bmp"/>
     </div>
 
     <p>The examples are classified depending on the STM32Cube level they apply to, and are named as follows:</p>
@@ -924,7 +924,7 @@ Data buffer transmission/reception between two boards via SPI using Polling mode
         <td>2</td>
       </tr>
       <tr align=center>
-        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=5><p id="Applications">Applications</p></td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=9><p id="Applications">Applications</p></td>
         <td align=left rowspan=1><p id="FreeRTOS">FreeRTOS</p></td>
         <td align=left><p id="FreeRTOS_Mutex">FreeRTOS_Mutex</p></td>
         <td align=left>
@@ -962,10 +962,47 @@ This application allows to evaluate the STM32WL33 Sigfox device radio capabiliti
         <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
         <td><font size="5" color=green>CubeMx</font></td>
       </tr>
+      <tr align=center>
+        <td align=left rowspan=4><p id="WmBus">WmBus</p></td>
+        <td align=left><p id="WmBus_Phy_Concentrator">WmBus_Phy_Concentrator</p></td>
+        <td align=left>
+This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Concentrator.
+</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>1</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
+        <td><font size="5" color=green>X</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="WmBus_Phy_Meter">WmBus_Phy_Meter</p></td>
+        <td align=left>
+This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Meter.
+</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>1</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
+        <td><font size="5" color=green>X</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="WmBus_Phy_Meter_Button">WmBus_Phy_Meter_Button</p></td>
+        <td align=left>
+This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Meter transmitting a WmBus packet each time the Button B2 is pressed.
+</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>1</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
+        <td><font size="5" color=green>X</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="WmBus_Phy_Meter_RadioTimer">WmBus_Phy_Meter_RadioTimer</p></td>
+        <td align=left>
+This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Meter transmitting a WmBus packet each time a Radio Timer expires.
+</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>1</td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
+        <td><font size="5" color=green>X</font></td>
+      </tr>
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
-        <td colspan="3"><b>Total number of applications</b></td><td>4</td>
-        <td>4</td>
-        <td>4</td>
+        <td colspan="3"><b>Total number of applications</b></td><td>8</td>
+        <td>8</td>
+        <td>8</td>
       </tr>
       <tr align=center>
         <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=9><p id="Demonstrations">Demonstrations</p></td>
@@ -991,7 +1028,7 @@ Code demonstrating the basic project structure template with initialization fram
       <tr align=center>
         <td align=left><p id="LPAWUR_WakeupRadio_Rx">LPAWUR_WakeupRadio_Rx</p></td>
         <td align=left>
-This example explains shows how to set the SoC in deepstop and configure the LPAWUR to wakeup the SOC when a frame arrives and it is correctly receveid. This example demonstrates the receiver side and requires another device as a transmitter. The transmitter example is located under the NUCLEO-WL33CC1\Demonstrations\MRSUBG\MRSUBG_WakeupRadio_Tx folder.
+This example shows how to set the SoC in deepstop and configure the LPAWUR to wakeup the SOC when a frame arrives and it is correctly receveid. This example demonstrates the receiver side and requires another device as a transmitter. The transmitter example is located under the NUCLEO-WL33CC1\Demonstrations\MRSUBG\MRSUBG_WakeupRadio_Tx folder.
 </td>
         <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>1</td>
         <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center></td>
@@ -1049,9 +1086,9 @@ This example explains shows how to set the SoC in deepstop and configure the MRS
         <td>8</td>
       </tr>
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
-      	<td colspan="4"><b>Total number of projects</b></td><td>90</td>
-          <td>90</td>
-      	<td>90</td>
+      	<td colspan="4"><b>Total number of projects</b></td><td>94</td>
+          <td>94</td>
+      	<td>94</td>
       </tr>
     </table>
   </body>

@@ -368,14 +368,14 @@ void Process_InputData(uint8_t* data_buffer, uint16_t Nb_bytes)
 void HAL_MRSubG_IRQ_Callback(void){
   uint32_t irq;
   
-  irq = READ_REG(MR_SUBG_GLOB_STATUS->RFSEQ_IRQ_STATUS);
+  irq = __HAL_MRSUBG_GET_RFSEQ_IRQ_STATUS();
   
-  if (irq & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F ) {
+  if (irq & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F) {
     
     /* Clear the IRQ flag */
-    MR_SUBG_GLOB_STATUS->RFSEQ_IRQ_STATUS = MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F;
+    __HAL_MRSUBG_CLEAR_RFSEQ_IRQ_FLAG(MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F);
     
-    uint16_t rxBytes = READ_REG_FIELD(MR_SUBG_GLOB_STATUS->DATABUFFER_INFO, MR_SUBG_GLOB_STATUS_DATABUFFER_INFO_CURRENT_DATABUFFER_COUNT);
+    uint16_t rxBytes = __HAL_MRSUBG_GET_DATABUFFER_COUNT();
     
     printf("\n\rrx>");
     
@@ -386,13 +386,14 @@ void HAL_MRSubG_IRQ_Callback(void){
     printf("\n\rtx>");
     
     /* Restart RX */
-    MR_SUBG_GLOB_STATIC->DATABUFFER0_PTR = (uint32_t)&rx_data;
+    __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&rx_data);    
     __HAL_MRSUBG_STROBE_CMD(CMD_RX);    
   }
   
-  if (irq & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F ) {    
+  if (irq & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F ) {
+    
     /* Clear the IRQ flag */
-    MR_SUBG_GLOB_STATUS->RFSEQ_IRQ_STATUS = MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F;
+    __HAL_MRSUBG_CLEAR_RFSEQ_IRQ_FLAG(MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F);    
     
     /* set the tx_done_flag to manage the event in the main() */
     xTxDoneFlag = SET;

@@ -64,8 +64,8 @@ volatile uint8_t Data_received = 0;
 volatile uint8_t flagDEEPSTOP;
 
 /* Allocate databuffers */
-volatile uint8_t databuf0[PACKET_LEN];
-volatile uint8_t databuf1[PACKET_LEN];
+__attribute__((aligned(4))) volatile uint8_t databuf0[PACKET_LEN];
+__attribute__((aligned(4))) volatile uint8_t databuf1[PACKET_LEN];
 
 static MRSubG_Sequencer_GlobalConfiguration GlobalSequencerConfiguration;
 static MRSubG_Sequencer_ActionConfiguration ReceiveFrame;

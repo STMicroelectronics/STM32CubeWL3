@@ -93,7 +93,7 @@ uint8_t VTimer_Callback3_flag = 0;
 PowerSaveLevels App_PowerSaveLevel_Check(void);
 static void SystemApp_Init(void);
 /* USER CODE BEGIN PFP */
-uint8_t BSP_COM_UARTBusy(void);
+
 /* USER CODE END PFP */
 
 /* Exported functions --------------------------------------------------------*/
@@ -124,19 +124,6 @@ uint32_t MX_APPE_Init(void *p_param)
   printf("Wakeup every %d seconds or using PUSH Button 2 \n\r", WAKEUP_TIMEOUT/1000);
   /* USER CODE END APPE_Init_2 */
    return 0;
-}
-/**
- * @brief  Check if UART is BUSY or not.
- * @retval TRUE if UART is BUSY, FALSE otherwise.
- */
-uint8_t BSP_COM_UARTBusy()
-{
-  if ((LL_USART_IsActiveFlag_TXE_TXFNF(USART1) == RESET) ||
-      (LL_USART_IsActiveFlag_TC(USART1) == RESET) ||
-        LL_USART_IsActiveFlag_TXFE(USART1) == RESET)
-    return TRUE;
-  
-  return FALSE;
 }
 
 void MX_APPE_Process(void)

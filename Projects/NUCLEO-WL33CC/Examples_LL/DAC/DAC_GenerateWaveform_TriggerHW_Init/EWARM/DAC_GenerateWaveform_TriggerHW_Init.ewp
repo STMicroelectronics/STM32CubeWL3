@@ -358,7 +358,6 @@
                     <name>CCIncludePath2</name>
                     <state>$PROJ_DIR$/../Inc</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc</state>
-                    <state>$PROJ_DIR$/../../../../../../Drivers/STM32Wl3x_HAL_Driver/Inc</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Device/ST/STM32WL3X/Include</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Include</state>
                 </option>

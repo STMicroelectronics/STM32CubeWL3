@@ -321,7 +321,7 @@
                 </option>
                 <option>
                     <name>CCRequirePrototypes</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>CCDiagWarnAreErr</name>
@@ -672,7 +672,7 @@
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>80</hasPrio>
+                <hasPrio>1</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
             </data>
         </settings>

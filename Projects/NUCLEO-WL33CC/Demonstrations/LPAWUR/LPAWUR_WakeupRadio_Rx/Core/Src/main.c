@@ -213,8 +213,6 @@ static void MX_LPAWUR_Init(void)
   LPAWUR_FrameInitStruct.KiGain = 10;
 
   HAL_LPAWUR_FrameInit(&LPAWUR_FrameInitStruct);
-
-  LL_LPAWUR_SetState(ENABLE);
   
   /* USER CODE BEGIN LPAWUR_Init 2 */
 

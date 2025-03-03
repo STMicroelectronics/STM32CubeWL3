@@ -84,20 +84,20 @@ void HAL_MspInit(void)
 }
 
 /**
-* @brief SPI MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hspi: SPI handle pointer
-* @retval None
-*/
+  * @brief SPI MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hspi: SPI handle pointer
+  * @retval None
+  */
 void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
   if(hspi->Instance==SPI3)
   {
-  /* USER CODE BEGIN SPI3_MspInit 0 */
+    /* USER CODE BEGIN SPI3_MspInit 0 */
 
-  /* USER CODE END SPI3_MspInit 0 */
+    /* USER CODE END SPI3_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
@@ -132,9 +132,13 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     GPIO_InitStruct.Alternate = GPIO_AF3_SPI3;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    LL_PWR_SetNoPullA(LL_PWR_GPIO_BIT_8);
+    HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_A, PWR_GPIO_BIT_8);
 
-    LL_PWR_SetNoPullB(LL_PWR_GPIO_BIT_6|LL_PWR_GPIO_BIT_7);
+    HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_B, PWR_GPIO_BIT_6|PWR_GPIO_BIT_7);
+
+    HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_A, PWR_GPIO_BIT_8);
+
+    HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_6|PWR_GPIO_BIT_7);
 
     /* SPI3 DMA Init */
     /* SPI3_TX Init */
@@ -174,27 +178,27 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     /* SPI3 interrupt Init */
     HAL_NVIC_SetPriority(SPI3_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(SPI3_IRQn);
-  /* USER CODE BEGIN SPI3_MspInit 1 */
+    /* USER CODE BEGIN SPI3_MspInit 1 */
 
-  /* USER CODE END SPI3_MspInit 1 */
+    /* USER CODE END SPI3_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief SPI MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hspi: SPI handle pointer
-* @retval None
-*/
+  * @brief SPI MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hspi: SPI handle pointer
+  * @retval None
+  */
 void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
 {
   if(hspi->Instance==SPI3)
   {
-  /* USER CODE BEGIN SPI3_MspDeInit 0 */
+    /* USER CODE BEGIN SPI3_MspDeInit 0 */
 
-  /* USER CODE END SPI3_MspDeInit 0 */
+    /* USER CODE END SPI3_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_SPI3_CLK_DISABLE();
 
@@ -213,27 +217,27 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
 
     /* SPI3 interrupt DeInit */
     HAL_NVIC_DisableIRQ(SPI3_IRQn);
-  /* USER CODE BEGIN SPI3_MspDeInit 1 */
+    /* USER CODE BEGIN SPI3_MspDeInit 1 */
 
-  /* USER CODE END SPI3_MspDeInit 1 */
+    /* USER CODE END SPI3_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief USART MSP Initialization
-* This function configures the hardware resources used in this example
-* @param husart: USART handle pointer
-* @retval None
-*/
+  * @brief USART MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param husart: USART handle pointer
+  * @retval None
+  */
 void HAL_USART_MspInit(USART_HandleTypeDef* husart)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   if(husart->Instance==USART1)
   {
-  /* USER CODE BEGIN USART1_MspInit 0 */
+    /* USER CODE BEGIN USART1_MspInit 0 */
 
-  /* USER CODE END USART1_MspInit 0 */
+    /* USER CODE END USART1_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_USART1_CLK_ENABLE();
 
@@ -258,9 +262,13 @@ void HAL_USART_MspInit(USART_HandleTypeDef* husart)
     GPIO_InitStruct.Alternate = GPIO_AF0_SPI1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    LL_PWR_SetNoPullA(LL_PWR_GPIO_BIT_1|LL_PWR_GPIO_BIT_15);
+    HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_A, PWR_GPIO_BIT_1|PWR_GPIO_BIT_15);
 
-    LL_PWR_SetNoPullB(LL_PWR_GPIO_BIT_8);
+    HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_B, PWR_GPIO_BIT_8);
+
+    HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_A, PWR_GPIO_BIT_1|PWR_GPIO_BIT_15);
+
+    HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_8);
 
     /* USART1 DMA Init */
     /* USART1_RX Init */
@@ -300,27 +308,27 @@ void HAL_USART_MspInit(USART_HandleTypeDef* husart)
     /* USART1 interrupt Init */
     HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
-  /* USER CODE BEGIN USART1_MspInit 1 */
+    /* USER CODE BEGIN USART1_MspInit 1 */
 
-  /* USER CODE END USART1_MspInit 1 */
+    /* USER CODE END USART1_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief USART MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param husart: USART handle pointer
-* @retval None
-*/
+  * @brief USART MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param husart: USART handle pointer
+  * @retval None
+  */
 void HAL_USART_MspDeInit(USART_HandleTypeDef* husart)
 {
   if(husart->Instance==USART1)
   {
-  /* USER CODE BEGIN USART1_MspDeInit 0 */
+    /* USER CODE BEGIN USART1_MspDeInit 0 */
 
-  /* USER CODE END USART1_MspDeInit 0 */
+    /* USER CODE END USART1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_USART1_CLK_DISABLE();
 
@@ -339,9 +347,9 @@ void HAL_USART_MspDeInit(USART_HandleTypeDef* husart)
 
     /* USART1 interrupt DeInit */
     HAL_NVIC_DisableIRQ(USART1_IRQn);
-  /* USER CODE BEGIN USART1_MspDeInit 1 */
+    /* USER CODE BEGIN USART1_MspDeInit 1 */
 
-  /* USER CODE END USART1_MspDeInit 1 */
+    /* USER CODE END USART1_MspDeInit 1 */
   }
 
 }

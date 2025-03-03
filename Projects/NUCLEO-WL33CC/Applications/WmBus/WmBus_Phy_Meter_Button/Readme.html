@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class] {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+
+<body>
+  <div class="row">
+    <section id="wmbus_phy_meter_button-application-description" class="col-sm-12 col-lg-4">
+      <h2><b>WmBus_Phy_Meter_Button Application Description</b></h2>
+      <p>This application allows to evaluate the STM32WL33 WmBus Phy device
+        radio capabilities as Meter transmitting a WmBus packet each time the
+        Button B2 is pressed. The application, after initialization, sends a
+        WmBus Uplink packet each time the Button B2 is pressed according to the
+        configuration specified below and prints some relevant information of
+        the sent packet.</p>
+      <h3 id="keywords"><b>Keywords</b></h3>
+      <p>WmBus, Skeleton, MRSUBG</p>
+      <h3 id="directory-contents"><b>Directory contents</b></h3>
+      <ul>
+        <li>Core/Inc/app_conf.h Application configuration file</li>
+        <li>Core/Inc/main.h Header file for main.c</li>
+        <li>Core/Inc/stm32_assert.h STM32 assert file</li>
+        <li>Core/Inc/stm32wl3x_hal_conf.h HAL Configuration file</li>
+        <li>Core/Inc/stm32wl3x_it.h Header for stm32wl3x_it.c</li>
+        <li>Core/Inc/stm32wl3x_nucleo_conf.h BSP configuration file</li>
+        <li>Core/Inc/utilities_conf.h Utilities configuration file</li>
+        <li>Core/Src/main.c Main program</li>
+        <li>Core/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+        <li>Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+        <li>Core/Src/system_stm32wl3x.c STM32WL3x system clock configuration
+          file</li>
+        <li>System/Interfaces/stm32_lpm_if.c Low power mode configuration
+          file</li>
+        <li>System/Interfaces/stm32_lpm_if.h Header for stm32_lpm_if.c</li>
+        <li>System/Modules/asm.h ASM Compiler-dependent macros file</li>
+        <li>System/Modules/osal.c OS abstraction layer definition file</li>
+        <li>System/Modules/osal.h Header for osal.c</li>
+        <li>System/Startup/cpu_context_switch.s Context restore file</li>
+        <li>System/Startup/device_context_switch.c STM32WL3 context switch
+          file</li>
+        <li>System/Startup/device_context_switch.h Header for
+          device_context_switch.c</li>
+        <li>WmBus/App/app_wmbus.h Header of application of the WmBus Phy Middleware</li>
+        <li>WmBus/App/app_wmbus.c Application of the WmBus Phy Middleware</li>
+      </ul>
+      <h3 id="hardware-and-software-environment"><b>Hardware and Software
+          environment</b></h3>
+      <ul>
+        <li>
+          <p>This example runs on NUCLEO-WL33CCx application board.</p>
+        </li>
+        <li>
+          <p>This example has been tested with STMicroelectronics
+            NUCLEO-WL33CCx application board and can be easily tailored to any other
+            supported device and development board.</p>
+        </li>
+      </ul>
+      <h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+      <p>In order to make the program work, you must do the following:</p>
+      <ul>
+        <li>Open your preferred toolchain</li>
+        <li>Rebuild all files and load your image into target memory</li>
+        <li>Run the application</li>
+      </ul>
+      <h3 id="static-configuration"><b>Static configuration</b></h3>
+      <p>The WmBus Phy is configured as follow: - WmBus Mode: C-mode - WmBus
+        Format: Format A - WmBus Direction: Meter to Other These settings can be
+        found in file main.c.</p>
+      <p>Furthermore, this project defines the following macros:</p>
+      <table>
+        <colgroup>
+          <col style="width: 21%" />
+          <col style="width: 78%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Compilation switch</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WMBUS_CRC_IN_HAL</td>
+            <td>Activate CRC computing/checking for TX/RX in HAL</td>
+          </tr>
+          <tr>
+            <td>WMBUS_NO_BLOCKING_HAL</td>
+            <td>Enable non blocking calls for TX and RX Radio Event bitmap updated
+              by HAL</td>
+          </tr>
+          <tr>
+            <td>PRINT_DEBUG</td>
+            <td>Verbose debug print</td>
+          </tr>
+          <tr>
+            <td>DEEPSTOP_ENABLE</td>
+            <td>Wakeup source configuration</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+
+</html>

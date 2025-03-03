@@ -1,0 +1,8 @@
+[ProjectFiles]
+HeaderPath=../../../../../../Drivers/BSP/STM32WL3x-Nucleo;../Core/Inc/cli;../../../../../../Middlewares/Third_Party/Sigfox/SigfoxLibTest;
+[Groups]
+Doc=../README.md;
+Drivers/BSP/STM32WL3x-Nucleo=../../../../../../Drivers/BSP/STM32WL3x-Nucleo/stm32wl3x_nucleo.c;
+Application/User/Sigfox/App=../Sigfox/App/cli_commands.c;../Core/Src/cli/command-interpreter2.c;../Core/Src/cli/response.c;../Core/Src/cli/serial_utils.c;
+Application/User/Core=../Core/Src/oob_adc.c;
+Middlewares/Sigfox=../../../../../../Middlewares/Third_Party/Sigfox/SigfoxLibTest/ADDON_V0.8.0_iar_850_arm_FDL_MON_cortexM0+.a;
