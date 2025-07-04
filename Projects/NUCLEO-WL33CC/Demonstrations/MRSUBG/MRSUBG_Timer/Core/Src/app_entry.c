@@ -73,7 +73,7 @@ SMRSubGConfig MRSUBG_RadioInitStruct;
 MRSubG_PcktBasicFields MRSUBG_PacketSettingsStruct;
 
 /* USER CODE BEGIN PV */
-uint8_t vectcTxBuff[MSG_SIZE]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0};
+__attribute__((aligned(4))) uint8_t vectcTxBuff[MSG_SIZE]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0};
 /* USER CODE END PV */
 
 /* Global variables ----------------------------------------------------------*/
@@ -159,7 +159,7 @@ void MX_APPE_Process(void)
     printf("TX - Data to transmit: [ ");
 
     for(uint8_t i=0 ; i<MSG_SIZE ; i++)
-		printf("%d ", vectcTxBuff[i]);
+      printf("%d ", vectcTxBuff[i]);
     printf("]\n\r");
 
     /* Send the TX command */

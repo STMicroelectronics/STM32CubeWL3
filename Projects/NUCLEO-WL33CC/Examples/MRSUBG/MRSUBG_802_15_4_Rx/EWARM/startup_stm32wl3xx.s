@@ -74,38 +74,38 @@ __vector_table
         DCD     SysTick_Handler           ; SysTick Handler
 	
         ; External Interrupts
-	DCD FLASH_IRQHandler              ; IRQ0:  FLASH Controller interrupt
-	DCD RCC_IRQHandler                ; IRQ1:  RCC interrupt
-	DCD PVD_IRQHandler                ; IRQ2:  PVD interrupt
-	DCD I2C1_IRQHandler               ; IRQ3:  I2C1 interrupt
-	DCD I2C2_IRQHandler               ; IRQ4:  I2C2 interrupt
-	DCD SPI1_IRQHandler               ; IRQ5:  SPI1 interrupt
-	DCD 0x00000000                    ; IRQ6:  Reserved
-	DCD SPI3_IRQHandler               ; IRQ7:  SPI3 interrupt
-	DCD USART1_IRQHandler             ; IRQ8:  USART1 interrupt
-	DCD LPUART1_IRQHandler            ; IRQ9:  LPUART1 interrupt
-	DCD TIM2_IRQHandler               ; IRQ10: TIM2 interrupt
-	DCD RTC_IRQHandler                ; IRQ11: RTC interrupt
-	DCD ADC_IRQHandler                ; IRQ12: ADC interrupt
-	DCD AES_IRQHandler                ; IRQ13: AES interrupt
-	DCD 0x00000000                    ; IRQ14: Reserved
-	DCD GPIOA_IRQHandler              ; IRQ15: GPIOA interrupt
-	DCD GPIOB_IRQHandler              ; IRQ16: GPIOB interrupt
-	DCD DMA_IRQHandler                ; IRQ17: DMA interrupt
-	DCD LPAWUR_IRQHandler             ; IRQ18: LPAWUR interrupt
-	DCD COMP1_IRQHandler              ; IRQ19: COMP1 interrupt
-	DCD MRSUBG_BUSY_IRQHandler       ; IRQ20: MR SUBG BUSY interrupt
-	DCD MRSUBG_IRQHandler            ; IRQ21: MR SUBG interrupt
-	DCD TX_RX_SEQUENCE_IRQHandler     ; IRQ22: TX RX Sequence interrupt
-	DCD CPU_WKUP_IRQHandler           ; IRQ23: CPU Wakeup interrupt
-	DCD SUBG_WKUP_IRQHandler          ; IRQ24: SUBG Wakeup interrupt
-	DCD DAC_IRQHandler                ; IRQ25: DAC interrupt
-	DCD TIM16_IRQHandler              ; IRQ26: TIM16 interrupt
-	DCD LCD_IRQHandler                ; IRQ27: LCD interrupt
-	DCD LCSC_IRQHandler               ; IRQ28: LCSC interrupt
-	DCD LCSC_LC_ACTIVITY_IRQHandler   ; IRQ29: LCSC LC ACTIVITY interrupt
-	DCD 0x00000000                    ; IRQ30: Reserved
-	DCD 0x00000000                    ; IRQ31: Reserved
+	DCD FLASH_IRQHandler                     ; IRQ0:  FLASH Controller interrupt
+	DCD RCC_IRQHandler                       ; IRQ1:  RCC interrupt
+	DCD PVD_IRQHandler                       ; IRQ2:  PVD interrupt
+	DCD I2C1_IRQHandler                      ; IRQ3:  I2C1 interrupt
+	DCD I2C2_IRQHandler                      ; IRQ4:  I2C2 interrupt
+	DCD SPI1_IRQHandler                      ; IRQ5:  SPI1 interrupt
+	DCD 0x00000000                           ; IRQ6:  Reserved
+	DCD SPI3_IRQHandler                      ; IRQ7:  SPI3 interrupt
+	DCD USART1_IRQHandler                    ; IRQ8:  USART1 interrupt
+	DCD LPUART1_IRQHandler                   ; IRQ9:  LPUART1 interrupt
+	DCD TIM2_IRQHandler                      ; IRQ10: TIM2 interrupt
+	DCD RTC_IRQHandler                       ; IRQ11: RTC interrupt
+	DCD ADC_IRQHandler                       ; IRQ12: ADC interrupt
+	DCD AES_IRQHandler                       ; IRQ13: AES interrupt
+	DCD 0x00000000                           ; IRQ14: Reserved
+	DCD GPIOA_IRQHandler                     ; IRQ15: GPIOA interrupt
+	DCD GPIOB_IRQHandler                     ; IRQ16: GPIOB interrupt
+	DCD DMA_IRQHandler                       ; IRQ17: DMA interrupt
+	DCD LPAWUR_IRQHandler                    ; IRQ18: LPAWUR interrupt
+	DCD COMP1_IRQHandler                     ; IRQ19: COMP1 interrupt
+	DCD MRSUBG_BUSY_IRQHandler               ; IRQ20: MR SUBG BUSY interrupt
+	DCD MRSUBG_IRQHandler                    ; IRQ21: MR SUBG interrupt
+	DCD MRSUBG_TX_RX_SEQUENCE_IRQHandler     ; IRQ22: MR SUBG TX RX Sequence interrupt
+	DCD MRSUBG_TIMER_CPU_WKUP_IRQHandler     ; IRQ23: MR SUBG TIMER CPU Wakeup interrupt
+	DCD MRSUBG_WKUP_IRQHandler               ; IRQ24: MR SUBG Wakeup interrupt
+	DCD DAC_IRQHandler                       ; IRQ25: DAC interrupt
+	DCD TIM16_IRQHandler                     ; IRQ26: TIM16 interrupt
+	DCD LCD_IRQHandler                       ; IRQ27: LCD interrupt
+	DCD LCSC_IRQHandler                      ; IRQ28: LCSC interrupt
+	DCD LCSC_LC_ACTIVITY_IRQHandler          ; IRQ29: LCSC LC ACTIVITY interrupt
+	DCD 0x00000000                           ; IRQ30: Reserved
+	DCD 0x00000000                           ; IRQ31: Reserved
 
 __Vectors_End
 
@@ -250,20 +250,20 @@ MRSUBG_BUSY_IRQHandler
 MRSUBG_IRQHandler
         B MRSUBG_IRQHandler
 
-	PUBWEAK TX_RX_SEQUENCE_IRQHandler
+	PUBWEAK MRSUBG_TX_RX_SEQUENCE_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)
-TX_RX_SEQUENCE_IRQHandler
-        B TX_RX_SEQUENCE_IRQHandler
+MRSUBG_TX_RX_SEQUENCE_IRQHandler
+        B MRSUBG_TX_RX_SEQUENCE_IRQHandler
 
-	PUBWEAK CPU_WKUP_IRQHandler
+	PUBWEAK MRSUBG_TIMER_CPU_WKUP_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)
-CPU_WKUP_IRQHandler
-        B CPU_WKUP_IRQHandler
+MRSUBG_TIMER_CPU_WKUP_IRQHandler
+        B MRSUBG_TIMER_CPU_WKUP_IRQHandler
 
-	PUBWEAK SUBG_WKUP_IRQHandler
+	PUBWEAK MRSUBG_WKUP_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)
-SUBG_WKUP_IRQHandler
-        B SUBG_WKUP_IRQHandler
+MRSUBG_WKUP_IRQHandler
+        B MRSUBG_WKUP_IRQHandler
 
 	PUBWEAK DAC_IRQHandler
         SECTION .text:CODE:NOROOT:REORDER(1)

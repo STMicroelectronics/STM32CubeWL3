@@ -112,9 +112,9 @@ int main(void)
     __HAL_PWR_CLEAR_FLAG(PWR_FLAG_DEEPSTOPF);
 
     /* Check and Clear the Wakeup flag */
-    if (__HAL_PWR_GET_FLAG(PWR_FLAG_WUFA12) != RESET)
+    if (__HAL_PWR_GET_FLAG(PWR_FLAG_WUFA0) != RESET)
     {
-      __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WUFA12);
+      __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WUFA0);
     }
 
     /* Wait that user release the USER push-button */
@@ -140,7 +140,7 @@ int main(void)
   /* Enable WakeUp Pin PWR_WAKEUP_PIN0 connected to  */
   HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PORTA, PWR_WAKEUP_PIN0, PWR_WUP_RISIEDG);
    /* Clear all related wakeup flags*/
-  __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WUFA12);
+  __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WUFA0);
   sConfigDEEPSTOP.deepStopMode = PWR_DEEPSTOP_WITH_SLOW_CLOCK_ON;
 
   /* Enter the Deepstop mode */

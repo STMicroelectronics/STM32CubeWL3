@@ -1,13 +1,19 @@
+---
+pagetitle: Readme for STM32CubeWL3 wM-Bus Phy Concentrator
+lang: en
+header-includes: <link rel="icon" type="image/x-icon" href="../../../../../_htmresc/favicon.png"/>
+---
+
 ::: {.row}
 ::: {.col-sm-12 .col-lg-4}
-## <b>WmBus_Phy_Concentrator Application Description</b>
+## <b>wMBus_Phy_Concentrator Application Description</b>
 
-This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Concentrator.
-The application, after initialization, listen for WmBus packets, according to the configuration specified below and prints some relevant information or the error source of the received packet.
+This simple application implements a concentrator. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication. 
+After initialization, it continuously listens for wM-Bus frames based on the specified configuration, and prints relevant information, including any errors.
 
 ### <b>Keywords</b>
 
-WmBus, Skeleton, MRSUBG
+wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Directory contents</b>
 
@@ -30,8 +36,8 @@ WmBus, Skeleton, MRSUBG
   - System/Startup/cpu_context_switch.s     Context restore file
   - System/Startup/device_context_switch.c  STM32WL3 context switch file
   - System/Startup/device_context_switch.h  Header for device_context_switch.c
-  - WmBus/App/app_wmbus.h                   Header of application of the WmBus Phy Middleware
-  - WmBus/App/app_wmbus.c                   Application of the WmBus Phy Middleware
+  - wMBus/App/app_wMBus.h                   Header of application of the wM-Bus Phy Middleware
+  - wMBus/App/app_wMBus.c                   Application of the wM-Bus Phy Middleware
 
 ### <b>Hardware and Software environment</b>
 
@@ -49,11 +55,13 @@ In order to make the program work, you must do the following:
 
 ### <b>Static configuration</b>
 
-The WmBus Phy is configured as follow:
- - WmBus Mode: C-mode
- - WmBus Format: Format A
- - WmBus Direction: Meter to Other
-These settings can be found in file main.c.
+The wM-Bus Phy MW is configured as follow:
+
+ - wM-Bus Mode: C-mode
+ - wM-Bus Format: Format A
+ - wM-Bus Direction: Meter to Other
+
+These settings can be found in file app_wMBus.c.
 
 Furthermore, this project defines the following macros:
 
@@ -66,7 +74,7 @@ Furthermore, this project defines the following macros:
 | PREAMBLE_AND_SYNC_IRQ_ENABLE      | Enable   Radio event for Preamble detection and HW Sync detection                                                  |
 | WMBUS_RX_PERFORMANCE_ENABLED      | Enable   RX performance optimizations                                                                              |
 | WMBUS_ACTIVE_POWER_MODE_ENABLED   | Enable   active power mode to optimize RX, TX performances and power consumption                                   |
-| WFI_ENABLE                        | Enable   WFI (RX application) – waiting for Radio events                                                           |
+| WFI_ENABLE                        | Enable WFI - wait for interrupt - in RX
 
 ::: 
 ::: 

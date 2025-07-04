@@ -226,7 +226,7 @@
                 </option>
                 <option>
                     <name>CCDefines</name>
-                    <state>STM32WL33</state>
+                    <state>STM32WL3XX</state>
                     <state>USE_HAL_DRIVER</state>
                 </option>
                 <option>
@@ -1142,7 +1142,7 @@
         <group>
             <name>BSP</name>
             <group>
-                <name>NUCLEO-WL33CCx</name>
+                <name>STM32WL3x-Nucleo</name>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo\stm32wl3x_nucleo.c</name>
                 </file>

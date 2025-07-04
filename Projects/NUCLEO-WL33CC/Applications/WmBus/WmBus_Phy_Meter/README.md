@@ -1,13 +1,19 @@
+---
+pagetitle: Readme for STM32CubeWL3 wM-Bus Phy Meter
+lang: en
+header-includes: <link rel="icon" type="image/x-icon" href="../../../../../_htmresc/favicon.png"/>
+---
+
 ::: {.row}
 ::: {.col-sm-12 .col-lg-4}
-## <b>WmBus_Phy_Meter Application Description</b>
+## <b>wMBus_Phy_Meter Application Description</b>
 
-This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Meter.
-The application, after initialization, sends continuously WmBus Uplink packets according to the configuration specified below and prints some relevant information of the sent packet.
+This simple application implements a meter. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication. 
+After initialization, it continuously transmits sample wM-Bus SND-NR frames based on the specified configuration, while printing relevant information.
 
 ### <b>Keywords</b>
 
-WmBus, Skeleton, MRSUBG
+wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Directory contents</b>
 
@@ -30,8 +36,8 @@ WmBus, Skeleton, MRSUBG
   - System/Startup/cpu_context_switch.s     Context restore file
   - System/Startup/device_context_switch.c  STM32WL3 context switch file
   - System/Startup/device_context_switch.h  Header for device_context_switch.c
-  - WmBus/App/app_wmbus.h                   Header of application of the WmBus Phy Middleware
-  - WmBus/App/app_wmbus.c                   Application of the WmBus Phy Middleware
+  - wMBus/App/app_wMBus.h                   Header of application of the wM-Bus Phy Middleware
+  - wMBus/App/app_wMBus.c                   Application of the wM-Bus Phy Middleware
 
 ### <b>Hardware and Software environment</b>
 
@@ -49,11 +55,13 @@ In order to make the program work, you must do the following:
 
 ### <b>Static configuration</b>
 
-The WmBus Phy is configured as follow:
- - WmBus Mode: C-mode
- - WmBus Format: Format A
- - WmBus Direction: Meter to Other
-These settings can be found in file main.c.
+The wM-Bus Phy MW is configured as follow:
+
+ - wM-Bus Mode: C-mode
+ - wM-Bus Format: Format A
+ - wM-Bus Direction: Meter to Other
+
+These settings can be found in file app_wMBus.c.
 
 Furthermore, this project defines the following macros:
 

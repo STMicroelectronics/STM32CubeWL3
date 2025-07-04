@@ -154,7 +154,8 @@ SECTIONS
   {
     . = ALIGN(4);
     _sheap = .;
-	_end = .; PROVIDE (end = .);
+    PROVIDE ( end = . );
+    PROVIDE ( _end = . );
     . = . + _Min_Heap_Size;
     . = ALIGN(4);
     _eheap = .;

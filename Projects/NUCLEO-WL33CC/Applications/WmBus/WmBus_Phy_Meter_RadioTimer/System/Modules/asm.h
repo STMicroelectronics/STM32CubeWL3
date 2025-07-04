@@ -2,12 +2,12 @@
 /**
   ******************************************************************************
   * @file    asm.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   ASM Compiler-dependent macros.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file

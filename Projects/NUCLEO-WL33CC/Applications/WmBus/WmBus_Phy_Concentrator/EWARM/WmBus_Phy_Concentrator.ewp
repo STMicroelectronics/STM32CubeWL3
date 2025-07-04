@@ -2,7 +2,7 @@
 <project>
     <fileVersion>3</fileVersion>
     <configuration>
-        <name>WmBus_Phy_Concentrator</name>
+        <name>wMBus_Phy_Concentrator</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>
@@ -16,19 +16,19 @@
                 <debug>1</debug>
                 <option>
                     <name>BrowseInfoPath</name>
-                    <state>WmBus_Phy_Concentrator\BrowseInfo</state>
+                    <state>wMBus_Phy_Concentrator\BrowseInfo</state>
                 </option>
                 <option>
                     <name>ExePath</name>
-                    <state>WmBus_Phy_Concentrator\Exe</state>
+                    <state>wMBus_Phy_Concentrator\Exe</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>WmBus_Phy_Concentrator\Obj</state>
+                    <state>wMBus_Phy_Concentrator\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>WmBus_Phy_Concentrator\List</state>
+                    <state>wMBus_Phy_Concentrator\List</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
@@ -201,7 +201,7 @@
                 </option>
                 <option>
                     <name>BuildFilesPath</name>
-                    <state>WmBus_Phy_Concentrator\</state>
+                    <state>wMBus_Phy_Concentrator\</state>
                 </option>
                 <option>
                     <name>PointerAuthentication</name>
@@ -227,7 +227,7 @@
                 <option>
                     <name>CCDefines</name>
                     <state>USE_HAL_DRIVER</state>
-                    <state>STM32WL33</state>
+                    <state>STM32WL3XX</state>
                     <state>WMBUS_CRC_IN_HAL</state>
                     <state>WMBUS_NO_BLOCKING_HAL</state>
                     <state>T1C1_ACTIVATED_C1_MODE</state>
@@ -360,12 +360,12 @@
                     <state>$PROJ_DIR$/../System/Interfaces</state>
                     <state>$PROJ_DIR$/../System/Modules</state>
                     <state>$PROJ_DIR$/../System/Startup</state>
-                    <state>$PROJ_DIR$/../WmBus/App</state>
+                    <state>$PROJ_DIR$/../wMBus/App</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/BSP/STM32WL3x-Nucleo</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Device/ST/STM32WL3X/Include</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Include</state>
                     <state>$PROJ_DIR$/../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc</state>
-                    <state>$PROJ_DIR$/../../../../../../Middlewares/ST/WmBus_Phy/Inc</state>
+                    <state>$PROJ_DIR$/../../../../../../Middlewares/ST/wMBus/Phy/Inc</state>
                     <state>$PROJ_DIR$/../../../../../../Utilities/lpm/tiny_lpm</state>
                 </option>
                 <option>
@@ -664,7 +664,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>WmBus_Phy_Concentrator.hex</state>
+                    <state>wMBus_Phy_Concentrator.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -711,7 +711,7 @@
                 </option>
                 <option>
                     <name>IlinkOutputFile</name>
-                    <state>WmBus_Phy_Concentrator.out</state>
+                    <state>wMBus_Phy_Concentrator.out</state>
                 </option>
                 <option>
                     <name>IlinkDebugInfoEnable</name>
@@ -1008,7 +1008,7 @@
                 </option>
                 <option>
                     <name>IlinkTrustzoneImportLibraryOut</name>
-                    <state>WmBus_Phy_Concentrator_import_lib.o</state>
+                    <state>wMBus_Phy_Concentrator_import_lib.o</state>
                 </option>
                 <option>
                     <name>OILinkExtraOption</name>
@@ -1137,11 +1137,11 @@
                 </group>
             </group>
             <group>
-                <name>WmBus</name>
+                <name>wMBus</name>
                 <group>
                     <name>App</name>
                     <file>
-                        <name>$PROJ_DIR$\..\WmBus\App\app_wmbus.c</name>
+                        <name>$PROJ_DIR$\..\wMBus\App\app_wMBus.c</name>
                     </file>
                 </group>
             </group>
@@ -1222,14 +1222,14 @@
     <group>
         <name>Middlewares</name>
         <group>
-            <name>ST</name>
+            <name>wMBus</name>
             <group>
-                <name>WmBus_Phy</name>
+                <name>Phy</name>
                 <file>
-                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\WmBus_Phy\Src\stm32wl3_wmbphy_pwr.c</name>
+                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\wMBus\Phy\Src\stm32wl3_wMBus_Phy_pwr.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\WmBus_Phy\Src\stm32wl3_wmbphy_radio.c</name>
+                    <name>$PROJ_DIR$\..\..\..\..\..\..\Middlewares\ST\wMBus\Phy\Src\stm32wl3_wMBus_Phy_radio.c</name>
                 </file>
             </group>
         </group>

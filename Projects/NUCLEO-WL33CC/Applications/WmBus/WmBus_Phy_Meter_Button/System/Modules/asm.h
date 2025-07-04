@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    asm.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   ASM Compiler-dependent macros.
   ******************************************************************************
   * @attention

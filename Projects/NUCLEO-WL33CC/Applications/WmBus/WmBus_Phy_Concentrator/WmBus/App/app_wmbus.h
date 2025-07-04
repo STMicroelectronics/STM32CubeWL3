@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file    app_wmbus.h
- * @author  MCD Application Team
- * @brief   Header of application of the WmBus Phy Middleware
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file    app_wMBus.h
+  * @author  MCD Application Team
+  * @brief   Header of application of the wMBus Middleware
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -54,11 +54,11 @@ extern "C" {
 
 /* Exported Functions Prototypes ---------------------------------------------*/
 /**
- * @brief  Init wmbphy Application
+ * @brief  Init wMBus Application
  */
-void MX_wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format);
+void MX_wMBus_Init(void);
 
-void MX_wmbphy_Process(void);
+void MX_wMBus_Process(void);
 
 /* USER CODE BEGIN EFP */
 

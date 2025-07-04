@@ -28,7 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wl3x_hal.h"
-  
+
 #include "stm32wl3x_ll_bus.h"
 #include "stm32wl3x_ll_cortex.h"
 #include "stm32wl3x_ll_rcc.h"

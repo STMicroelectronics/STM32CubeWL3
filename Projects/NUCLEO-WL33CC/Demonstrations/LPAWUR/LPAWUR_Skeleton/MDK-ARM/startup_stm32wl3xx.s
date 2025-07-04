@@ -85,38 +85,38 @@ __vector_table  DCD     __initial_sp               ; Top of Stack
 				DCD     SysTick_Handler           ; SysTick Handler
 	
 				; External Interrupts
-				DCD FLASH_IRQHandler              ; IRQ0:  FLASH Controller interrupt
-				DCD RCC_IRQHandler                ; IRQ1:  RCC interrupt
-				DCD PVD_IRQHandler                ; IRQ2:  PVD interrupt
-				DCD I2C1_IRQHandler               ; IRQ3:  I2C1 interrupt
-				DCD I2C2_IRQHandler               ; IRQ4:  I2C2 interrupt
-				DCD SPI1_IRQHandler               ; IRQ5:  SPI1 interrupt
-				DCD 0x00000000                    ; IRQ6:  Reserved
-				DCD SPI3_IRQHandler               ; IRQ7:  SPI3 interrupt
-				DCD USART1_IRQHandler             ; IRQ8:  USART1 interrupt
-				DCD LPUART1_IRQHandler            ; IRQ9:  LPUART1 interrupt
-				DCD TIM2_IRQHandler               ; IRQ10: TIM2 interrupt
-				DCD RTC_IRQHandler                ; IRQ11: RTC interrupt
-				DCD ADC_IRQHandler                ; IRQ12: ADC interrupt
-				DCD AES_IRQHandler                ; IRQ13: AES interrupt
-				DCD 0x00000000                    ; IRQ14: Reserved
-				DCD GPIOA_IRQHandler              ; IRQ15: GPIOA interrupt
-				DCD GPIOB_IRQHandler              ; IRQ16: GPIOB interrupt
-				DCD DMA_IRQHandler                ; IRQ17: DMA interrupt
-				DCD LPAWUR_IRQHandler             ; IRQ18: LPAWUR interrupt
-				DCD COMP1_IRQHandler              ; IRQ19: COMP1 interrupt
-				DCD MRSUBG_BUSY_IRQHandler       ; IRQ20: MR SUBG BUSY interrupt
-				DCD MRSUBG_IRQHandler            ; IRQ21: MR SUBG interrupt
-				DCD TX_RX_SEQUENCE_IRQHandler     ; IRQ22: TX RX Sequence interrupt
-				DCD CPU_WKUP_IRQHandler           ; IRQ23: CPU Wakeup interrupt
-				DCD SUBG_WKUP_IRQHandler          ; IRQ24: SUBG Wakeup interrupt
-				DCD DAC_IRQHandler                ; IRQ25: DAC interrupt
-				DCD TIM16_IRQHandler              ; IRQ26: TIM16 interrupt
-				DCD LCD_IRQHandler                ; IRQ27: LCD interrupt
-				DCD LCSC_IRQHandler               ; IRQ28: LCSC interrupt
-				DCD LCSC_LC_ACTIVITY_IRQHandler   ; IRQ29: LCSC LC ACTIVITY interrupt
-				DCD 0x00000000                    ; IRQ30: Reserved
-				DCD 0x00000000                    ; IRQ31: Reserved
+				DCD FLASH_IRQHandler                     ; IRQ0:  FLASH Controller interrupt
+				DCD RCC_IRQHandler                       ; IRQ1:  RCC interrupt
+				DCD PVD_IRQHandler                       ; IRQ2:  PVD interrupt
+				DCD I2C1_IRQHandler                      ; IRQ3:  I2C1 interrupt
+				DCD I2C2_IRQHandler                      ; IRQ4:  I2C2 interrupt
+				DCD SPI1_IRQHandler                      ; IRQ5:  SPI1 interrupt
+				DCD 0x00000000                           ; IRQ6:  Reserved
+				DCD SPI3_IRQHandler                      ; IRQ7:  SPI3 interrupt
+				DCD USART1_IRQHandler                    ; IRQ8:  USART1 interrupt
+				DCD LPUART1_IRQHandler                   ; IRQ9:  LPUART1 interrupt
+				DCD TIM2_IRQHandler                      ; IRQ10: TIM2 interrupt
+				DCD RTC_IRQHandler                       ; IRQ11: RTC interrupt
+				DCD ADC_IRQHandler                       ; IRQ12: ADC interrupt
+				DCD AES_IRQHandler                       ; IRQ13: AES interrupt
+				DCD 0x00000000                           ; IRQ14: Reserved
+				DCD GPIOA_IRQHandler                     ; IRQ15: GPIOA interrupt
+				DCD GPIOB_IRQHandler                     ; IRQ16: GPIOB interrupt
+				DCD DMA_IRQHandler                       ; IRQ17: DMA interrupt
+				DCD LPAWUR_IRQHandler                    ; IRQ18: LPAWUR interrupt
+				DCD COMP1_IRQHandler                     ; IRQ19: COMP1 interrupt
+				DCD MRSUBG_BUSY_IRQHandler               ; IRQ20: MR SUBG BUSY interrupt
+				DCD MRSUBG_IRQHandler                    ; IRQ21: MR SUBG interrupt
+				DCD MRSUBG_TX_RX_SEQUENCE_IRQHandler     ; IRQ22: MR SUBG TX RX Sequence interrupt
+				DCD MRSUBG_TIMER_CPU_WKUP_IRQHandler     ; IRQ23: MR SUBG TIMER CPU Wakeup interrupt
+				DCD MRSUBG_WKUP_IRQHandler               ; IRQ24: MR SUBG Wakeup interrupt
+				DCD DAC_IRQHandler                       ; IRQ25: DAC interrupt
+				DCD TIM16_IRQHandler                     ; IRQ26: TIM16 interrupt
+				DCD LCD_IRQHandler                       ; IRQ27: LCD interrupt
+				DCD LCSC_IRQHandler                      ; IRQ28: LCSC interrupt
+				DCD LCSC_LC_ACTIVITY_IRQHandler          ; IRQ29: LCSC LC ACTIVITY interrupt
+				DCD 0x00000000                           ; IRQ30: Reserved
+				DCD 0x00000000                           ; IRQ31: Reserved
 
 __vector_table_End
 
@@ -168,34 +168,34 @@ SysTick_Handler\
 
 Default_Handler PROC
 
-                EXPORT  FLASH_IRQHandler            [WEAK]
-		EXPORT  RCC_IRQHandler              [WEAK]
-		EXPORT  PVD_IRQHandler              [WEAK]
-		EXPORT  I2C1_IRQHandler             [WEAK]
-		EXPORT  I2C2_IRQHandler             [WEAK]
-		EXPORT  SPI1_IRQHandler             [WEAK]
-		EXPORT  SPI3_IRQHandler             [WEAK]
-		EXPORT  USART1_IRQHandler           [WEAK]
-		EXPORT  LPUART1_IRQHandler          [WEAK]
-		EXPORT  TIM2_IRQHandler             [WEAK]
-		EXPORT  RTC_IRQHandler              [WEAK]
-		EXPORT  ADC_IRQHandler              [WEAK]
-		EXPORT  AES_IRQHandler              [WEAK]
-		EXPORT  GPIOA_IRQHandler            [WEAK]
-		EXPORT  GPIOB_IRQHandler            [WEAK]
-		EXPORT  DMA_IRQHandler              [WEAK]
-		EXPORT  LPAWUR_IRQHandler           [WEAK]
-		EXPORT  COMP1_IRQHandler            [WEAK]
-		EXPORT  MRSUBG_BUSY_IRQHandler     [WEAK]
-		EXPORT  MRSUBG_IRQHandler          [WEAK]
-		EXPORT  TX_RX_SEQUENCE_IRQHandler   [WEAK]
-		EXPORT  CPU_WKUP_IRQHandler	    [WEAK]
-		EXPORT  SUBG_WKUP_IRQHandler        [WEAK]
-		EXPORT 	DAC_IRQHandler              [WEAK]
-		EXPORT  TIM16_IRQHandler            [WEAK]
-		EXPORT  LCD_IRQHandler              [WEAK]
-		EXPORT  LCSC_IRQHandler             [WEAK]
-		EXPORT  LCSC_LC_ACTIVITY_IRQHandler [WEAK]
+        EXPORT  FLASH_IRQHandler           [WEAK]
+		EXPORT  RCC_IRQHandler                     [WEAK]
+		EXPORT  PVD_IRQHandler                     [WEAK]
+		EXPORT  I2C1_IRQHandler                    [WEAK]
+		EXPORT  I2C2_IRQHandler                    [WEAK]
+		EXPORT  SPI1_IRQHandler                    [WEAK]
+		EXPORT  SPI3_IRQHandler                    [WEAK]
+		EXPORT  USART1_IRQHandler                  [WEAK]
+		EXPORT  LPUART1_IRQHandler                 [WEAK]
+		EXPORT  TIM2_IRQHandler                    [WEAK]
+		EXPORT  RTC_IRQHandler                     [WEAK]
+		EXPORT  ADC_IRQHandler                     [WEAK]
+		EXPORT  AES_IRQHandler                     [WEAK]
+		EXPORT  GPIOA_IRQHandler                   [WEAK]
+		EXPORT  GPIOB_IRQHandler                   [WEAK]
+		EXPORT  DMA_IRQHandler                     [WEAK]
+		EXPORT  LPAWUR_IRQHandler                  [WEAK]
+		EXPORT  COMP1_IRQHandler                   [WEAK]
+		EXPORT  MRSUBG_BUSY_IRQHandler             [WEAK]
+		EXPORT  MRSUBG_IRQHandler                  [WEAK]
+		EXPORT  MRSUBG_TX_RX_SEQUENCE_IRQHandler   [WEAK]
+		EXPORT  MRSUBG_TIMER_CPU_WKUP_IRQHandler   [WEAK]
+		EXPORT  MRSUBG_WKUP_IRQHandler             [WEAK]
+		EXPORT  DAC_IRQHandler                     [WEAK]
+		EXPORT  TIM16_IRQHandler                   [WEAK]
+		EXPORT  LCD_IRQHandler                     [WEAK]
+		EXPORT  LCSC_IRQHandler                    [WEAK]
+		EXPORT  LCSC_LC_ACTIVITY_IRQHandler        [WEAK]
 
 FLASH_IRQHandler
 RCC_IRQHandler
@@ -217,9 +217,9 @@ LPAWUR_IRQHandler
 COMP1_IRQHandler
 MRSUBG_BUSY_IRQHandler
 MRSUBG_IRQHandler
-TX_RX_SEQUENCE_IRQHandler
-CPU_WKUP_IRQHandler
-SUBG_WKUP_IRQHandler
+MRSUBG_TX_RX_SEQUENCE_IRQHandler
+MRSUBG_TIMER_CPU_WKUP_IRQHandler
+MRSUBG_WKUP_IRQHandler
 DAC_IRQHandler
 TIM16_IRQHandler
 LCD_IRQHandler

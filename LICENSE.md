@@ -7,6 +7,6 @@
 | FatFS                           | ChaN - STMicroelectronics                                    | BSD-3-Clause                              |
 | FreeRTOS                        | Amazon.com, Inc. or its affiliates                           | MIT                                       |
 | Sigfox                          | Sigfox, STMicroelectronics, Brian Gladman                    | Proprietary and SCHEDULE 2                |
-| WmBus                           | STMicroelectronics                                           | BSD-3-Clause                              |
+| wMBus                           | STMicroelectronics                                           | BSD-3-Clause                              |
 | Projects                        | STMicroelectronics                                           | SLA     (BSD-3-Clause for basic Examples) |
 | Utilities                       | STMicroelectronics                                           | BSD-3-Clause                              |

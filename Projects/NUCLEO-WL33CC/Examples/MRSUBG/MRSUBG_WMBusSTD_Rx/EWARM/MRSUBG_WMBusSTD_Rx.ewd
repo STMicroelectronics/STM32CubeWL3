@@ -44,7 +44,7 @@
                 </option>
                 <option>
                     <name>MemFile</name>
-                    <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32WL3xxC.ddf</state>
+                    <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32WL33xC.ddf</state>
                 </option>
                 <option>
                     <name>RunToEnable</name>
@@ -1090,7 +1090,7 @@
                 <option>
                     <name>CCSTLinkResetList</name>
                     <version>3</version>
-                    <state>4</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCCpuClockEdit</name>

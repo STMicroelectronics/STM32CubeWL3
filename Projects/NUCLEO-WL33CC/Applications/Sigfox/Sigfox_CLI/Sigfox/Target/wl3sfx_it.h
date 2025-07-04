@@ -68,9 +68,4 @@ void wl3sfx_it_unregister(wl3sfx_IT_Type type);
 
 void wl3sfx_it_unregister_all(void);
 
-/**
- * @brief Handles MRSUBG interrupt callbacks
- * @retval None
- */
-void MRSUBG_IRQHandler(void);
 #endif

@@ -58,7 +58,7 @@ MRSubG_WMBUS_PcktFields MRSUBG_PacketSettingsStruct;
 /* USER CODE BEGIN PV */
 volatile FlagStatus xRxDone=RESET;
 uint16_t nPcktLength = 0;
-uint8_t vectcRxBuff[RX_BUFFER];
+__attribute__((aligned(4))) uint8_t vectcRxBuff[RX_BUFFER];
 
 /* USER CODE END PV */
 
@@ -122,8 +122,6 @@ int main(void)
   COM_Init.Parity = COM_PARITY_NONE;
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
-
-  
     
   /* CS blanking */
   __HAL_MRSUBG_SET_CS_BLANKING();
@@ -142,8 +140,6 @@ int main(void)
   
   /* IRQ Config */
   __HAL_MRSUBG_SET_RFSEQ_IRQ_ENABLE(MR_SUBG_GLOB_DYNAMIC_RFSEQ_IRQ_ENABLE_RX_OK_E);
-  HAL_NVIC_EnableIRQ(MR_SUBG_IRQn);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -293,15 +289,15 @@ static void MX_MRSUBG_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -401,7 +397,7 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

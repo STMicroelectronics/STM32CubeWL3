@@ -49,7 +49,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint8_t vectcTxBuff[PACKET_LEN];
+__attribute__((aligned(4))) static uint8_t vectcTxBuff[PACKET_LEN];
 /* USER CODE END PV */
 
 /* Global variables ----------------------------------------------------------*/

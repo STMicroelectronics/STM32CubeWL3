@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    stm32_lpm_if.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   Header for stm32_lpm_f.c module (device specific LP management)
   ******************************************************************************
   * @attention

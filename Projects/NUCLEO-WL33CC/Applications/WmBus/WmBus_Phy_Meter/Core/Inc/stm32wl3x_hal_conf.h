@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file    stm32wl3x_hal_conf.h
- * @author  MCD Application Team
- * @brief   HAL configuration file.
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2024 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file    stm32wl3x_hal_conf.h
+  * @author  MCD Application Team
+  * @brief   HAL configuration file.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -31,8 +31,8 @@ extern "C" {
 
 /* ########################## Module Selection ############################## */
 /**
- * @brief This is the list of modules to be used in the HAL driver
- */
+  * @brief This is the list of modules to be used in the HAL driver
+  */
 
 #define HAL_MODULE_ENABLED
 /*#define HAL_ADC_MODULE_ENABLED   */
@@ -66,75 +66,75 @@ extern "C" {
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
 
-#define USE_HAL_ADC_REGISTER_CALLBACKS 0u
-#define USE_HAL_DAC_REGISTER_CALLBACKS 0u
-#define USE_HAL_I2C_REGISTER_CALLBACKS 0u
-#define USE_HAL_IRDA_REGISTER_CALLBACKS 0u
-#define USE_HAL_RNG_REGISTER_CALLBACKS 0u
-#define USE_HAL_RTC_REGISTER_CALLBACKS 0u
+#define USE_HAL_ADC_REGISTER_CALLBACKS       0u
+#define USE_HAL_DAC_REGISTER_CALLBACKS       0u
+#define USE_HAL_I2C_REGISTER_CALLBACKS       0u
+#define USE_HAL_IRDA_REGISTER_CALLBACKS      0u
+#define USE_HAL_RNG_REGISTER_CALLBACKS       0u
+#define USE_HAL_RTC_REGISTER_CALLBACKS       0u
 #define USE_HAL_SMARTCARD_REGISTER_CALLBACKS 0u
-#define USE_HAL_SMBUS_REGISTER_CALLBACKS 0u
-#define USE_HAL_SPI_REGISTER_CALLBACKS 0u
-#define USE_HAL_TIM_REGISTER_CALLBACKS 0u
-#define USE_HAL_UART_REGISTER_CALLBACKS 0u
-#define USE_HAL_USART_REGISTER_CALLBACKS 0u
+#define USE_HAL_SMBUS_REGISTER_CALLBACKS     0u
+#define USE_HAL_SPI_REGISTER_CALLBACKS       0u
+#define USE_HAL_TIM_REGISTER_CALLBACKS       0u
+#define USE_HAL_UART_REGISTER_CALLBACKS      0u
+#define USE_HAL_USART_REGISTER_CALLBACKS     0u
 
 /* ########################## Oscillator Values adaptation ####################*/
 /**
- * @brief Adjust the value of External High Speed oscillator (HSE) used in your application.
- *        This value is used by the RCC HAL module to compute the system frequency
- *        (when HSE is used as system clock source, directly or through the PLL).
- */
+  * @brief Adjust the value of External High Speed oscillator (HSE) used in your application.
+  *        This value is used by the RCC HAL module to compute the system frequency
+  *        (when HSE is used as system clock source, directly or through the PLL).
+  */
 
-#if !defined(HSE_VALUE)
-#define HSE_VALUE 48000000U /*!< Value of the External oscillator in Hz */
-#endif                      /* HSE_VALUE */
+#if !defined  (HSE_VALUE)
+#define HSE_VALUE    48000000U             /*!< Value of the External oscillator in Hz */
+#endif /* HSE_VALUE */
 
-#if !defined(HSE_STARTUP_TIMEOUT)
-#define HSE_STARTUP_TIMEOUT (100UL) /*!< Time out for HSE start up, in ms */
-#endif                              /* HSE_STARTUP_TIMEOUT */
-
-/**
- * @brief Internal High Speed oscillator (HSI) value.
- *        This value is used by the RCC HAL module to compute the system frequency
- *        (when HSI is used as system clock source, directly or through the PLL).
- */
-#if !defined(HSI_VALUE)
-#define HSI_VALUE (64000000UL) /*!< Value of the Internal oscillator in Hz*/
-#endif                         /* HSI_VALUE */
+#if !defined  (HSE_STARTUP_TIMEOUT)
+#define HSE_STARTUP_TIMEOUT    (100UL)   /*!< Time out for HSE start up, in ms */
+#endif /* HSE_STARTUP_TIMEOUT */
 
 /**
- * @brief Internal Low Speed oscillator (LSI) value.
- */
-#if !defined(LSI_VALUE)
-#define LSI_VALUE (32000UL) /*!< LSI Typical Value in Hz*/
-#endif /* LSI_VALUE */      /*!< Value of the Internal Low Speed oscillator in Hz \
-                             The real value may vary depending on the variations  \
-                             in voltage and temperature.*/
-/**
- * @brief External Low Speed oscillator (LSE) value.
- *        This value is used by the UART, RTC HAL module to compute the system frequency
- */
-#if !defined(LSE_VALUE)
-#define LSE_VALUE (32768UL) /*!< Value of the External oscillator in Hz*/
-#endif                      /* LSE_VALUE */
+  * @brief Internal High Speed oscillator (HSI) value.
+  *        This value is used by the RCC HAL module to compute the system frequency
+  *        (when HSI is used as system clock source, directly or through the PLL).
+  */
+#if !defined  (HSI_VALUE)
+#define HSI_VALUE    (64000000UL) /*!< Value of the Internal oscillator in Hz*/
+#endif /* HSI_VALUE */
 
 /**
- * @brief 64 MHz PLL clock default value.
- *        This value is the default RC64M_PLL value after Reset.
- */
-#if !defined(RC64MPLL_VALUE)
-#define RC64MPLL_VALUE (64000000UL) /*!< Value of the Internal oscillator in Hz*/
-#endif                              /* RC64MPLL_VALUE */
+  * @brief Internal Low Speed oscillator (LSI) value.
+  */
+#if !defined  (LSI_VALUE)
+#define LSI_VALUE  (32000UL)       /*!< LSI Typical Value in Hz*/
+#endif /* LSI_VALUE */                      /*!< Value of the Internal Low Speed oscillator in Hz
+                                             The real value may vary depending on the variations
+                                             in voltage and temperature.*/
+/**
+  * @brief External Low Speed oscillator (LSE) value.
+  *        This value is used by the UART, RTC HAL module to compute the system frequency
+  */
+#if !defined  (LSE_VALUE)
+#define LSE_VALUE    (32768UL) /*!< Value of the External oscillator in Hz*/
+#endif /* LSE_VALUE */
 
-#if !defined(LSE_STARTUP_TIMEOUT)
-#define LSE_STARTUP_TIMEOUT (5000UL) /*!< Time out for LSE start up, in ms */
-#endif                               /* LSE_STARTUP_TIMEOUT */
+/**
+  * @brief 64 MHz PLL clock default value.
+  *        This value is the default RC64M_PLL value after Reset.
+  */
+#if !defined (RC64MPLL_VALUE)
+#define RC64MPLL_VALUE    (64000000UL) /*!< Value of the Internal oscillator in Hz*/
+#endif /* RC64MPLL_VALUE */
+
+#if !defined (LSE_STARTUP_TIMEOUT)
+#define LSE_STARTUP_TIMEOUT    (5000UL)   /*!< Time out for LSE start up, in ms */
+#endif /* LSE_STARTUP_TIMEOUT */
 
 /* ################ HSE Capacitor tuning configuration ###################### */
 /**
- * @brief Default value of the HSE capacitor tuning.
- */
+  * @brief Default value of the HSE capacitor tuning.
+  */
 #if !defined(CFG_HW_RCC_HSE_CAPACITOR_TUNE)
 #define CFG_HW_RCC_HSE_CAPACITOR_TUNE 32
 #endif
@@ -144,17 +144,17 @@ extern "C" {
 
 /* ########################### System Configuration ######################### */
 /**
- * @brief This is the HAL system configuration section
- */
-#define VDD_VALUE (3300UL)                                  /*!< Value of VDD in mv */
-#define TICK_INT_PRIORITY ((1UL << __NVIC_PRIO_BITS) - 1UL) /*!< tick interrupt priority (lowest by default) */
-#define USE_RTOS 0U
+  * @brief This is the HAL system configuration section
+  */
+#define  VDD_VALUE                    (3300UL) /*!< Value of VDD in mv */
+#define  TICK_INT_PRIORITY            ((1UL<<__NVIC_PRIO_BITS) - 1UL) /*!< tick interrupt priority (lowest by default) */
+#define  USE_RTOS                     0U
 
 /* ########################## Assert Selection ############################## */
 /**
- * @brief Uncomment the line below to expanse the "assert_param" macro in the
- *        HAL drivers code
- */
+  * @brief Uncomment the line below to expanse the "assert_param" macro in the
+  *        HAL drivers code
+  */
 /* #define USE_FULL_ASSERT    1U */
 
 /* ################## SPI peripheral configuration ########################## */
@@ -164,12 +164,12 @@ extern "C" {
  * Deactivated: CRC code cleaned from driver
  */
 
-#define USE_SPI_CRC 0U
+#define USE_SPI_CRC                   0U
 
 /* Includes ------------------------------------------------------------------*/
 /**
- * @brief Include module's header file
- */
+  * @brief Include module's header file
+  */
 #ifdef HAL_DMA_MODULE_ENABLED
 #include "stm32wl3x_hal_dma.h"
 #endif /* HAL_DMA_MODULE_ENABLED */
@@ -278,16 +278,16 @@ extern "C" {
 #include "stm32wl3x_hal_dac.h"
 #endif /* HAL_DAC_MODULE_ENABLED */
 /* Exported macro ------------------------------------------------------------*/
-#ifdef USE_FULL_ASSERT
+#ifdef  USE_FULL_ASSERT
 /**
- * @brief  The assert_param macro is used for function's parameters check.
- * @param expr If expr is false, it calls assert_failed function
- *         which reports the name of the source file and the source
- *         line number of the call that failed.
- *         If expr is true, it returns no value.
- * @retval None
- */
-#define assert_param(expr) ((expr) ? (void)0U : assert_failed((uint8_t*)__FILE__, __LINE__))
+  * @brief  The assert_param macro is used for function's parameters check.
+  * @param expr If expr is false, it calls assert_failed function
+  *         which reports the name of the source file and the source
+  *         line number of the call that failed.
+  *         If expr is true, it returns no value.
+  * @retval None
+  */
+#define assert_param(expr) ((expr) ? (void)0U : assert_failed((uint8_t *)__FILE__, __LINE__))
 /* Exported functions ------------------------------------------------------- */
 void assert_failed(uint8_t* file, uint32_t line);
 #else
@@ -299,3 +299,4 @@ void assert_failed(uint8_t* file, uint32_t line);
 #endif
 
 #endif /* STM32WL3X_HAL_CONF_H */
+

@@ -48,9 +48,9 @@ static void _update_irq(void)
 
   /* enable IRQHandler interrupt only if at least one flag bit is watched */
   if (irq_enable_mask != 0)
-    HAL_NVIC_EnableIRQ(MR_SUBG_IRQn);
+    HAL_NVIC_EnableIRQ(MRSUBG_IRQn);
   else
-    HAL_NVIC_DisableIRQ(MR_SUBG_IRQn);
+    HAL_NVIC_DisableIRQ(MRSUBG_IRQn);
 }
 
 void wl3sfx_it_register(wl3sfx_IT_Type type, uint32_t flag_mask, wl3sfx_IT_Callback cb)
@@ -76,7 +76,7 @@ void wl3sfx_it_unregister_all(void)
     wl3sfx_it_unregister((wl3sfx_IT_Type)type);
 }
 
-void MRSUBG_IRQHandler(void)
+void HAL_MRSubG_IRQ_Callback(void)
 {
   /* execute callback function for every interrupt that has been registered and at least one interrupt flag corresponding to the flag_mask
    * is raised  */

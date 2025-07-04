@@ -2,12 +2,12 @@
 /**
   ******************************************************************************
   * @file    device_context_switch.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   Header file of Device Context Switch module.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file

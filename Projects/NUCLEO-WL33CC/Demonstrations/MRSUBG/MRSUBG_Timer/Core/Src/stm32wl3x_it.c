@@ -149,7 +149,7 @@ void SysTick_Handler(void)
 
 /* USER CODE BEGIN 1 */
 
-void CPU_WKUP_IRQHandler(void) 
+void MRSUBG_TIMER_CPU_WKUP_IRQHandler(void) 
 {
   /* USER CODE BEGIN CPU_WKUP_IRQn 0 */
 

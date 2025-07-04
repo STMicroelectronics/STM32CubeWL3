@@ -174,11 +174,16 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
      * MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_DRV_MODE: 0x2: 14 dBm, 0x3: 20dBm
      */
     MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PA_CONFIG, MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_MODE, 0x00);
+	MODIFY_REG_FIELD(MR_SUBG_GLOB_DYNAMIC->ADDITIONAL_CTRL, MR_SUBG_GLOB_DYNAMIC_ADDITIONAL_CTRL_PA_FC, 0x00);
+
 #if defined(WL3SFX_PA_DRV_MODE_20dBm)
-    LL_PWR_SMPS_SetOutputVoltageLevel(LL_PWR_SMPS_OUTPUT_VOLTAGE_1V70);
+    LL_PWR_SMPS_SetOutputVoltageLevel(LL_PWR_SMPS_OUTPUT_VOLTAGE_2V20);
+	LL_MRSubG_SetPADegen(ENABLE);
     MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PA_CONFIG, MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_DRV_MODE, 0x3);
 #elif defined(WL3SFX_PA_DRV_MODE_14dBm)
     MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PA_CONFIG, MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_DRV_MODE, 0x2);
+	LL_PWR_SMPS_SetOutputVoltageLevel(LL_PWR_SMPS_OUTPUT_VOLTAGE_1V70);
+	LL_MRSubG_SetPADegen(ENABLE);
 #else
 #if defined(__GNUC__)
 #pragma GCC warning "WL3SFX: No PA_DRV_MODE configuration!"
@@ -186,7 +191,7 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
 #warning "WL3SFX: No PA_DRV_MODE configuration!"
 #endif
 #endif
-    MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PA_CONFIG, MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_INTERP_EN, 0);
+    MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PA_CONFIG, MR_SUBG_GLOB_STATIC_PA_CONFIG_PA_INTERP_EN, 1);
 
     /*
      * TX Payload configuration:
@@ -291,6 +296,11 @@ sfx_u8 RF_API_send(sfx_u8* stream, sfx_modulation_type_t type, sfx_u8 size)
 
   /* select DBPSK data rate (100bps vs 600bps) */
   HAL_MRSubG_SetDatarate(type == SFX_DBPSK_100BPS ? 500 : 3000);
+
+  if(type == SFX_DBPSK_600BPS)
+    HAL_MRSubG_SetFrequencyDev(12000);
+  else
+  	HAL_MRSubG_SetFrequencyDev(2000);
 
   /* Use common databuffers, set databuffer size */
   wl3sfx_databuffers_use(WL3SFX_TXSYMBOLS_BUFFERSIZE);

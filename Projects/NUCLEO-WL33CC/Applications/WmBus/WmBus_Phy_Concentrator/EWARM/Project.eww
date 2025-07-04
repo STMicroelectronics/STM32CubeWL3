@@ -2,7 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\WmBus_Phy_Concentrator.ewp</path>
+    <path>$WS_DIR$\wMBus_Phy_Concentrator.ewp</path>
   </project>
 <batchBuild></batchBuild>
 </workspace>

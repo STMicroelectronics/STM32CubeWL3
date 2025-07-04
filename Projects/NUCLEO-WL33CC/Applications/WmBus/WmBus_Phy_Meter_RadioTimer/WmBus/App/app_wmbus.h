@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file    app_wmbus.h
- * @author  MCD Application Team
- * @brief   Header of application of the WmBus Phy Middleware
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file    app_wMBus.h
+  * @author  MCD Application Team
+  * @brief   Header of application of the wMBus Middleware
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -59,22 +59,21 @@ extern VTIMER_HandleType timerHandle3;
 
 /* Exported Functions Prototypes ---------------------------------------------*/
 /**
- * @brief  Init wmbphy Application
+ * @brief  Init wMBus Application
  */
-void MX_wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format);
+void MX_wMBus_Init(void);
 
-void MX_wmbphy_Process(void);
-void MX_wmbphy_Idle(void);
+void MX_wMBus_Process(void);
+void MX_wMBus_Idle(void);
 
 PowerSaveLevels HAL_MRSUBG_TIMER_PowerSaveLevelCheck(void);
 
-void MX_wmbphy_RadioTimerConfig(void);
+void MX_wMBus_RadioTimerConfig(void);
 void TimeoutCallback(void *timerHandle);
 #ifdef MULTIPLE_RADIO_TIMER
 void TimeoutCallback2(void *timerHandle);
 void TimeoutCallback3(void *timerHandle);
 #endif
-
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

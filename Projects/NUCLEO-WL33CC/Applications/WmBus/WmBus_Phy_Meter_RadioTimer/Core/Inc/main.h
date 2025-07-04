@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file    main.h
- * @author  MCD Application Team
- * @brief   Header for main.c module
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file           : main.h
+  * @brief          : Header for main.c file.
+  *                   This file contains the common defines of the application.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -28,10 +28,20 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wl3x_hal.h"
-#include "app_wmbus.h"
+#include "app_wMBus.h"
 #include "app_conf.h"
-#include "stm32wl3_wmbphy_radio.h"
-#include "stm32wl3_wmbphy_pwr.h"
+#include "stm32wl3_wMBus_Phy_radio.h"
+#include "stm32wl3_wMBus_Phy_pwr.h"
+
+#include "stm32wl3x_ll_bus.h"
+#include "stm32wl3x_ll_cortex.h"
+#include "stm32wl3x_ll_rcc.h"
+#include "stm32wl3x_ll_system.h"
+#include "stm32wl3x_ll_utils.h"
+#include "stm32wl3x_ll_gpio.h"
+#include "stm32wl3x_ll_pwr.h"
+#include "stm32wl3x_ll_dma.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32wl3x_nucleo.h"

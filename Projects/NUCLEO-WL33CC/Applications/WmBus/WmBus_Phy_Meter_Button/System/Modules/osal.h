@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    osal.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   This header file defines the OS abstraction layer. OSAL defines the
              set of functions which needs to be ported to target operating
              system and target platform.

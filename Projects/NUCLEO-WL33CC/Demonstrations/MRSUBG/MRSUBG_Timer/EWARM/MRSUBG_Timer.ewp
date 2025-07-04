@@ -226,7 +226,7 @@
                 </option>
                 <option>
                     <name>CCDefines</name>
-                    <state>STM32WL33</state>
+                    <state>STM32WL3XX</state>
                     <state>USE_HAL_DRIVER</state>
                     <state>PRINT_DEBUG</state>
                     <state>SINGLE_TIMER_OPT</state>

@@ -170,6 +170,13 @@ void wl3sfx_txsymbols_generate(
   for (j = 0; j < WL3SFX_TXSYMBOLS_COUPLES; ++j) {
     target[2 * j + 1] = _subtract_saturate(target[2 * j + 1], _power_reduction * 2);
   }
+
+#if defined(WL3SFX_PA_DRV_MODE_20dBm)
+  for (j = 0; j < WL3SFX_TXSYMBOLS_COUPLES; ++j) {
+    if (target[2 * j + 1] == 81)
+      target[2 * j + 1] = 80;
+  }
+#endif
 }
 
 void wl3sfx_txsymbols_set_power_reduction(int8_t reduction)

@@ -338,7 +338,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fshort-enums</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32WL33</Define>
+              <Define>USE_HAL_DRIVER,STM32WL3XX</Define>
               <Undefine></Undefine>
               <IncludePath>../System/Interfaces;../Core/Inc;../System/Modules;../System/Startup;../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32WL3x/Include;../../../../../../Drivers/CMSIS/Include;..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo;../../../../../../Utilities/lpm/tiny_lpm</IncludePath>
             </VariousControls>

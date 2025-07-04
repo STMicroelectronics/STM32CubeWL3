@@ -133,39 +133,39 @@ __vector_table:
   .word  0
   .word  0
   .word  PendSV_Handler
-  .word  SysTick_Handler	
-  .word  FLASH_IRQHandler             /* IRQ0:  FLASH Controller interrupt    */ 
-  .word  RCC_IRQHandler               /* IRQ1:  RCC interrupt                 */
-  .word  PVD_IRQHandler               /* IRQ2:  PVD interrupt                 */
-  .word I2C1_IRQHandler               /* IRQ3:  I2C1 interrupt                */
-  .word I2C2_IRQHandler               /* IRQ4:  I2C2 interrupt                */
-  .word SPI1_IRQHandler               /* IRQ5:  SPI1 interrupt                */
-  .word 0x00000000                    /* IRQ6:  Reserved                      */
-  .word SPI3_IRQHandler               /* IRQ7:  SPI3 interrupt                */
-  .word USART1_IRQHandler             /* IRQ8:  USART1 interrupt              */
-  .word LPUART1_IRQHandler            /* IRQ9:  LPUART1 interrupt             */
-  .word TIM2_IRQHandler               /* IRQ10: TIM2 interrupt                */
-  .word RTC_IRQHandler                /* IRQ11: RTC interrupt                 */
-  .word ADC_IRQHandler                /* IRQ12: ADC interrupt                 */
-  .word AES_IRQHandler                /* IRQ13: AES interrupt                 */
-  .word 0x00000000                    /* IRQ14: Reserved                      */
-  .word GPIOA_IRQHandler              /* IRQ15: GPIOA interrupt               */
-  .word GPIOB_IRQHandler              /* IRQ16: GPIOB interrupt               */
-  .word DMA_IRQHandler                /* IRQ17: DMA interrupt                 */
-  .word LPAWUR_IRQHandler             /* IRQ18: LPAWUR interrupt              */
-  .word COMP1_IRQHandler              /* IRQ19: COMP1 interrupt               */
-  .word MRSUBG_BUSY_IRQHandler       /* IRQ20: MR SUBG BUSY interrupt        */
-  .word MRSUBG_IRQHandler            /* IRQ21: MR SUBG interrupt             */
-  .word TX_RX_SEQUENCE_IRQHandler     /* IRQ22: TX RX SEQUENCE interrupt      */
-  .word CPU_WKUP_IRQHandler           /* IRQ23: CPU Wakeup interrupt          */
-  .word SUBG_WKUP_IRQHandler          /* IRQ24: SUBG Wakeup interrupt         */
-  .word DAC_IRQHandler                /* IRQ25: DAC interrupt                 */
-  .word TIM16_IRQHandler              /* IRQ26: TIM16 interrupt               */
-  .word LCD_IRQHandler                /* IRQ27: LCD interrupt                 */
-  .word LCSC_IRQHandler               /* IRQ28: LCSC interrupt                */
-  .word LCSC_LC_ACTIVITY_IRQHandler   /* IRQ29: LCSC LC ACTIVITY interrupt    */
-  .word 0x00000000                    /* IRQ30: Reserved                      */
-  .word 0x00000000                    /* IRQ31: Reserved                      */
+  .word  SysTick_Handler
+  .word  FLASH_IRQHandler                     /* IRQ0:  FLASH Controller interrupt    */
+  .word  RCC_IRQHandler                       /* IRQ1:  RCC interrupt                 */
+  .word  PVD_IRQHandler                       /* IRQ2:  PVD interrupt                 */
+  .word I2C1_IRQHandler                       /* IRQ3:  I2C1 interrupt                */
+  .word I2C2_IRQHandler                       /* IRQ4:  I2C2 interrupt                */
+  .word SPI1_IRQHandler                       /* IRQ5:  SPI1 interrupt                */
+  .word 0x00000000                            /* IRQ6:  Reserved                      */
+  .word SPI3_IRQHandler                       /* IRQ7:  SPI3 interrupt                */
+  .word USART1_IRQHandler                     /* IRQ8:  USART1 interrupt              */
+  .word LPUART1_IRQHandler                    /* IRQ9:  LPUART1 interrupt             */
+  .word TIM2_IRQHandler                       /* IRQ10: TIM2 interrupt                */
+  .word RTC_IRQHandler                        /* IRQ11: RTC interrupt                 */
+  .word ADC_IRQHandler                        /* IRQ12: ADC interrupt                 */
+  .word AES_IRQHandler                        /* IRQ13: AES interrupt                 */
+  .word 0x00000000                            /* IRQ14: Reserved                      */
+  .word GPIOA_IRQHandler                      /* IRQ15: GPIOA interrupt               */
+  .word GPIOB_IRQHandler                      /* IRQ16: GPIOB interrupt               */
+  .word DMA_IRQHandler                        /* IRQ17: DMA interrupt                 */
+  .word LPAWUR_IRQHandler                     /* IRQ18: LPAWUR interrupt              */
+  .word COMP1_IRQHandler                      /* IRQ19: COMP1 interrupt               */
+  .word MRSUBG_BUSY_IRQHandler                /* IRQ20: MR SUBG BUSY interrupt        */
+  .word MRSUBG_IRQHandler                     /* IRQ21: MR SUBG interrupt             */
+  .word MRSUBG_TX_RX_SEQUENCE_IRQHandler      /* IRQ22: MR SUBG TX RX Sequence interrupt    */
+  .word MRSUBG_TIMER_CPU_WKUP_IRQHandler      /* IRQ23: MR SUBG TIMER CPU Wakeup interrupt */
+  .word MRSUBG_WKUP_IRQHandler                /* IRQ24: MR SUBG Wakeup interrupt      */
+  .word DAC_IRQHandler                        /* IRQ25: DAC interrupt                 */
+  .word TIM16_IRQHandler                      /* IRQ26: TIM16 interrupt               */
+  .word LCD_IRQHandler                        /* IRQ27: LCD interrupt                 */
+  .word LCSC_IRQHandler                       /* IRQ28: LCSC interrupt                */
+  .word LCSC_LC_ACTIVITY_IRQHandler           /* IRQ29: LCSC LC ACTIVITY interrupt    */
+  .word 0x00000000                            /* IRQ30: Reserved                      */
+  .word 0x00000000                            /* IRQ31: Reserved                      */
 
 /*******************************************************************************
 *
@@ -210,7 +210,7 @@ __vector_table:
 
    .weak      SPI3_IRQHandler
    .thumb_set SPI3_IRQHandler,Default_Handler
-	
+
    .weak      USART1_IRQHandler
    .thumb_set USART1_IRQHandler,Default_Handler
 
@@ -250,14 +250,14 @@ __vector_table:
    .weak      MRSUBG_IRQHandler
    .thumb_set MRSUBG_IRQHandler,Default_Handler
 
-   .weak      TX_RX_SEQUENCE_IRQHandler
-   .thumb_set TX_RX_SEQUENCE_IRQHandler,Default_Handler
+   .weak      MRSUBG_TX_RX_SEQUENCE_IRQHandler
+   .thumb_set MRSUBG_TX_RX_SEQUENCE_IRQHandler,Default_Handler
 
-   .weak      CPU_WKUP_IRQHandler
-   .thumb_set CPU_WKUP_IRQHandler,Default_Handler
+   .weak      MRSUBG_TIMER_CPU_WKUP_IRQHandler
+   .thumb_set MRSUBG_TIMER_CPU_WKUP_IRQHandler,Default_Handler
 
-   .weak      SUBG_WKUP_IRQHandler
-   .thumb_set SUBG_WKUP_IRQHandler,Default_Handler
+   .weak      MRSUBG_WKUP_IRQHandler
+   .thumb_set MRSUBG_WKUP_IRQHandler,Default_Handler
 
    .weak      DAC_IRQHandler
    .thumb_set DAC_IRQHandler,Default_Handler

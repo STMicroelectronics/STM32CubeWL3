@@ -1,13 +1,20 @@
+---
+pagetitle: Readme for STM32CubeWL3 wM-Bus Phy Meter RadioTimer
+lang: en
+header-includes: <link rel="icon" type="image/x-icon" href="../../../../../_htmresc/favicon.png"/>
+---
+
 ::: {.row}
 ::: {.col-sm-12 .col-lg-4}
-## <b>WmBus_Phy_Meter_RadioTimer Application Description</b>
+## <b>wMBus_Phy_Meter_RadioTimer Application Description</b>
 
-This application allows to evaluate the STM32WL33 WmBus Phy device radio capabilities as Meter transmitting a WmBus packet each time a Radio Timer expires.
-The application, after initialization, sends a WmBus Uplink packet each time a Radio Timer expires according to the configuration specified below and prints some relevant information of the sent packet.
+This simple application implements a meter. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication.
+This application uses the MRSUBG radio timer. After initialization, it sends the device in deepstop low power mode setting the MRSUBG radio timer as wakeup source.
+It transmits a sample wM-Bus SND-NR frame based on the specified configuration each time the radio timer expires, while printing relevant information.
 
 ### <b>Keywords</b>
 
-WmBus, Skeleton, MRSUBG
+wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Directory contents</b>
 
@@ -30,8 +37,8 @@ WmBus, Skeleton, MRSUBG
   - System/Startup/cpu_context_switch.s     Context restore file
   - System/Startup/device_context_switch.c  STM32WL3 context switch file
   - System/Startup/device_context_switch.h  Header for device_context_switch.c
-  - WmBus/App/app_wmbus.h                   Header of application of the WmBus Phy Middleware
-  - WmBus/App/app_wmbus.c                   Application of the WmBus Phy Middleware
+  - wMBus/App/app_wMBus.h                   Header of application of the wM-Bus Phy Middleware
+  - wMBus/App/app_wMBus.c                   Application of the wM-Bus Phy Middleware
 
 ### <b>Hardware and Software environment</b>
 
@@ -49,11 +56,13 @@ In order to make the program work, you must do the following:
 
 ### <b>Static configuration</b>
 
-The WmBus Phy is configured as follow:
- - WmBus Mode: C-mode
- - WmBus Format: Format A
- - WmBus Direction: Meter to Other
-These settings can be found in file main.c.
+The wM-Bus Phy MW is configured as follow:
+
+ - wM-Bus Mode: C-mode
+ - wM-Bus Format: Format A
+ - wM-Bus Direction: Meter to Other
+
+These settings can be found in file app_wMBus.c.
 
 Furthermore, this project defines the following macros:
 
@@ -61,9 +70,7 @@ Furthermore, this project defines the following macros:
 |-----------------------|----------------------------------------------------------------------------------|
 | WMBUS_CRC_IN_HAL      | Activate CRC   computing/checking for TX/RX in HAL                               |
 | WMBUS_NO_BLOCKING_HAL | Enable   non blocking calls for TX and RX      Radio Event bitmap updated by HAL |
-| RADIO_TIMER_ENABLED   | Activate   Radio Timer for low-power purpose                                     |
 | PRINT_DEBUG           | Verbose   debug print                                                            |
 | DEEPSTOP_ENABLE       | Wakeup   source configuration                                                    |
-
 ::: 
 ::: 

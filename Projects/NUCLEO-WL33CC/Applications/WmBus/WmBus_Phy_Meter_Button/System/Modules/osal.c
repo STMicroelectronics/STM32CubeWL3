@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    osal.c
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   osal APIs
   ******************************************************************************
   * @attention

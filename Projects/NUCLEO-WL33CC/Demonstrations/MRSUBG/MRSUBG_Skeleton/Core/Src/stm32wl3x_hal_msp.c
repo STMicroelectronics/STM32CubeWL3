@@ -78,6 +78,46 @@ void HAL_MspInit(void)
   /* USER CODE END MspInit 1 */
 }
 
+void HAL_MRSubG_MspInit(void)
+{
+  
+  /* USER CODE BEGIN MRSubG_MspInit 0 */
+  
+  /* USER CODE END MRSubG_MspInit 0 */
+  
+  /* Peripheral clock enable */
+  if (__HAL_RCC_MRSUBG_IS_CLK_DISABLED())
+  {
+    /* MRSUBG Peripheral reset */
+    __HAL_RCC_MRSUBG_FORCE_RESET();
+    __HAL_RCC_MRSUBG_RELEASE_RESET();
+    
+    /* Enable MRSUBG peripheral clock */
+    __HAL_RCC_MRSUBG_CLK_ENABLE();
+  }
+  
+  /* USER CODE BEGIN MRSubG_MspInit 1 */
+  
+  /* USER CODE END MRSubG_MspInit 1 */
+}
+
+void HAL_MRSubG_MspDeInit(void)
+{
+  
+  /* USER CODE BEGIN MRSubG_MspDeInit 0 */
+  
+  /* USER CODE END MRSubG_MspDeInit 0 */
+  
+  /* Peripheral clock disable */
+  __HAL_RCC_MRSUBG_CLK_DISABLE();
+  __HAL_RCC_MRSUBG_FORCE_RESET();
+  __HAL_RCC_MRSUBG_RELEASE_RESET();
+
+  /* USER CODE BEGIN MRSubG_MspDeInit 1 */
+  
+  /* USER CODE END MRSubG_MspDeInit 1 */
+}
+
 /* USER CODE BEGIN 1 */
 
 /**

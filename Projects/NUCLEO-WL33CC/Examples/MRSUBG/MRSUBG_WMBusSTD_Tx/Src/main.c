@@ -53,7 +53,7 @@ MRSubG_WMBUS_PcktFields MRSUBG_PacketSettingsStruct;
 /* USER CODE BEGIN PV */
 volatile FlagStatus xTxDoneFlag = RESET;
 uint16_t cLField=20;
-uint8_t vectcTxBuff[TX_BUFFER];
+__attribute__((aligned(4))) uint8_t vectcTxBuff[TX_BUFFER];
 uint16_t nPcktLength;
 
 /* USER CODE END PV */
@@ -118,11 +118,9 @@ int main(void)
   COM_Init.Parity = COM_PARITY_NONE;
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
-
   
   /* IRQ Config */
   __HAL_MRSUBG_SET_RFSEQ_IRQ_ENABLE(MR_SUBG_GLOB_DYNAMIC_RFSEQ_IRQ_ENABLE_TX_DONE_E);
-  HAL_NVIC_EnableIRQ(MR_SUBG_IRQn);
   
   /* Set the pointer to the data buffer */
   __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&vectcTxBuff);
@@ -137,7 +135,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     if(cLField<20)
-	cLField=20;
+      cLField=20;
 
     nPcktLength = 1+cLField+2+2*(CEILING(((float)cLField-9)/16));
 
@@ -271,15 +269,15 @@ static void MX_MRSUBG_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -383,7 +381,7 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

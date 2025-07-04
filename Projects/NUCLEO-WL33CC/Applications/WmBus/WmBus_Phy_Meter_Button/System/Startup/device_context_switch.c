@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    device_context_switch.c
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   STM32WL3 context switch
   ******************************************************************************
   * @attention

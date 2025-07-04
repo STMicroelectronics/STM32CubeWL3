@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    stm32_lpm_if.c
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   Low layer function to enter/exit low power modes (stop, sleep)
   ******************************************************************************
   * @attention
@@ -156,7 +156,7 @@ void PWR_EnterOffMode( void )
 void PWR_ExitOffMode( void )
 {
   /* USER CODE BEGIN PWR_ExitOffMode */
-  
+
   /* USER CODE END PWR_ExitOffMode */
 
   /* Restore low speed clock configuration */
@@ -221,7 +221,7 @@ void PWR_EnterStopMode( void )
   PWR_DEEPSTOPTypeDef configDS;
 
   /* USER CODE BEGIN PWR_EnterStopMode */
-  
+
   /* USER CODE END PWR_EnterStopMode */
 
   /* Save the clock configuration */
@@ -269,7 +269,7 @@ void PWR_EnterStopMode( void )
 void PWR_ExitStopMode( void )
 {
   /* USER CODE BEGIN PWR_ExitStopMode */
-  
+
   /* USER CODE END PWR_ExitStopMode */
 
   /* Clear SLEEPDEEP bit of Cortex System Control Register */

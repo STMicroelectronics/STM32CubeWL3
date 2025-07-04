@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>WmBus_Phy_Concentrator</TargetName>
+      <TargetName>wMBus_Phy_Concentrator</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
@@ -16,14 +16,14 @@
         <TargetCommonOption>
           <Device>STM32WL33CCVx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32WL3x_DFP.1.1.0</PackID>
+          <PackID>Keil.STM32WL3x_DFP.1.2.0</PackID>
           <PackURL>https://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000,0x0008000) IROM(0x10040000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x00008000) IROM(0x10040000,0x00040000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC8000 -FN1 -FF0STM32WL3x_256K -FS010040000 -FL040000 -FP0($$Device:STM32WL33CCVx$CMSIS\Flash\STM32WL3x_256K.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:STM32WL33CCVx$Drivers\CMSIS\Device\ST\STM32WL3X\Include\stm32wL3x.h</RegisterFile>
+          <RegisterFile></RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -48,8 +48,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>WmBus_Phy_Concentrator\Exe\</OutputDirectory>
-          <OutputName>WmBus_Phy_Concentrator</OutputName>
+          <OutputDirectory>wMBus_Phy_Concentrator\Exe\</OutputDirectory>
+          <OutputName>wMBus_Phy_Concentrator</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -338,9 +338,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-Wno-format</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32WL33,WMBUS_CRC_IN_HAL,WMBUS_NO_BLOCKING_HAL,T1C1_ACTIVATED_C1_MODE,AUTOMATIC_FORMAT_DETECTION_C_MODE,PREAMBLE_AND_SYNC_IRQ_ENABLE,WMBUS_RX_PERFORMANCE_ENABLED,WMBUS_ACTIVE_POWER_MODE_ENABLED,WFI_ENABLE</Define>
+              <Define>USE_HAL_DRIVER,STM32WL3XX,WMBUS_CRC_IN_HAL,WMBUS_NO_BLOCKING_HAL,T1C1_ACTIVATED_C1_MODE,AUTOMATIC_FORMAT_DETECTION_C_MODE,PREAMBLE_AND_SYNC_IRQ_ENABLE,WMBUS_RX_PERFORMANCE_ENABLED,WMBUS_ACTIVE_POWER_MODE_ENABLED,WFI_ENABLE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../System/Interfaces;../System/Modules;../System/Startup;../WmBus/App;../../../../../../Drivers/BSP/STM32WL3x-Nucleo;../../../../../../Drivers/CMSIS/Device/ST/STM32WL3X/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc;../../../../../../Middlewares/ST/WmBus_Phy/Inc;../../../../../../Utilities/lpm/tiny_lpm</IncludePath>
+              <IncludePath>../Core/Inc;../System/Interfaces;../System/Modules;../System/Startup;../wMBus/App;../../../../../../Drivers/BSP/STM32WL3x-Nucleo;../../../../../../Drivers/CMSIS/Device/ST/STM32WL3X/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc;../../../../../../Middlewares/ST/wMBus/Phy/Inc;../../../../../../Utilities/lpm/tiny_lpm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -448,12 +448,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Application/User/WmBus/App</GroupName>
+          <GroupName>Application/User/wMBus/App</GroupName>
           <Files>
             <File>
-              <FileName>app_wmbus.c</FileName>
+              <FileName>app_wMBus.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../WmBus/App/app_wmbus.c</FilePath>
+              <FilePath>../wMBus/App/app_wMBus.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -568,17 +568,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Middlewares/ST/WmBus_Phy</GroupName>
+          <GroupName>Middlewares/wMBus/Phy</GroupName>
           <Files>
             <File>
-              <FileName>stm32wl3_wmbphy_pwr.c</FileName>
+              <FileName>stm32wl3_wMBus_Phy_pwr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/ST/WmBus_Phy/Src/stm32wl3_wmbphy_pwr.c</FilePath>
+              <FilePath>../../../../../../Middlewares/ST/wMBus/Phy/Src/stm32wl3_wMBus_Phy_pwr.c</FilePath>
             </File>
             <File>
-              <FileName>stm32wl3_wmbphy_radio.c</FileName>
+              <FileName>stm32wl3_wMBus_Phy_radio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Middlewares/ST/WmBus_Phy/Src/stm32wl3_wmbphy_radio.c</FilePath>
+              <FilePath>../../../../../../Middlewares/ST/wMBus/Phy/Src/stm32wl3_wMBus_Phy_radio.c</FilePath>
             </File>
           </Files>
         </Group>

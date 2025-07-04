@@ -23,8 +23,7 @@
 		<nature>org.eclipse.cdt.core.cnature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUCubeIdeServicesRevAev2ProjectNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUNonUnderRootProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUCubeProjectNature</nature>
-		<nature>com.st.stm32cube.ide.mcu.MCUAdvancedStructureProjectNature</nature>
+		<nature>com.st.stm32cube.ide.mcu.MCUCubeExampleProjectNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUSingleCpuProjectNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCURootProjectNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
@@ -40,11 +39,6 @@
 			<name>Doc/README.md</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/README.md</locationURI>
-		</link>
-		<link>
-			<name>Utilities/stm32_lpm.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Utilities/lpm/tiny_lpm/stm32_lpm.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/CMSIS/system_stm32wl3x.c</name>
@@ -170,6 +164,11 @@
 			<name>Drivers/BSP/STM32WL3x-Nucleo/stm32wl3x_nucleo.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Drivers/BSP/STM32WL3x-Nucleo/stm32wl3x_nucleo.c</locationURI>
+		</link>
+		<link>
+			<name>Utilities/lpm/tiny_lpm/stm32_lpm.c</name>
+			<type>1</type>
+			<locationURI>PARENT-6-PROJECT_LOC/Utilities/lpm/tiny_lpm/stm32_lpm.c</locationURI>
 		</link>
 		<link>
 			<name>Application/User/Sigfox/App/ST_Sigfox.c</name>

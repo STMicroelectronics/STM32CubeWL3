@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>WmBus_Phy_Meter_RadioTimer</TargetName>
+    <TargetName>wMBus_Phy_Meter_RadioTimer</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -311,7 +311,7 @@
   </Group>
 
   <Group>
-    <GroupName>Application/User/WmBus/App</GroupName>
+    <GroupName>Application/User/wMBus/App</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -323,8 +323,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../WmBus/App/app_wmbus.c</PathWithFileName>
-      <FilenameWithoutPath>app_wmbus.c</FilenameWithoutPath>
+      <PathWithFileName>../wMBus/App/app_wMBus.c</PathWithFileName>
+      <FilenameWithoutPath>app_wMBus.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -579,7 +579,7 @@
   </Group>
 
   <Group>
-    <GroupName>Middlewares/ST/WmBus_Phy</GroupName>
+    <GroupName>Middlewares/wMBus/Phy</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -591,8 +591,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../../Middlewares/ST/WmBus_Phy/Src/stm32wl3_wmbphy_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>stm32wl3_wmbphy_pwr.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../../Middlewares/ST/wMBus/Phy/Src/stm32wl3_wMBus_Phy_pwr.c</PathWithFileName>
+      <FilenameWithoutPath>stm32wl3_wMBus_Phy_pwr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -603,8 +603,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../../Middlewares/ST/WmBus_Phy/Src/stm32wl3_wmbphy_radio.c</PathWithFileName>
-      <FilenameWithoutPath>stm32wl3_wmbphy_radio.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../../Middlewares/ST/wMBus/Phy/Src/stm32wl3_wMBus_Phy_radio.c</PathWithFileName>
+      <FilenameWithoutPath>stm32wl3_wMBus_Phy_radio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

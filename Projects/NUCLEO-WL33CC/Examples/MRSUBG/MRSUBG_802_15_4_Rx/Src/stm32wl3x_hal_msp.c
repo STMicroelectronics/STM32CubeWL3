@@ -1,9 +1,10 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file         stm32wl3x_hal_msp.c
-  * @brief        This file provides code for the MSP Initialization
-  *               and de-Initialization codes.
+  * @file    stm32wl3x_hal_msp.c
+  * @author  MCD Application Team
+  * @brief   This file provides code for the MSP Initialization
+  *          and de-Initialization codes.
   ******************************************************************************
   * @attention
   *
@@ -74,6 +75,67 @@ void HAL_MspInit(void)
   /* USER CODE BEGIN MspInit 1 */
 
   /* USER CODE END MspInit 1 */
+}
+
+/**
+  * @brief MRSubG MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hmrsubg: MRSubG handle pointer
+  * @retval None
+  */
+void HAL_MRSubG_MspInit(void)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+    /* USER CODE BEGIN MRSUBG_MspInit 0 */
+
+    /* USER CODE END MRSUBG_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC_WDG_SUBG_LPAWUR_LCD_LCSC;
+    PeriphClkInitStruct.RTCWDGSUBGLPAWURLCDLCSCClockSelection = RCC_RTC_WDG_SUBG_LPAWUR_LCD_LCSC_CLKSOURCE_LSE;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Peripheral clock enable */
+    if (__HAL_RCC_MRSUBG_IS_CLK_DISABLED())
+    {
+      /* MRSUBG Peripheral reset */
+      __HAL_RCC_MRSUBG_FORCE_RESET();
+      __HAL_RCC_MRSUBG_RELEASE_RESET();
+
+      /* Enable MRSUBG peripheral clock */
+      __HAL_RCC_MRSUBG_CLK_ENABLE();
+    }
+
+    /* USER CODE BEGIN MRSUBG_MspInit 1 */
+
+    /* USER CODE END MRSUBG_MspInit 1 */
+
+}
+
+/**
+  * @brief MRSubG MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hmrsubg: MRSubG handle pointer
+  * @retval None
+  */
+void HAL_MRSubG_MspDeInit(void)
+{
+    /* USER CODE BEGIN MRSUBG_MspDeInit 0 */
+
+    /* USER CODE END MRSUBG_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_MRSUBG_CLK_DISABLE();
+    __HAL_RCC_MRSUBG_FORCE_RESET();
+    __HAL_RCC_MRSUBG_RELEASE_RESET();
+
+    /* USER CODE BEGIN MRSUBG_MspDeInit 1 */
+
+    /* USER CODE END MRSUBG_MspDeInit 1 */
+
 }
 
 /* USER CODE BEGIN 1 */

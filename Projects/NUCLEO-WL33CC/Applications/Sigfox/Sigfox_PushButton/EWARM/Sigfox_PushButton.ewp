@@ -228,7 +228,8 @@
           <name>CCDefines</name>
           <state>WL3SFX_PA_DRV_MODE_14dBm</state>
           <state>USE_HAL_DRIVER</state>
-          <state>STM32WL33</state>
+          <state>STM32WL3XX</state>
+          <state>USE_FULL_LL_DRIVER</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -356,13 +357,8 @@
           <state>$PROJ_DIR$/../System/Interfaces</state>
           <state>$PROJ_DIR$/../System/Modules</state>
           <state>$PROJ_DIR$/../System/Startup</state>
-          <state>$PROJ_DIR$/../Drivers/STM32WL3x_HAL_Driver/Inc</state>
-          <state>$PROJ_DIR$/../Drivers/STM32WL3x_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../Utilities/lpm/tiny_lpm</state>
-          <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32WL3x/Include</state>
-          <state>$PROJ_DIR$/../Middlewares/Third_Party/Sigfox/SigfoxLib</state>
-          <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo</state>
+          <state>$PROJ_DIR$/../../../../../../Drivers/BSP/STM32WL3x-Nucleo</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../../../../../../Drivers/CMSIS/Include</state>

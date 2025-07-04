@@ -106,8 +106,6 @@ uint32_t MX_APPE_Init(void *p_param)
   
   __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&vectcTxBuff);
   
-
-  
   printf("STM32WL3 - Transmitter example.\n\r");
   printf("A packet is sent after pressing PUSH Button 2 or after the RTC timeout.\n\r");
   
@@ -152,7 +150,7 @@ void MX_APPE_Process(void)
   
   /* USER CODE BEGIN MX_APPE_Process_2 */
 	
-	  /* Configures the RTC Wakeup Timer to wakeup the device after the Timeout */    
+  /* Configures the RTC Wakeup Timer to wakeup the device after the Timeout */    
   HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_RTC, PWR_WUP_RISIEDG); 
 
   /* Configures the Button 2 as interrupt wakeup source */    
@@ -163,8 +161,7 @@ void MX_APPE_Process(void)
   uint32_t wakeupSource = HAL_PWREx_GetClearInternalWakeUpLine();
   
   if ((wakeupPin & B2_PIN) || (wakeupSource & PWR_WAKEUP_RTC))
-  { 
-		
+  {
     BSP_LED_On(LD2);
 
     printf("Transmitting: %d [ ", j);

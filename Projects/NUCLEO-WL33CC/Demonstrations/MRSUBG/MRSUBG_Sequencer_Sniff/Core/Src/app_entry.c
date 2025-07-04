@@ -22,7 +22,6 @@
 #include "main.h"
 #include "stm32_lpm.h"
 
-
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -259,7 +258,7 @@ void SequencerConfig(void)
   Basic dynamic configuration for
   === WaitForMessage == 
   ******/
-  LL_MRSUBG_SetPacketLength(PACKET_LEN);
+  __HAL_MRSUBG_SET_PKT_LEN(PACKET_LEN);
 
   HAL_MRSubG_SetFrequencyBase(BASE_FREQUENCY);
   HAL_MRSubG_SetDatarate(DATARATE);
@@ -309,9 +308,6 @@ void SequencerConfig(void)
   __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&databuf0[0]);
   __HAL_MRSUBG_SET_DATABUFFER1_POINTER((uint32_t)&databuf1[0]);
   __HAL_MRSUBG_SET_DATABUFFER_SIZE(sizeof(databuf0));
-
-  /* Enable SUBG_IRQ interrupt and configure interrupt flags */
-  HAL_NVIC_EnableIRQ(MR_SUBG_IRQn);
 
   /* Enable calibration */
   LL_MRSubG_VCOCalibReq(SET);
@@ -407,13 +403,12 @@ void MX_APPE_Process(void)
   
   /* USER CODE BEGIN MX_APPE_Process_2 */
   
-    
-    if(Data_received == 1)
-    {
-      print_RX_data();
-      Data_received = 0;
-    }    
-
+  if(Data_received == 1)
+  {
+    print_RX_data();
+    Data_received = 0;
+  }    
+  
   /* USER CODE END MX_APPE_Process_2 */
 }
 
@@ -426,17 +421,16 @@ void MX_APPE_Idle(void)
 {
 #if (CFG_LPM_SUPPORTED == 1)
   PowerSaveLevels app_powerSave_level, vtimer_powerSave_level, final_level;
-	
-	volatile uint32_t dummy[15];
+  
+  volatile uint32_t dummy[15];
   uint8_t i;
   
-	for (i=0; i<10; i++)
+  for (i=0; i<10; i++)
   {
     dummy[i] = 0;
     __asm("NOP");
   }
-	
-  
+
   app_powerSave_level = App_PowerSaveLevel_Check();
   
   if(app_powerSave_level != POWER_SAVE_LEVEL_DISABLED) 
@@ -473,4 +467,3 @@ void MX_APPE_Idle(void)
   }
 #endif /* CFG_LPM_SUPPORTED */
 }
-

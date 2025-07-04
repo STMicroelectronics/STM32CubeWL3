@@ -164,6 +164,19 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 1 */
 }
 
+/**
+  * @brief This function handles MRSUBG interrupt.
+  */
+void MRSUBG_IRQHandler(void)
+{
+  /* USER CODE BEGIN MRSUBG_IRQn 0 */
+  HAL_MRSubG_IRQHandler();
+  /* USER CODE END MRSUBG_IRQn 0 */
+  /* USER CODE BEGIN MRSUBG_IRQn 1 */
+
+  /* USER CODE END MRSUBG_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

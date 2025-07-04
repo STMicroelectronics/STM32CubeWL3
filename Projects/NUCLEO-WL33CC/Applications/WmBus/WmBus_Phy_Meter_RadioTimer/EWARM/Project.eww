@@ -2,7 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\WmBus_Phy_Meter_RadioTimer.ewp</path>
+    <path>$WS_DIR$\wMBus_Phy_Meter_RadioTimer.ewp</path>
   </project>
 <batchBuild></batchBuild>
 </workspace>

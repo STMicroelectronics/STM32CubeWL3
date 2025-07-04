@@ -35,7 +35,7 @@ extern "C" {
 #include "sigfox_api.h"
 #include "ST_Sigfox.h"
 #include "sigfox_monarch_api.h"
-  
+
 #include "stm32wl3x_ll_bus.h"
 #include "stm32wl3x_ll_cortex.h"
 #include "stm32wl3x_ll_rcc.h"

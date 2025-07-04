@@ -48,8 +48,8 @@ SMRSubGConfig MRSUBG_RadioInitStruct;
 MRSubG_PcktBasicFields MRSUBG_PacketSettingsStruct;
 
 /* USER CODE BEGIN PV */
-volatile uint8_t databuf0[DATABUFFERS_SIZE];
-volatile uint8_t databuf1[DATABUFFERS_SIZE];
+__attribute__((aligned(4))) volatile uint8_t databuf0[DATABUFFERS_SIZE];
+__attribute__((aligned(4))) volatile uint8_t databuf1[DATABUFFERS_SIZE];
 
 static volatile uint8_t ack_failed = 0, ack_received = 0, sequencer_timeout = 0;
 static uint32_t msg_count = 0;
@@ -116,9 +116,6 @@ int main(void)
   COM_Init.Parity = COM_PARITY_NONE;
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
-  
-  /* Enable MR_SUBG IRQ interrupt */
-  HAL_NVIC_EnableIRQ(MR_SUBG_IRQn);
   
   /* Assign allocated buffers to databuffer pointer registers */
   __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&databuf0[0]);
@@ -333,15 +330,15 @@ static void MX_MRSUBG_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -382,7 +379,7 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

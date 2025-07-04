@@ -57,7 +57,7 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void CPU_WKUP_IRQHandler(void);
+void MRSUBG_TIMER_CPU_WKUP_IRQHandler(void);
 void MRSUBG_IRQHandler(void);
 /* USER CODE END EFP */
 

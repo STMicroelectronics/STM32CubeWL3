@@ -2,7 +2,7 @@
 /**
   ******************************************************************************
   * @file    device_context_switch.h
-  * @author  MCD Application Team
+  * @author  GPM WBL Application Team
   * @brief   Header file of Device Context Switch module.
   ******************************************************************************
   * @attention

@@ -2,7 +2,7 @@
 <project>
     <fileVersion>3</fileVersion>
     <configuration>
-        <name>WmBus_Phy_Concentrator</name>
+        <name>wMBus_Phy_Concentrator</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>

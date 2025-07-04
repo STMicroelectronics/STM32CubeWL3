@@ -1,24 +1,25 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file    app_wmbus.c
- * @author  MCD Application Team
- * @brief   Application of the WmBus Phy Middleware
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file    app_wMBus.c
+  * @author  MCD Application Team
+  * @brief   Application of the wMBus Middleware
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
+
 /* Includes ------------------------------------------------------------------*/
-#include "app_wmbus.h"
+#include "app_wMBus.h"
 
 #include "stm32_lpm.h"
 
@@ -32,12 +33,24 @@
 
 /* USER CODE END EV */
 
+/* External functions ---------------------------------------------------------*/
+/* USER CODE BEGIN EF */
+
+/* USER CODE END EF */
+
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
+#ifndef WMBUS_CRC_IN_HAL
+#define SND_IR_LENGTH 19
+#define SND_NR_LENGTH 58
+#else
+#define SND_IR_LENGTH 15
+#define SND_NR_LENGTH 50
+#endif
 /* USER CODE BEGIN PD */
 
 /* USER CODE END PD */
@@ -48,29 +61,81 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-/* USER CODE BEGIN PV */
+uint8_t wMBus_mode = 0;
+uint8_t wMBus_format = 0;
+uint8_t wMBus_direction = 0;
 
+#ifndef WMBUS_CRC_IN_HAL
+uint8_t wMBus_SND_IR[SND_IR_LENGTH] = { 0x0E, 0x46, 0x8D, 0x4E, 0x11, 0x45, 0x63, 0x1F, 0x10, 0x04, 0xE9, 0x1F, 0x28, 0x33, 0xE0, 0x88, 0x91, 0x67, 0xB5 };
+uint8_t wMBus_SND_NR[SND_NR_LENGTH] = { 0x31, 0x44, 0xB4, 0x4C, 0x12, 0x34, 0x45, 0x67, 0x50, 0x07, 0x8D, 0xCA, 0x7B, 0x27, 0xD8, 0xC9, 0x6D, 0x0C, 0x32, 0xF1, 0x4E, 0x33, 0x16, 0xD0, 0xFF, 0x62, 0x98, 0x7D, 0x39, 0xA1, 0x85, 0xAB, 0xE1, 0x2B, 0x6D, 0x6F, 0x70, 0x1D, 0xA3, 0xD7, 0x20, 0x26, 0x34, 0x5C, 0xFB, 0x26, 0x5C, 0x1F, 0x8F, 0x71, 0x6A, 0x95, 0xB1, 0x04, 0x00, 0x00, 0xCF, 0xA5 };
+#else
+/* buffer without CRC -> to be computed in HAL drivers */
+uint8_t wMBus_SND_IR[SND_IR_LENGTH] = { 0x0E, 0x46, 0x8D, 0x4E, 0x11, 0x45, 0x63, 0x1F, 0x10, 0x04, /* 0xE9, 0x1F */ 0x28, 0x33, 0xE0, 0x88, 0x91 /*, 0x67, 0xB5 */ };
+uint8_t wMBus_SND_NR[SND_NR_LENGTH] = { 0x31, 0x44, 0xB4, 0x4C, 0x12, 0x34, 0x45, 0x67, 0x50, 0x07,                                     /* 0x8D, 0xCA, */
+                                        0x7B, 0x27, 0xD8, 0xC9, 0x6D, 0x0C, 0x32, 0xF1, 0x4E, 0x33, 0x16, 0xD0, 0xFF, 0x62, 0x98, 0x7D, /* 0x39, 0xA1, */
+                                        0x85, 0xAB, 0xE1, 0x2B, 0x6D, 0x6F, 0x70, 0x1D, 0xA3, 0xD7, 0x20, 0x26, 0x34, 0x5C, 0xFB, 0x26, /* 0x5C, 0x1F, */
+                                        0x8F, 0x71, 0x6A, 0x95, 0xB1, 0x04, 0x00, 0x00,                                                 /* 0xCF, 0xA5 */ };
+#endif
+
+/* USER CODE BEGIN PV */
+#ifdef SENSE_RSSI
+int32_t rssi_dbm;
+#endif
 /* USER CODE END PV */
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemApp_Init(void);
-static void wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format);
+static void wMBus_init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Exported functions --------------------------------------------------------*/
-void MX_wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format) {
-    /* USER CODE BEGIN MX_wmbphy_Init_1 */
+void MX_wMBus_Init()
+{
+  /* USER CODE BEGIN MX_wMBus_Init_1 */
 
-    /* USER CODE END MX_wmbphy_Init_1 */
-    SystemApp_Init();
-    /* USER CODE BEGIN MX_wmbphy_Init_2 */
+  /* USER CODE END MX_wMBus_Init_1 */
+  SystemApp_Init();
+  /* USER CODE BEGIN MX_wMBus_Init_2 */
 
-    /* USER CODE END MX_wmbphy_Init_2 */
-    wmbphy_Init(WmBus_mode, WmBus_Direction, WmBus_Format);
-    /* USER CODE BEGIN MX_wmbphy_Init_3 */
+  /* USER CODE END MX_wMBus_Init_2 */
+  wMBus_init();
+  /* USER CODE BEGIN MX_wMBus_Init_3 */
 
-    /* USER CODE END MX_wmbphy_Init_3 */
+  /* USER CODE END MX_wMBus_Init_3 */
+}
+
+void MX_wMBus_Process()
+{
+  /* USER CODE BEGIN MX_wMBus_Process_1 */
+#ifdef SENSE_RSSI
+  rssi_dbm = wMBus_Phy_sense_rssi(1000);
+  printf("Rx RSSI level: %ld dBm\r\n", rssi_dbm);
+  HAL_Delay(1);
+#endif
+  /* USER CODE END MX_wMBus_Process_1 */
+
+#ifndef WMBUS_CRC_IN_HAL
+  wMBus_Phy_prepare_Tx(wMBus_SND_IR, SND_IR_LENGTH);
+#else
+  wMBus_Phy_prepare_Tx_CRC_mngt(wMBus_SND_NR, SND_NR_LENGTH, wMBus_format);
+#endif
+
+  /* Send the TX command */
+  wMBus_Phy_start_transmission();
+
+#ifndef WMBUS_NO_BLOCKING_HAL
+  /* wait for Tx done IRQ */
+  wMBus_Phy_wait_Tx_completed();
+#else
+  /* wait for WMBUS_TX_COMPLETED event flag set */
+  while (!wMBus_Phy_check_radio_events(WMBUS_TX_COMPLETED));
+#endif
+  /* USER CODE BEGIN MX_wMBus_Process_2 */
+  printf("Wm-Bus transmission completed\r\n");
+  HAL_Delay(1000);
+  /* USER CODE END MX_wMBus_Process_2 */
 }
 
 /* USER CODE BEGIN EF */
@@ -79,50 +144,42 @@ void MX_wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_F
 
 /* Private Functions Definition -----------------------------------------------*/
 
-static void SystemApp_Init(void) {
-    /* USER CODE BEGIN SystemApp_Init_1 */
+static void SystemApp_Init(void)
+{
+  /* USER CODE BEGIN SystemApp_Init_1 */
 
-    /* Low Power Manager Init */
-    UTIL_LPM_Init();
+  COM_InitTypeDef COM_Init = {0};
 
-    COM_InitTypeDef COM_Init = {0};
-
-    COM_Init.BaudRate = 115200;
-    COM_Init.HwFlowCtl = COM_HWCONTROL_NONE;
-    COM_Init.WordLength = COM_WORDLENGTH_8B;
-    COM_Init.Parity = COM_PARITY_NONE;
-    COM_Init.StopBits = COM_STOPBITS_1;
-    BSP_COM_Init(COM1, &COM_Init);
+  COM_Init.BaudRate = 115200;
+  COM_Init.HwFlowCtl = COM_HWCONTROL_NONE;
+  COM_Init.WordLength = COM_WORDLENGTH_8B;
+  COM_Init.Parity = COM_PARITY_NONE;
+  COM_Init.StopBits = COM_STOPBITS_1;
+  BSP_COM_Init(COM1, &COM_Init);
 
 #if defined(__GNUC__) && !defined(__ARMCC_VERSION)
-    setvbuf(stdout, NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
 #endif
 
-    /* USER CODE END SystemApp_Init_1 */
+  /* USER CODE END SystemApp_Init_1 */
 
-    /* USER CODE BEGIN SystemApp_Init_2 */
+  /* USER CODE BEGIN SystemApp_Init_2 */
 
-    /* USER CODE END SystemApp_Init_2 */
+  /* USER CODE END SystemApp_Init_2 */
 }
 
-static void wmbphy_Init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format) {
-    /* USER CODE BEGIN wmbphy_Init_1 */
+static void wMBus_init()
+{
+  /* USER CODE BEGIN wMBus_init_1 */
 
-    /* USER CODE END wmbphy_Init_1 */
-    wmbphy_init(WmBus_mode, WmBus_Direction, WmBus_Format);
-    /* USER CODE BEGIN wmbphy_Init_2 */
-    printf("STM32WL3 WmBus Phy Demo - Meter.\r\n");
-    /* USER CODE END wmbphy_Init_2 */
-}
-
-void MX_wmbphy_Process() {
-    /* USER CODE BEGIN MX_wmbphy_Process_1 */
-
-    /* USER CODE END MX_wmbphy_Process_1 */
-
-    /* USER CODE BEGIN MX_wmbphy_Process_2 */
-
-    /* USER CODE END MX_wmbphy_Process_2 */
+  /* USER CODE END wMBus_init_1 */
+  wMBus_mode = C_MODE;
+  wMBus_format = WMBUS_FORMAT_A;
+  wMBus_direction = METER_TO_OTHER;
+  wMBus_Phy_init(wMBus_mode, wMBus_direction, wMBus_format);
+  /* USER CODE BEGIN wMBus_init_2 */
+  printf("STM32WL3 wM-Bus Phy Demo - Meter.\r\n");
+  /* USER CODE END wMBus_init_2 */
 }
 
 /* USER CODE BEGIN PrFD */
