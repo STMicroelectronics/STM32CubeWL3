@@ -2,7 +2,7 @@
 ::: {.col-sm-12 .col-lg-4}
 ## <b>Sigfox_Skeleton Application Description</b>
 
-This application allows to evaluate the STM32WL33 Sigfox device radio capabilities.  
+This application allows to evaluate the STM32WL3x Sigfox device radio capabilities.  
 This project serves as a foundational framework for effortlessly initiating the development of applications utilizing Sigfox libraries.
 
 ### <b>Keywords</b>
@@ -67,9 +67,9 @@ Sigfox, Skeleton, MRSUBG
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CCx application board.
+  - This example runs on STM32WL33CCVx devices.
 
-  - This example has been tested with STMicroelectronics NUCLEO-WL33CCx application board and can be easily tailored to any other supported device and development board.  
+  - This example has been tested with STMicroelectronics NUCLEO-WL33CC1 application board and can be easily tailored to any other supported device and development board.  
 
 ### <b>How to use it ?</b>
 

@@ -1,7 +1,7 @@
 [ProjectFiles]
 HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo
 [Others]
-Define=NUCLEO_WL33CC
+Define=
 HALModule=
 [Groups]
 Application/User=../Src/stm32wl3x_hal_timebase_tim.c;

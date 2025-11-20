@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    DMA/DMA_FLASHToRAM/Inc/stm32wl3x_hal_msp.h
+  * @file    DMA/DMA_FLASHToRAM/Src/stm32wl3x_hal_msp.c
   * @author  MCD Application Team
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************

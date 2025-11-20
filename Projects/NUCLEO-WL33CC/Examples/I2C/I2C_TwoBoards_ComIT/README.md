@@ -88,9 +88,9 @@ Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Recept
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3x devices.
+  - This example runs on STM32WL33CCVx devices.
 
-  - This example has been tested with NUCLEO-WL33CC board and can be
+  - This example has been tested with STMicroelectronics NUCLEO-WL33CC board and can be
     easily tailored to any other supported device and development board.
 
   - NUCLEO-WL33CC Set-up

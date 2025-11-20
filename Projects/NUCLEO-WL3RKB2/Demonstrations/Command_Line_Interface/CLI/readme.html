@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="cli-example-description" class="col-sm-12 col-lg-4">
+<h2><b>CLI Example Description</b></h2>
+<p>The STM32WL3 CLI demo application allows to use the STM32WL3
+WiSE-RadioExplorer PC application by simply connecting a STM32WL3
+development kit to PC USB port.</p>
+<p>Moreover a Virtual Com stream is open. Both the transmitter and the
+receiver will write their own buffer on video every time a transmission
+or a reception is performed.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>MRSUBG, radio, CLI, WiSE-RadioExplorer</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>Command_Line_Interface/CLI/Core/Inc/stm32wl3r_nucleo_conf.h BSP
+configuration file</li>
+<li>Command_Line_Interface/CLI/Core/Inc/stm32wl3x_hal_conf.h HAL
+Configuration file</li>
+<li>Command_Line_Interface/CLI/Core/Inc/stm32wl3x_it.h Header for
+stm32wl3x_it.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/main.h Header file for
+main.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/stm32_assert.h STM32 assert
+file</li>
+<li>Command_Line_Interface/CLI/Core/Inc/stm32wl3x_cli_commands.h Header
+file for stm32wl3x_cli_commands.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/app_entry.h Application
+interface</li>
+<li>Command_Line_Interface/CLI/Core/Inc/timer_utils.h Header file for
+timer_utils.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/binary_iqsampling.h Header file
+for binary_iqsampling.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/binary_iqsampling_spi.h Header
+file for binary_iqsampling_spi.c</li>
+<li>Command_Line_Interface/CLI/Core/Src/system_stm32wl3x.c STM32WL3x
+system clock configuration file</li>
+<li>Command_Line_Interface/CLI/Core/Src/stm32wl3x_it.c Interrupt
+handlers</li>
+<li>Command_Line_Interface/CLI/Core/Src/stm32wl3x_hal_msp.c HAL MSP
+module</li>
+<li>Command_Line_Interface/CLI/Core/Src/main.c Main program</li>
+<li>Command_Line_Interface/CLI/Core/Src/app_entry.c Application entry
+point</li>
+<li>Command_Line_Interface/CLI/Core/Src/binary_iqsampling.c Binary IQ
+sampling file</li>
+<li>Command_Line_Interface/CLI/Core/Src/binary_iqsampling_spi.c Binary
+IQ sampling file for SPI</li>
+<li>Command_Line_Interface/CLI/Core/Src/stm32wl3x_cli_commands.c CLI
+commands file</li>
+<li>Command_Line_Interface/CLI/Core/Src/timer_utils.c Timer utilities
+file</li>
+<li>Command_Line_Interface/CLI/Core/Src/cli/utils.c Utilities file</li>
+<li>Command_Line_Interface/CLI/Core/Src/cli/serial_utils.c Serial
+utilities file</li>
+<li>Command_Line_Interface/CLI/Core/Src/cli/response.c Display response
+file</li>
+<li>Command_Line_Interface/CLI/Core/Src/cli/command-interpreter2.c
+Command interpreter file</li>
+<li>Command_Line_Interface/CLI/Core/Inc/cli/utils.h Header for
+utils.c</li>
+<li>Command_Line_Interface/CLI/Core/Inc/cli/serial_utils.h Header for
+serial_utils.c<br />
+</li>
+<li>Command_Line_Interface/CLI/Core/Inc/cli/command-interpreter2.h
+Header for command-interpreter2.c</li>
+<li>Command_Line_Interface/CLI/System/Interface/hw_mrsubg.h Header for
+hw_mrsubg.c</li>
+<li>Command_Line_Interface/CLI/System/Interface/hw_mrsubg.c MRSUBG
+Manager functions file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL3RKBVx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics
+NUCLEO-WL3RKB2 application board and can be easily tailored to any other
+supported device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li>Open your preferred toolchain and import the .c files in your
+workspace</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

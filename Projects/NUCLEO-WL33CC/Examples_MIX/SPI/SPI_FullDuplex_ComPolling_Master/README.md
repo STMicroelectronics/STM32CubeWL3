@@ -67,7 +67,7 @@ Connectivity, SPI, Full-duplex, Transmission, Reception, Master, MISO, MOSI, Pol
   - Take care to cable connection between Master and Slave Board:
     Cable shall be smaller than 5 cm and rigid if possible.
 
-  - This example has been tested with NUCLEO-WL33CC board and can be
+  - This example has been tested with STMicroelectronics NUCLEO-WL33CC board and can be
     easily tailored to any other supported device and development board.
 
   - NUCLEO-WL33CC Set-up

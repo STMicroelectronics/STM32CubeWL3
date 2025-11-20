@@ -1,7 +1,7 @@
 [ProjectFiles]
 HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32WL3x-Nucleo
 [Others]
-Define=NUCLEO_WL33CCN
+Define=
 HALModule=
 [Groups]
 Doc=../README.md;

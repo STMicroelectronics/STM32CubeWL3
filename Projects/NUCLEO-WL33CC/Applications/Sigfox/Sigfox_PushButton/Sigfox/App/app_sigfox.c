@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2024-2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -216,7 +216,7 @@ static void SystemApp_Init(void)
   /* USER CODE BEGIN SystemApp_Init_2 */
   
   /* Configures the Button 2 as interrupt wakeup source */    
-  HAL_PWR_EnableWakeUpPin(LL_PWR_WAKEUP_PORTA, PWR_WAKEUP_PIN11, PWR_WUP_FALLEDG);
+  HAL_PWR_EnableWakeUpPin(LL_PWR_WAKEUP_PORTA, B2_PIN, PWR_WUP_FALLEDG);
   
   /* USER CODE END SystemApp_Init_2 */
 }

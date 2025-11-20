@@ -7,6 +7,9 @@
   <title>Release Notes for Projects of STM32CubeWL3 Firmware
 Package</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -25,9 +28,6 @@ Package</title>
   </style>
   <link rel="stylesheet" href="../_htmresc/mini-st_2020.css" />
   <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png"/>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <div class="row">
@@ -70,13 +70,245 @@ href="STM32CubeProjectsList.html">STM32CubeProjectsList</a>.</p>
 <section id="update-history" class="col-sm-12 col-lg-8">
 <h1>Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section3" checked aria-hidden="true">
-<label for="collapse-section3" checked aria-hidden="true"><strong>V1.2.0
-/ 04-June-2025</strong></label>
+<input type="checkbox" id="collapse-section4" checked aria-hidden="true">
+<label for="collapse-section4" checked aria-hidden="true"><strong>V1.3.0
+/ 29-October-2025</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <h3
 id="release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices">Release
+of <strong>STM32CubeWL3</strong> projects supporting
+<strong>STM32WL3x</strong> devices</h3>
+<ul>
+<li><p>Added folders and projects for NUCLEO-WL3RKB1 and NUCLEO-WL3RKB2
+boards (check <a
+href="STM32CubeProjectsList.html">STM32CubeProjectsList</a> for
+details)</p></li>
+<li><p><strong>MRSUBG_Timer</strong> demonstration</p>
+<ul>
+<li>Optimized deep-stop exit timing for MRSUBG_TIMER interrupt</li>
+<li>Add recovery mechanism for missed IRQ</li>
+<li>Add wait for accurate MRSUBG_TIMER value</li>
+</ul></li>
+<li><p>Added a <strong>PWR_ULTRA_DEEPSTOP</strong> example
+(NUCLEO-WL3RKB1/KB2)</p>
+<ul>
+<li>Illustrates how to exercise WL3R UltraDeepStop low power mode</li>
+</ul></li>
+<li><p>Added a <strong>PWR_SHUTDOWN</strong> example
+(NUCLEO-WL3RKB1/KB2)</p>
+<ul>
+<li>Illustrates how to enter WL3R ShutDown low power mode and to detect
+the wakeup pin on exit</li>
+</ul></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<h3 id="official-release-of-stm32cubewl3-projects">Official Release of
+STM32CubeWL3 Projects</h3>
+<p><small>The Project categories flagged by “<span
+class="icon-st-update"></span>” have changed since the previous release.
+“<span class="icon-st-add"></span>” are new.</small></p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 39%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th>Board</th>
+<th>Project category</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>HAL Template</td>
+<td>Projects\NUCLEO-WL33CC\Templates</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>LL Template</td>
+<td>Projects\NUCLEO-WL33CC\Templates_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>HAL Examples <span class="icon-st-update"></span></td>
+<td>Projects\NUCLEO-WL33CC\Examples</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>LL Examples</td>
+<td>Projects\NUCLEO-WL33CC\Examples_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>MIX Examples</td>
+<td>Projects\NUCLEO-WL33CC\Examples_MIX</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>Demonstrations <span class="icon-st-update"></span></td>
+<td>Projects\NUCLEO-WL33CC\Demonstrations</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>Applications <span class="icon-st-update"></span></td>
+<td>Projects\NUCLEO-WL33CC\Applications</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>HAL Template <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Templates</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>LL Template <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Templates_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>HAL Examples <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Examples</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>LL Examples <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Examples_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>Demonstrations <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Demonstrations</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB1</td>
+<td>Applications <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB1\Applications</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB2</td>
+<td>HAL Template <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB2\Templates</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB2</td>
+<td>LL Template <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB2\Templates_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB2</td>
+<td>HAL Examples <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB2\Examples</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB2</td>
+<td>LL Examples <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB2\Examples_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL3RKB2</td>
+<td>Demonstrations <span class="icon-st-add"></span></td>
+<td>Projects\NUCLEO-WL3RKB2\Demonstrations</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers">Development Toolchains and
+Compilers</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Toolchain + ST-Link</th>
+<th>Version</th>
+<th style="text-align: left;">Patch (if available)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IAR Embedded Workbench for ARM
+(EWARM)</td>
+<td>V9.30.1</td>
+<td style="text-align: left;"><a
+href="..\Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.3.0.zip">Patch
+EWARM</a> <span class="icon-st-update"></span></td>
+</tr>
+<tr>
+<td style="text-align: left;">ARM KEIL</td>
+<td>V5.37</td>
+<td style="text-align: left;"><a
+href="..\Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.0.zip">Patch
+KEIL</a> <span class="icon-st-update"></span></td>
+</tr>
+<tr>
+<td style="text-align: left;">STM32CubeIDE</td>
+<td>V1.19.0</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li>STM32WL3x devices</li>
+<li>NUCLEO-WL33CCx boards</li>
+<li>NUCLEO-WL3RKBx boards</li>
+</ul>
+<p><br />
+</p>
+<h2 id="known-limitations">Known Limitations</h2>
+<ul>
+<li>Sigfox applications are not available for the ARM KEIL
+toolchain</li>
+<li>Examples for the following modules are only provided for the
+NUCLEO-WL3CC board
+<ul>
+<li>COMP, CORTEX, DMA, FLASH, I2C, IWDG, RCC, RTC, RNG, SPI, UART,
+USART</li>
+</ul></li>
+</ul>
+<p><br />
+</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>STM32CubeMX V6.16.0
+<ul>
+<li>Projects (Applications and Examples) are generated using STM32CubeMX
+version V6.16.0.</li>
+</ul></li>
+</ul>
+<p><strong>Note</strong>: When generating with CubeMX for the
+STM32CubeIDE toolchain, the project startup file is named differently
+compared to the one present in the CubeFW SDK. However, contents are the
+same.<br />
+</p>
+<h2 id="backward-compatibility">Backward compatibility</h2>
+<ul>
+<li>MRSUBG structure names have been changed, adding a “_t” suffix for
+better readability. Related examples have been adapted accordingly.</li>
+<li>MRSUBG: The IS_196MHZ definition has been replaced with STM32WL33XA.
+A legacy alias has been added to ensure compatibility with existing
+projects.</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>None</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section3"  aria-hidden="true">
+<label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 /
+04-June-2025</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
+<h3
+id="release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices-1">Release
 of <strong>STM32CubeWL3</strong> projects supporting
 <strong>STM32WL3x</strong> devices</h3>
 <ul>
@@ -93,170 +325,6 @@ table below, in the Backward compatibility section.</p></li>
 declared with <strong>attribute</strong>((aligned(4))) to guarantee
 memory alignment.</p></li>
 </ul>
-<h2 id="contents">Contents</h2>
-<h3 id="official-release-of-stm32cubewl3-projects">Official Release of
-STM32CubeWL3 Projects</h3>
-<p><small>The Project categories flagged by “<span
-class="icon-st-update"></span>” have changed since the previous release.
-“<span class="icon-st-add"></span>” are new.</small></p>
-<p>Projects</p>
-<table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 39%" />
-<col style="width: 42%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Board</th>
-<th>Project category</th>
-<th>Path</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>NUCLEO-WL33CC</td>
-<td>HAL Template</td>
-<td>Projects\NUCLEO-WL33CC\Templates</td>
-</tr>
-<tr class="even">
-<td>NUCLEO-WL33CC</td>
-<td>LL Template</td>
-<td>Projects\NUCLEO-WL33CC\Templates_LL</td>
-</tr>
-<tr class="odd">
-<td>NUCLEO-WL33CC</td>
-<td>HAL Examples <span class="icon-st-update"></span></td>
-<td>Projects\NUCLEO-WL33CC\Examples</td>
-</tr>
-<tr class="even">
-<td>NUCLEO-WL33CC</td>
-<td>LL Examples</td>
-<td>Projects\NUCLEO-WL33CC\Examples_LL</td>
-</tr>
-<tr class="odd">
-<td>NUCLEO-WL33CC</td>
-<td>MIX Examples</td>
-<td>Projects\NUCLEO-WL33CC\Examples_MIX</td>
-</tr>
-<tr class="even">
-<td>NUCLEO-WL33CC</td>
-<td>Demonstrations <span class="icon-st-update"></span></td>
-<td>Projects\NUCLEO-WL33CC\Demonstrations</td>
-</tr>
-<tr class="odd">
-<td>NUCLEO-WL33CC</td>
-<td>Applications <span class="icon-st-update"></span></td>
-<td>Projects\NUCLEO-WL33CC\Applications</td>
-</tr>
-</tbody>
-</table>
-<p><br />
-</p>
-<h2 id="development-toolchains-and-compilers">Development Toolchains and
-Compilers</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Toolchain + ST-Link</th>
-<th>Version</th>
-<th style="text-align: left;">Patch (if available)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">IAR Embedded Workbench for ARM
-(EWARM)</td>
-<td>V9.30.1</td>
-<td style="text-align: left;"><a
-href="../Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.2.0.zip">Patch
-EWARM</a> <span class="icon-st-update"></span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ARM KEIL</td>
-<td>V5.37</td>
-<td style="text-align: left;"><a
-href="../Utilities\PC_Software\Keil.STM32WL3x_DFP.1.2.0.zip">Patch
-KEIL</a> <span class="icon-st-update"></span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">STM32CubeIDE</td>
-<td>V1.17.0</td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<p><br />
-</p>
-<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
-<ul>
-<li>STM32WL3x devices</li>
-<li>NUCLEO-WL33CCx boards</li>
-</ul>
-<p><br />
-</p>
-<h2 id="known-limitations">Known Limitations</h2>
-<ul>
-<li>The Sigfox projects, located under the Applications folder, are not
-yet available for the ARM KEIL toolchain.<br />
-</li>
-</ul>
-<h2 id="dependencies">Dependencies</h2>
-<ul>
-<li>STM32CubeMX V6.13.0
-<ul>
-<li>Projects (Applications and Examples) are generated using STM32CubeMX
-version V6.13.0.<br />
-</li>
-</ul></li>
-</ul>
-<h2 id="backward-compatibility">Backward compatibility</h2>
-<ul>
-<li>Some IRQ handler and callback names previously located in the MRSUBG
-have been relocated to the MRSUBG TIMER HAL driver.<br />
-Additionally, the names have been updated. Please refer to the table
-below for details:</li>
-</ul>
-<table>
-<colgroup>
-<col style="width: 47%" />
-<col style="width: 52%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Old Name (in MRSUBG)</th>
-<th>New Name (in MRSUBG TIMER)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>HAL_MRSubG_CPU_WKUP_IRQHandler</td>
-<td>HAL_MRSUBG_TIMER_CPU_WKUP_IRQHandler</td>
-</tr>
-<tr class="even">
-<td>HAL_MRSubG_CPU_WKUP_Callback</td>
-<td>HAL_MRSUBG_TIMER_CPU_WKUP_Callback</td>
-</tr>
-</tbody>
-</table>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>None</li>
-</ul>
-<p><br />
-</p>
-</div>
-</div>
-<div class="collapse">
-<input type="checkbox" id="collapse-section2" aria-hidden="true">
-<label for="collapse-section2" checked aria-hidden="true"><strong>V1.1.0
-/ 05-February-2025</strong></label>
-<div>
-<h2 id="main-changes-1">Main Changes</h2>
-<h3
-id="release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices-1">Release
-of <strong>STM32CubeWL3</strong> projects supporting
-<strong>STM32WL3x</strong> devices</h3>
 <h2 id="contents-1">Contents</h2>
 <h3 id="official-release-of-stm32cubewl3-projects-1">Official Release of
 STM32CubeWL3 Projects</h3>
@@ -271,44 +339,44 @@ class="icon-st-update"></span>” have changed since the previous release.
 <col style="width: 42%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Board</th>
 <th>Project category</th>
 <th>Path</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>HAL Template</td>
 <td>Projects\NUCLEO-WL33CC\Templates</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>LL Template</td>
 <td>Projects\NUCLEO-WL33CC\Templates_LL</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
-<td>HAL Examples</td>
+<td>HAL Examples <span class="icon-st-update"></span></td>
 <td>Projects\NUCLEO-WL33CC\Examples</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>LL Examples</td>
 <td>Projects\NUCLEO-WL33CC\Examples_LL</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>MIX Examples</td>
 <td>Projects\NUCLEO-WL33CC\Examples_MIX</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
-<td>Demonstrations</td>
+<td>Demonstrations <span class="icon-st-update"></span></td>
 <td>Projects\NUCLEO-WL33CC\Demonstrations</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>Applications <span class="icon-st-update"></span></td>
 <td>Projects\NUCLEO-WL33CC\Applications</td>
@@ -321,29 +389,27 @@ class="icon-st-update"></span>” have changed since the previous release.
 and Compilers</h2>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Toolchain + ST-Link</th>
 <th>Version</th>
 <th style="text-align: left;">Patch (if available)</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">IAR Embedded Workbench for ARM
 (EWARM)</td>
 <td>V9.30.1</td>
-<td style="text-align: left;"><a
-href="../Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.1.0.zip">Patch
-EWARM</a></td>
+<td style="text-align: left;">Patch EWARM <span
+class="icon-st-update"></span></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">ARM KEIL</td>
 <td>V5.37</td>
-<td style="text-align: left;"><a
-href="../Utilities\PC_Software\Keil.STM32WL3x_DFP.1.1.0.zip">Patch
-KEIL</a></td>
+<td style="text-align: left;">Patch KEIL <span
+class="icon-st-update"></span></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">STM32CubeIDE</td>
 <td>V1.17.0</td>
 <td style="text-align: left;"></td>
@@ -377,8 +443,33 @@ version V6.13.0.<br />
 </ul>
 <h2 id="backward-compatibility-1">Backward compatibility</h2>
 <ul>
-<li>Not applicable</li>
+<li>Some IRQ handler and callback names previously located in the MRSUBG
+have been relocated to the MRSUBG TIMER HAL driver.<br />
+Additionally, the names have been updated. Please refer to the table
+below for details:</li>
 </ul>
+<table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th>Old Name (in MRSUBG)</th>
+<th>New Name (in MRSUBG TIMER)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HAL_MRSubG_CPU_WKUP_IRQHandler</td>
+<td>HAL_MRSUBG_TIMER_CPU_WKUP_IRQHandler</td>
+</tr>
+<tr>
+<td>HAL_MRSubG_CPU_WKUP_Callback</td>
+<td>HAL_MRSUBG_TIMER_CPU_WKUP_Callback</td>
+</tr>
+</tbody>
+</table>
 <h2 id="notes-1">Notes</h2>
 <ul>
 <li>None</li>
@@ -388,14 +479,14 @@ version V6.13.0.<br />
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1" aria-hidden="true">
-<label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 /
-30-October-2024</strong></label>
+<input type="checkbox" id="collapse-section2" aria-hidden="true">
+<label for="collapse-section2" checked aria-hidden="true"><strong>V1.1.0
+/ 05-February-2025</strong></label>
 <div>
 <h2 id="main-changes-2">Main Changes</h2>
 <h3
-id="first-official-release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices">First
-official Release of <strong>STM32CubeWL3</strong> projects supporting
+id="release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices-2">Release
+of <strong>STM32CubeWL3</strong> projects supporting
 <strong>STM32WL3x</strong> devices</h3>
 <h2 id="contents-2">Contents</h2>
 <h3 id="official-release-of-stm32cubewl3-projects-2">Official Release of
@@ -411,46 +502,46 @@ class="icon-st-update"></span>” have changed since the previous release.
 <col style="width: 42%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Board</th>
 <th>Project category</th>
 <th>Path</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>HAL Template</td>
 <td>Projects\NUCLEO-WL33CC\Templates</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>LL Template</td>
 <td>Projects\NUCLEO-WL33CC\Templates_LL</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>HAL Examples</td>
 <td>Projects\NUCLEO-WL33CC\Examples</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>LL Examples</td>
 <td>Projects\NUCLEO-WL33CC\Examples_LL</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>MIX Examples</td>
 <td>Projects\NUCLEO-WL33CC\Examples_MIX</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NUCLEO-WL33CC</td>
 <td>Demonstrations</td>
 <td>Projects\NUCLEO-WL33CC\Demonstrations</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NUCLEO-WL33CC</td>
-<td>Applications</td>
+<td>Applications <span class="icon-st-update"></span></td>
 <td>Projects\NUCLEO-WL33CC\Applications</td>
 </tr>
 </tbody>
@@ -461,29 +552,29 @@ class="icon-st-update"></span>” have changed since the previous release.
 and Compilers</h2>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Toolchain + ST-Link</th>
 <th>Version</th>
 <th style="text-align: left;">Patch (if available)</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">IAR Embedded Workbench for ARM
 (EWARM)</td>
 <td>V9.30.1</td>
 <td style="text-align: left;"><a
-href="../Utilities\PC_Software\EWARMv9_STM32WL3x_V1.0.0.zip">Patch
+href="../Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.1.0.zip">Patch
 EWARM</a></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;">ARM KEIL</td>
 <td>V5.37</td>
 <td style="text-align: left;"><a
-href="../Utilities\PC_Software\Keil.STM32WL3x_DFP.1.0.0.zip">Patch
+href="../Utilities\PC_Software\Keil.STM32WL3x_DFP.1.1.0.zip">Patch
 KEIL</a></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;">STM32CubeIDE</td>
 <td>V1.17.0</td>
 <td style="text-align: left;"></td>
@@ -495,8 +586,8 @@ KEIL</a></td>
 <h2 id="supported-devices-and-boards-2">Supported Devices and
 boards</h2>
 <ul>
-<li>STM32WL33x devices</li>
-<li>NUCLEO-WL33CC board</li>
+<li>STM32WL3x devices</li>
+<li>NUCLEO-WL33CCx boards</li>
 </ul>
 <p><br />
 </p>
@@ -520,6 +611,146 @@ version V6.13.0.<br />
 <li>Not applicable</li>
 </ul>
 <h2 id="notes-2">Notes</h2>
+<ul>
+<li>None</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true">
+<label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 /
+30-October-2024</strong></label>
+<div>
+<h2 id="main-changes-3">Main Changes</h2>
+<h3
+id="first-official-release-of-stm32cubewl3-projects-supporting-stm32wl3x-devices">First
+official Release of <strong>STM32CubeWL3</strong> projects supporting
+<strong>STM32WL3x</strong> devices</h3>
+<h2 id="contents-3">Contents</h2>
+<h3 id="official-release-of-stm32cubewl3-projects-3">Official Release of
+STM32CubeWL3 Projects</h3>
+<p><small>The Project categories flagged by “<span
+class="icon-st-update"></span>” have changed since the previous release.
+“<span class="icon-st-add"></span>” are new.</small></p>
+<p>Projects</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 39%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th>Board</th>
+<th>Project category</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>HAL Template</td>
+<td>Projects\NUCLEO-WL33CC\Templates</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>LL Template</td>
+<td>Projects\NUCLEO-WL33CC\Templates_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>HAL Examples</td>
+<td>Projects\NUCLEO-WL33CC\Examples</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>LL Examples</td>
+<td>Projects\NUCLEO-WL33CC\Examples_LL</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>MIX Examples</td>
+<td>Projects\NUCLEO-WL33CC\Examples_MIX</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>Demonstrations</td>
+<td>Projects\NUCLEO-WL33CC\Demonstrations</td>
+</tr>
+<tr>
+<td>NUCLEO-WL33CC</td>
+<td>Applications</td>
+<td>Projects\NUCLEO-WL33CC\Applications</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-3">Development Toolchains
+and Compilers</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Toolchain + ST-Link</th>
+<th>Version</th>
+<th style="text-align: left;">Patch (if available)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IAR Embedded Workbench for ARM
+(EWARM)</td>
+<td>V9.30.1</td>
+<td style="text-align: left;"><a
+href="../Utilities\PC_Software\EWARMv9_STM32WL3x_V1.0.0.zip">Patch
+EWARM</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">ARM KEIL</td>
+<td>V5.37</td>
+<td style="text-align: left;"><a
+href="../Utilities\PC_Software\Keil.STM32WL3x_DFP.1.0.0.zip">Patch
+KEIL</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">STM32CubeIDE</td>
+<td>V1.17.0</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards-3">Supported Devices and
+boards</h2>
+<ul>
+<li>STM32WL33x devices</li>
+<li>NUCLEO-WL33CC board</li>
+</ul>
+<p><br />
+</p>
+<h2 id="known-limitations-3">Known Limitations</h2>
+<ul>
+<li>The Sigfox projects, located under the Applications folder, are not
+yet available for the ARM KEIL toolchain.<br />
+</li>
+</ul>
+<h2 id="dependencies-3">Dependencies</h2>
+<ul>
+<li>STM32CubeMX V6.13.0
+<ul>
+<li>Projects (Applications and Examples) are generated using STM32CubeMX
+version V6.13.0.<br />
+</li>
+</ul></li>
+</ul>
+<h2 id="backward-compatibility-3">Backward compatibility</h2>
+<ul>
+<li>Not applicable</li>
+</ul>
+<h2 id="notes-3">Notes</h2>
 <ul>
 <li>None</li>
 </ul>

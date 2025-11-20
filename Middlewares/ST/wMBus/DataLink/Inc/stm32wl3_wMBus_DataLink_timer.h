@@ -57,13 +57,13 @@ extern "C" {
 /** @defgroup Timer_Exported_Variables Timer Exported Variables
   * @{
   */
-extern VTIMER_HandleType timerHandle;  /*!< Handler for the first virtual timer */
+extern VTIMER_HandleType_t timerHandle;  /*!< Handler for the first virtual timer */
 extern uint8_t VTimer_Callback_flag;   /*!< Flag for the first virtual timer callback */
-extern VTIMER_HandleType timerHandle2; /*!< Handler for the second virtual timer */
+extern VTIMER_HandleType_t timerHandle2; /*!< Handler for the second virtual timer */
 extern uint8_t VTimer_Callback2_flag;  /*!< Flag for the second virtual timer callback */
-extern VTIMER_HandleType timerHandle3; /*!< Handler for the third virtual timer */
+extern VTIMER_HandleType_t timerHandle3; /*!< Handler for the third virtual timer */
 extern uint8_t VTimer_Callback3_flag;  /*!< Flag for the third virtual timer callback */
-extern VTIMER_HandleType timerHandle4; /*!< Handler for the fourth virtual timer */
+extern VTIMER_HandleType_t timerHandle4; /*!< Handler for the fourth virtual timer */
 extern uint8_t VTimer_Callback4_flag;  /*!< Flag for the fourth virtual timer callback */
 /**
   * @}

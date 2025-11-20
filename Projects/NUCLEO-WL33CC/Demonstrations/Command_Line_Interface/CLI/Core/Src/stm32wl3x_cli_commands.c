@@ -1,3 +1,24 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file    stm32wl3x_cli_commands.c
+  * @author  GPM WBL Application Team
+  * @brief   This file provides functions to implement commands issued
+  *          over the serial port
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024-2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
 #include "stm32wl3x_cli_commands.h"
 
 #define MIN(a,b) ((a) > (b) ? (b):(a))
@@ -35,10 +56,6 @@ const char *status_msg[] = {
   "ok",
   "ov"
 };
-
-//for debug purpose only:
-SLPAWUR_FrameInit frame_conf;
-SLPAWUR_RFConfig rf_conf;
 
 static void DBPrintHeader(const char* cmdname, const char* dbHeader){
   responseHeaderPrintf("#{&N &t &t &t}\r\n", cmdname, "timestamp", dbHeader, "status");
@@ -684,6 +701,8 @@ void DirectBufferDumpAction(){
   SDBDumpRecord dbRecord;
   dbRecord.itemSize = DIRECT_BUFFER_ITEM_SIZE;
   dbRecord.itemNumber = 1;
+  dbRecord.commandName = "DirectBufferDumpAction";
+  dbRecord.dbHeader = "BUFDUMP";
 
   DBDump(dbRecord, 0, 0);
 }

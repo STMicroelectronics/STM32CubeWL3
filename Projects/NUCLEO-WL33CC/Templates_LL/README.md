@@ -65,7 +65,7 @@ Reference, Template
 
 ### <b>Hardware and Software environment</b>
 
-  - This template runs on STM32WL33 devices.
+  - This template runs on STM32WL33CCVx devices.
   - This template has been tested with STMicroelectronics NUCLEO-WL33CC
     board and can be easily tailored to any other supported device
     and development board.

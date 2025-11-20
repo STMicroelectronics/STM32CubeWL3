@@ -1,8 +1,24 @@
+/* USER CODE BEGIN Header */
 /**
- * File: command-interpreter.c
- * Description: processes commands incoming over the serial port.
+  ******************************************************************************
+  * @file    command-interpreter2.c
+  * @author  GPM WBL Application Team
+  * @brief   This file provides functions to process commands incoming 
+  *          over the serial port
+  ******************************************************************************
+  * @attention
  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
  */
+/* USER CODE END Header */
+
 #include <stdint.h>
 #include <string.h>
 #include "command-interpreter2.h"

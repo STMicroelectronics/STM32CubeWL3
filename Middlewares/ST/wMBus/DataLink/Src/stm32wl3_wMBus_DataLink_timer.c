@@ -52,13 +52,13 @@
 /** @defgroup Timer_Private_Variables Timer Private Variables
   * @{
   */
-VTIMER_HandleType timerHandle;
+VTIMER_HandleType_t timerHandle;
 uint8_t VTimer_Callback_flag = 0;
-VTIMER_HandleType timerHandle2;
+VTIMER_HandleType_t timerHandle2;
 uint8_t VTimer_Callback2_flag = 0;
-VTIMER_HandleType timerHandle3;
+VTIMER_HandleType_t timerHandle3;
 uint8_t VTimer_Callback3_flag = 0;
-VTIMER_HandleType timerHandle4;
+VTIMER_HandleType_t timerHandle4;
 uint8_t VTimer_Callback4_flag = 0;
 /**
   * @}

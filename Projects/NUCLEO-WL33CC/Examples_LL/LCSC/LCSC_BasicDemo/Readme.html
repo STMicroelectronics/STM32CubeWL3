@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<h2 id="lcsc_basicdemo-example-description"><b>LCSC_BasicDemo Example
+Description</b></h2>
+<p>How to use an LC sensor controller (LCSC) peripheral to measure
+rotation of wheel.</p>
+<p>This example is based on the STM32WL3x LCSC HAL API.</p>
+<p>Example configuration:</p>
+<p>The LCSC control the COMP, DAC, VCMBUFF and PB1, PA14, PB2 in order
+to implement the LCSC feature.</p>
+<p>This example is configured to count the number of wheel rotations in
+both clockwise and anticlockwise directions with LCA and LCB.</p>
+<p>When the tamper (LCT) detection is activated, it is possible to
+detect if a metallic surface has interfered with the measurement of the
+number of revolutions.</p>
+<p>Example execution:</p>
+<p>This example can be divided in the following parts:</p>
+<ul>
+<li><p>initialization of the LCSC IP.</p></li>
+<li><p>initial calibration of the LCSC (for this step the coils must not
+be exposed to the metal part).</p></li>
+<li><p>infinite while loop, and the LCSC working on its own. The wheel
+can be placed in front of the coils only after the initial calibration,
+and can eventually start rotating. When the wheel performs a number of
+rotations, clockwise or anticlockwise, equal to the threshold defined in
+the proper register. A message is printed at the terminal.</p></li>
+</ul>
+<p>Connection needed:</p>
+<p>Hardware used for the LC network in this example :</p>
+<p>Inductances: La, Lb and Lt = 470uF (Murata 11R474C)</p>
+<p>Capacitors: Ca, Cb and Ct = 560pF Cext_LCSC = 470nF</p>
+<p>Note: The configuration of the LCSC must be updated based on the
+inductors and capacitors used.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>LCSC, COMP, DAC, LCA, LCB, LCT, LC network</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>LCSC/LCSC_BasicDemo/Inc/stm32wl3x_nucleo_conf.h BSP configuration
+file</li>
+<li>LCSC/LCSC_BasicDemo/Inc/stm32wl3x_hal_conf.h HAL configuration
+file</li>
+<li>LCSC/LCSC_BasicDemo/Inc/stm32wl3x_it.h Interrupt handlers header
+file</li>
+<li>LCSC/LCSC_BasicDemo/Inc/main.h Header for main.c module</li>
+<li>LCSC/LCSC_BasicDemo/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>LCSC/LCSC_BasicDemo/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+<li>LCSC/LCSC_BasicDemo/Src/main.c Main program</li>
+<li>LCSC/LCSC_BasicDemo/Src/system_stm32wl3x.c STM32WL3x system source
+file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL33CCVx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics NUCLEO-WL33CC board and can be
+easily tailored to any other supported device and development
+board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</body>
+</html>

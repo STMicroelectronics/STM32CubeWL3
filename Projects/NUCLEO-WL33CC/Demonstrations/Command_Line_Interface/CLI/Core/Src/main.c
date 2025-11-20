@@ -3,7 +3,7 @@
 ******************************************************************************
 * @file    main.c
 * @author  GPM WBL Application Team
-* @brief   This code implements the STM32WL3 Command LIne Interface.
+* @brief   This code implements the STM32WL3 Command Line Interface.
 ******************************************************************************
 * @attention
 *
@@ -310,7 +310,7 @@ void fwVersionAction(void)
 
 void rebootAction(void)
 {
-  responsePrintf("{&N API call...&ts}\r\n", "reboot");
+  responsePrintf("{&N API call...}\r\n", "reboot");
   NVIC_SystemReset();
 }
 

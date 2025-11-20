@@ -52,8 +52,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-SMRSubGConfig MRSUBG_RadioInitStruct;
-MRSubG_WMBUS_PcktFields MRSUBG_PacketSettingsStruct;
+SMRSubGConfig_t MRSUBG_RadioInitStruct;
+MRSubG_WMBUS_PcktFields_t MRSUBG_PacketSettingsStruct;
 
 /* USER CODE BEGIN PV */
 volatile FlagStatus xRxDone=RESET;

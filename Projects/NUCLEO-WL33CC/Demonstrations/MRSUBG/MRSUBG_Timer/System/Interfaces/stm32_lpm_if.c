@@ -299,6 +299,12 @@ void PWR_ExitStopMode( void )
     LL_RCC_RC64MPLL_Disable();
   }
 
+  /* If the MRSUBG timer is active, wait until the timebase is fully restored (3 slow clock periods after HSE Ready) */
+  if(LL_MRSUBG_TIMER_IsEnabledCPUWakeupTimer(MR_SUBG_GLOB_RETAINED) || LL_MRSUBG_TIMER_IsEnabledRFIPWakeupTimer(MR_SUBG_GLOB_RETAINED))
+  {
+    while( LL_MRSUBG_TIMER_GetAbsoluteTime(MR_SUBG_GLOB_MISC) == 0);
+  }
+
   /* Handler to manage the IOs IRQ if needed */
   HAL_PWR_WKUP_IRQHandler();
 }

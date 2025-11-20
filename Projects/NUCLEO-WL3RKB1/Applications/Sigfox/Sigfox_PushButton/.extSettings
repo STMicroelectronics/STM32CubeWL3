@@ -1,0 +1,6 @@
+[ProjectFiles]
+HeaderPath=../../../../../../Drivers/BSP/STM32WL3R-Nucleo;
+[Groups]
+Doc=../README.md;
+Drivers/BSP/STM32WL3R-Nucleo=../../../../../../Drivers/BSP/STM32WL3R-Nucleo/stm32wl3r_nucleo.c;
+Application/User/Core=../Core/Src/oob_adc.c;

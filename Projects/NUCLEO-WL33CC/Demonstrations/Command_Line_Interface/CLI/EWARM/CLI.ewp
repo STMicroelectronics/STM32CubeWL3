@@ -1113,9 +1113,6 @@
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\timer_utils.c</name>
                 </file>
-                <file>
-                    <name>$PROJ_DIR$\..\Core\Src\cli\utils.c</name>
-                </file>
             </group>
             <group>
                 <name>Core</name>

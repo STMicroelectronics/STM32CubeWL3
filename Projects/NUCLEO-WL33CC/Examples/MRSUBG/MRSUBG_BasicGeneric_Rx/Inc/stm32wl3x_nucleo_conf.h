@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    stm32wl3x_nucleo_conf.h
   * @author  MCD Application Team
-  * @brief   STM32WL3x nucleo board configuration file.
+  * @brief   STM32WL3X nucleo board configuration file.
   ******************************************************************************
   * @attention
   *

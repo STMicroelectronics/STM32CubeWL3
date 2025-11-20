@@ -223,7 +223,7 @@
                 <option>
                     <name>CCDefines</name>
                     <state>USE_HAL_DRIVER</state>
-                    <state>STM32WL33</state>
+                    <state>STM32WL3XX</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

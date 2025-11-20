@@ -54,12 +54,6 @@ STM32WL3x memory map
 #define MEMORY_FLASH_APP_SIZE  (_MEMORY_FLASH_SIZE_ - MEMORY_FLASH_APP_OFFSET)
 #endif
 
-LR_IROM2 (_MEMORY_FLASH_BEGIN_) MEMORY_FLASH_APP_OFFSET  {    ; load region size_region
-  REGION_FLASH_BOOTLOADER (_MEMORY_FLASH_BEGIN_) (MEMORY_FLASH_APP_OFFSET)  {  ; load address = execution address
-   *.o (.bootloader)
-  }
-}
-  
 LR_IROM1 (_MEMORY_FLASH_BEGIN_+MEMORY_FLASH_APP_OFFSET) _MEMORY_FLASH_SIZE_  {    ; load region size_region
   REGION_FLASH (_MEMORY_FLASH_BEGIN_ + MEMORY_FLASH_APP_OFFSET) (MEMORY_FLASH_APP_SIZE)  {  ; load address = execution address
    *.o (RESET, +First)

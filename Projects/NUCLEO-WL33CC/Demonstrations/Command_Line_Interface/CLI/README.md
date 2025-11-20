@@ -38,16 +38,12 @@ MRSUBG, radio, CLI, WiSE-RadioExplorer
   - Command_Line_Interface/CLI/Core/Inc/cli/utils.h                Header for utils.c
   - Command_Line_Interface/CLI/Core/Inc/cli/serial_utils.h         Header for serial_utils.c         
   - Command_Line_Interface/CLI/Core/Inc/cli/command-interpreter2.h Header for command-interpreter2.c
-  - Command_Line_Interface/CLI/System/Interface/hw_lpawur.h        Header for hw_lpawur.c
-  - Command_Line_Interface/CLI/System/Interface/hw_lpawur.c        Header for hw_lpawur.c
-  - Command_Line_Interface/CLI/System/Interface/hw_lpawur.h        Header for hw_lpawur.c
-  - Command_Line_Interface/CLI/System/Interface/hw_lpawur.c        LPAWUR Manager functions file
   - Command_Line_Interface/CLI/System/Interface/hw_mrsubg.h        Header for hw_mrsubg.c
   - Command_Line_Interface/CLI/System/Interface/hw_mrsubg.c        MRSUBG Manager functions file
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CCx application board.
+  - This example runs on STM32WL33CCVx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL33CCx application board and can be easily tailored to any other supported device and development board.  
 

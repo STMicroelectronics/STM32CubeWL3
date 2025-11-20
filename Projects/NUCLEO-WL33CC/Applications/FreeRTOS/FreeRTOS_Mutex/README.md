@@ -33,9 +33,11 @@ The user can observe the effect of not using a mutex to protect printf by settin
 - On failure, the red LED toggles.
 
 #### <b>Assumptions if any</b>
+
 None
 
 #### <b>Known limitations</b>
+
 None
 
 ### <b>Notes</b>
@@ -43,6 +45,7 @@ None
   - FreeRTOS uses the Systick as time base, thus it is mandatory that the HAL uses a separate time base through the TIM IPs.
 
 #### <b>FreeRTOS usage hints</b>
+
 The FreeRTOS heap size "configTOTAL_HEAP_SIZE" defined in FreeRTOSConfig.h is set accordingly to the
 OS resources memory requirements of the application with +10% margin and rounded to the upper Kbyte boundary.
 
@@ -55,7 +58,7 @@ FreeRTOS, Mutex
 
 ### <b>Hardware and Software environment</b>
 
-  - This application runs on STM32WL33xx device.
+  - This application runs on STM32WL33CCVx devices.
   - This application has been tested with STMicroelectronics NUCLEO-WL33CC1 board MB2029A Rev. A01
     and can be easily tailored to any other supported device and development board.
 
@@ -66,7 +69,6 @@ FreeRTOS, Mutex
       - Stop Bit = 1
       - Parity = none
       - Flow control = None
-
 
 ### <b>How to use it ?</b>
 

@@ -1,18 +1,8 @@
 /**
   ******************************************************************************
   * @file    system_stm32wl3x.c
-  * @author  GPM WBL Application Team
-  * @brief   CMSIS Cortex-M0+ Device Peripheral Access Layer System Source File
-  *
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * @author  MCD Application Team
+  * @brief   CMSIS Cortex Device Peripheral Access Layer System Source File
   *
   ******************************************************************************
   *   This file provides two functions and one global variable to be called from
@@ -42,7 +32,17 @@
   *-----------------------------------------------------------------------------
   *        HCLK(Hz)                                | 16000000
   *-----------------------------------------------------------------------------
-  *=============================================================================
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
   */
 
 /** @addtogroup CMSIS

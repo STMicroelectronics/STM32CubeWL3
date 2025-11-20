@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="sigfox_cli-application-description"
+class="col-sm-12 col-lg-4">
+<h2><b>Sigfox_CLI Application Description</b></h2>
+<p>This application demonstrates how to evaluate the STM32WL3x Sigfox
+device radio capabilities.<br />
+This software is meant to be used in conjunction with the Sigfox RSA
+environment.<br />
+For further details, please refer to
+https://support.sigfox.com/docs/radio-signal-analyser-user-guide</p>
+<p>Moreover a Virtual Com stream is open. Both the transmitter and the
+receiver will write their own buffer on video every time a command is
+performed.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>Sigfox, Skeleton, MRSUBG, CLI</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/stm32wl3r_nucleo_conf.h BSP
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/stm32wl3x_hal_conf.h HAL
+Configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/stm32wl3x_it.h Header for
+stm32wl3x_it.c</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/main.h Header file for main.c</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/stm32_assert.h STM32 assert
+file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/apps_conf.h Application
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/utilities_conf.h Utilities
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/oob_adc.h Header file for
+oob_adc.c</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/system_stm32wl3x.c STM32WL3x system
+clock configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/stm32wl3x_it.c Interrupt
+handlers</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/stm32wl3x_hal_msp.c HAL MSP
+module</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/main.c Main program</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/oob_adc.c ADC configuration
+file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/cli/command-interpreter2.h Header
+file for command-interpreter2.c</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Inc/cli/serial_utils.h Header file for
+serial_utils.c</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/cli/command-interpreter2.c Commands
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/cli/serial_utils.c Serial utilities
+file</li>
+<li>Sigfox/Sigfox_Skeleton/Core/Src/cli/response.c Response
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_credentials.h Sigfox
+credentials management file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_databuffers.c RAM data
+buffers management file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_databuffers.h Header for
+wl3sfx_databuffers.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_fem.c Front-end modules
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_fem.h Header for
+wl3sfx_fem.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_flash_utils.c Read and
+write from flash file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_flash_utils.h Header for
+wl3sfx_flash_utils.h</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_it.c Interrupt callbacks
+management file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_it.h Header for
+wl3sfx_it.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_log.c Internal debbug
+messages file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_log.h Header for
+wl3sfx_log.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_mcu_api.c Application
+configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm.c Nonvolatile memory
+contents file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm.h Header for
+wl3sfx_nvm.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm_boarddata.c
+Key-value store file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm_boarddata.h Header
+for wl3sfx_nvm_boarddata.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm_records.c Stores
+Sigfox NVM records file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_nvm_records.h Header for
+wl3sfx_nvm_records.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_oob.c Utilities for
+retrieving measurements file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_oob.h Header for
+wl3sfx_oob.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_pn9tx.c Interrupt-based
+generator for a pseudorandom sequence file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_pn9tx.h Header for
+wl3sfx_pn9tx.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_rf_api.c Application
+configuration file for STM32WPAN Middleware</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_rf_state.c State
+machine’s state management file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_rf_state.h Header for
+wl3sfx_rf_state.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_timer.c RTC timers
+control file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_timer.h Header for
+wl3sfx_timer.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_txsymbols.c Generation
+of DBPSK symbols management file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/Target/wl3sfx_txsymbols.h Header for
+wl3sfx_txsymbols.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/app_sigfox.c Application of the
+Sigfox Middleware file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/app_sigfox.h Header for
+app_sigfox.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/cli_commands.c CLI commands
+file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/cli_commands.h Header for
+cli_commands.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/ST_Sigfox.c Application of the
+Sigfox Middleware file</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/ST_Sigfox.h Header for
+ST_Sigfox.c</li>
+<li>Sigfox/Sigfox_Skeleton/Sigfox/App/ST_Sigfox_Types.h Sigfox type
+definitions file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Interfaces/stm32_lpm_if.c Low power
+mode configuration file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Interfaces/stm32_lpm_if.h Header for
+stm32_lpm_if.c</li>
+<li>Sigfox/Sigfox_Skeleton/System/Modules/asm.h ASM Compiler-dependent
+macros file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Modules/osal.c OS abstraction layer
+definition file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Modules/osal.h Header for osal.c</li>
+<li>Sigfox/Sigfox_Skeleton/System/Startup/cpu_context_switch.s Context
+restore file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Startup/device_context_switch.c
+STM32WL3 context switch file</li>
+<li>Sigfox/Sigfox_Skeleton/System/Startup/device_context_switch.h Header
+for device_context_switch.c</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL3RKBVx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics
+NUCLEO-WL3RKB1 application board and can be easily tailored to any other
+supported device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the application</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

@@ -234,7 +234,7 @@
           <state>INSTRUCTION_CACHE_ENABLE=1</state>
           <state>DATA_CACHE_ENABLE=1</state>
           <state>ART_ACCELERATOR_ENABLE=0</state>
-          <state>STM32WL33</state>
+          <state>STM32WL3XX</state>
           <state>CFG_HW_RCC_HSE_CAPACITOR_TUNE=32</state>
         </option>
         <option>

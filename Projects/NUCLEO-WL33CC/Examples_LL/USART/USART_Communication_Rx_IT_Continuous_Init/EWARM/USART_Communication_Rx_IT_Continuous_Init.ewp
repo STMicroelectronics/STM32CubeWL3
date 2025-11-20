@@ -227,7 +227,7 @@
         <option>
           <name>CCDefines</name>
           <state>USE_FULL_LL_DRIVER</state>
-          <state>STM32WL33</state>
+          <state>STM32WL3XX</state>
           <state>HSE_VALUE=48000000</state>
           <state>HSE_STARTUP_TIMEOUT=100</state>
           <state>LSE_STARTUP_TIMEOUT=5000</state>

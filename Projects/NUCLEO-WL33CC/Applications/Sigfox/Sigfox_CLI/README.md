@@ -2,7 +2,7 @@
 ::: {.col-sm-12 .col-lg-4}
 ## <b>Sigfox_CLI Application Description</b>
 
-This application demonstrates how to evaluate the STM32WL33 Sigfox device radio capabilities.  
+This application demonstrates how to evaluate the STM32WL3x Sigfox device radio capabilities.  
 This software is meant to be used in conjunction with the Sigfox RSA environment.  
 For further details, please refer to https://support.sigfox.com/docs/radio-signal-analyser-user-guide
 
@@ -79,9 +79,9 @@ Sigfox, Skeleton, MRSUBG, CLI
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CCx application board.
+  - This example runs on STM32WL33CCVx devices.
 
-  - This example has been tested with STMicroelectronics NUCLEO-WL33CCx application board and can be easily tailored to any other supported device and development board.  
+  - This example has been tested with STMicroelectronics NUCLEO-WL33CC1 application board and can be easily tailored to any other supported device and development board.  
 
 ### <b>How to use it ?</b>
 

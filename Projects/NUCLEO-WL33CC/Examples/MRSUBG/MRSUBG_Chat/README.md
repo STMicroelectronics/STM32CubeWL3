@@ -3,7 +3,7 @@
 ## <b>MRSUBG_Chat Example Description</b>
 
 This example explains how to configure a node both as a transmitter and as a receiver in order to perform a simple basic packet transmission.  
-There are two devices: at the beginning each device is in RX state. Open a terminal and write some text and press enter. At this point the device will commute to TX  transmit the message and then go again in RX.   
+There are two devices: at the beginning each device is in RX state. Open a terminal and write a 20 characters string and press enter. At this point the device will commute to TX  transmit the message and then go again in RX.   
 Moreover, each device will write its own buffer on video every time a Tx or an Rx is performed.
 
 ### <b>Keywords</b>
@@ -24,7 +24,7 @@ MRSUBG, radio
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CC1 application board.
+  - This example runs on STM32WL33CCVx devices.
   - This example has been tested with STMicroelectronics NUCLEO-WL33CC1 application board and can be easily tailored to any other supported device and development board.  
 
 ### <b>How to use it ?</b>

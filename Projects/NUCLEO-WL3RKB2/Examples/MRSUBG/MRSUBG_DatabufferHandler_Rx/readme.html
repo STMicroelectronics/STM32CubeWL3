@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="mrsubg_databufferhandler_rx-example-description"
+class="col-sm-12 col-lg-4">
+<h2><b>MRSUBG_DatabufferHandler_Rx Example Description</b></h2>
+<p>This example explains how to configure one node as a transmitter and
+the other as a receiver in order to perform a simple basic packet
+transmission.<br />
+On the receiver side, the received data is split among the two
+databuffers. Each device will write its own buffer on video every time a
+Tx or an Rx is performed.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>MRSUBG, radio</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Inc/stm32wl3r_nucleo_conf.h BSP
+configuration file</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Inc/stm32wl3x_hal_conf.h HAL
+Configuration file</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Inc/stm32wl3x_it.h Header for
+stm32wl3x_it.c</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Inc/main.h Header file for
+main.c</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Inc/stm32_assert.h Assert
+description file</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Src/system_stm32wl3x.c STM32WL3x
+system clock configuration file</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Src/stm32wl3x_it.c Interrupt
+handlers</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Src/stm32wl3x_hal_msp.c HAL MSP
+module</li>
+<li>MRSUBG/MRSUBG_DatabufferHandler_Rx/Src/main.c Main program</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li>This example runs on STM32WL3RKBVx devices.</li>
+<li>This example has been tested with STMicroelectronics NUCLEO-WL3RKB2
+application board and can be easily tailored to any other supported
+device and development board.</li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open your preferred toolchain and load the workspace</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

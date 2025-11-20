@@ -105,7 +105,7 @@ sfx_u8 RF_API_init(sfx_rf_mode_t rf_mode)
     HAL_MRSubG_SetFrequencyDev(800);
     HAL_MRSubG_SetChannelBW(2100);
 
-    static MRSubG_PcktBasicFields rxPacketBasicInit = { .PreambleLength = 0,
+    static MRSubG_PcktBasicFields_t rxPacketBasicInit = { .PreambleLength = 0,
       .PostambleLength = 0,
       .SyncLength = 15,
       .SyncWord = 0xb2270000,

@@ -66,9 +66,9 @@ volatile uint8_t flagDEEPSTOP;
 __attribute__((aligned(4))) volatile uint8_t databuf0[PACKET_LEN];
 __attribute__((aligned(4))) volatile uint8_t databuf1[PACKET_LEN];
 
-static MRSubG_Sequencer_GlobalConfiguration GlobalSequencerConfiguration;
-static MRSubG_Sequencer_ActionConfiguration ReceiveFrame;
-static MRSubG_Sequencer_ActionConfiguration WaitForMessage;
+static MRSubG_Sequencer_GlobalConfiguration_t GlobalSequencerConfiguration;
+static MRSubG_Sequencer_ActionConfiguration_t ReceiveFrame;
+static MRSubG_Sequencer_ActionConfiguration_t WaitForMessage;
 
 uint8_t fast_rx_time_val;
 /* USER CODE END PV */

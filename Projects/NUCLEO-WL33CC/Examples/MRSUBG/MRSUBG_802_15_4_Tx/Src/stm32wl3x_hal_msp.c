@@ -86,9 +86,9 @@ void HAL_MspInit(void)
 void HAL_MRSubG_MspInit(void)
 {
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-    /* USER CODE BEGIN MRSUBG_MspInit 0 */
+    /* USER CODE BEGIN MRSubG_MspInit 0 */
 
-    /* USER CODE END MRSUBG_MspInit 0 */
+    /* USER CODE END MRSubG_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
@@ -110,9 +110,9 @@ void HAL_MRSubG_MspInit(void)
       __HAL_RCC_MRSUBG_CLK_ENABLE();
     }
 
-    /* USER CODE BEGIN MRSUBG_MspInit 1 */
+    /* USER CODE BEGIN MRSubG_MspInit 1 */
 
-    /* USER CODE END MRSUBG_MspInit 1 */
+    /* USER CODE END MRSubG_MspInit 1 */
 
 }
 
@@ -124,17 +124,17 @@ void HAL_MRSubG_MspInit(void)
   */
 void HAL_MRSubG_MspDeInit(void)
 {
-    /* USER CODE BEGIN MRSUBG_MspDeInit 0 */
+    /* USER CODE BEGIN MRSubG_MspDeInit 0 */
 
-    /* USER CODE END MRSUBG_MspDeInit 0 */
+    /* USER CODE END MRSubG_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_MRSUBG_CLK_DISABLE();
     __HAL_RCC_MRSUBG_FORCE_RESET();
     __HAL_RCC_MRSUBG_RELEASE_RESET();
 
-    /* USER CODE BEGIN MRSUBG_MspDeInit 1 */
+    /* USER CODE BEGIN MRSubG_MspDeInit 1 */
 
-    /* USER CODE END MRSUBG_MspDeInit 1 */
+    /* USER CODE END MRSubG_MspDeInit 1 */
 
 }
 

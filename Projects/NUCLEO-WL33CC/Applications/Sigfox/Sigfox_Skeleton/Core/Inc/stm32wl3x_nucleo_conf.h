@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    stm32wl3x_nucleo_conf.h
   * @author  MCD Application Team
-  * @brief   STM32WL3x nucleo board configuration file.
+  * @brief   STM32WL3X nucleo board configuration file.
   ******************************************************************************
   * @attention
   *
@@ -26,11 +26,6 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wl3x_hal.h"
-#include "stm32wl3x_ll_gpio.h"
-#include "stm32wl3x_ll_usart.h"
-#include "stm32wl3x_ll_rcc.h"
-#include "stm32wl3x_ll_bus.h"
-#include "stm32wl3x_hal_def.h"
 
 /* Usage of nucleo board */
 #define USE_NUCLEO_64      1U

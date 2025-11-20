@@ -176,11 +176,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/timer_utils.c</locationURI>
 		</link>
 		<link>
-			<name>Application/User/App/utils.c</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/cli/utils.c</locationURI>
-		</link>
-		<link>
 			<name>Application/User/Core/app_entry.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/app_entry.c</locationURI>

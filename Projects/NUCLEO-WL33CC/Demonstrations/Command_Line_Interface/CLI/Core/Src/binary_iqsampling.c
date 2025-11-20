@@ -3,7 +3,7 @@
   ******************************************************************************
   * @file    binary_iqsampling.c
   * @author  GPM WBL Application Team
-  * @brief   Application of the Sigfox Middleware
+  * @brief   This file provides firmware functions for raw I/Q sampling
   ******************************************************************************
   * @attention
   *

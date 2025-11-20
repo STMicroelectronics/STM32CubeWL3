@@ -45,6 +45,13 @@ extern "C" {
   * @{
   */
 #ifdef WMBUS_ACTIVE_POWER_MODE_ENABLED
+/**
+  * @brief  Configure the SMPS output voltage and BOM.
+  * @note   This function is defined only if WMBUS_ACTIVE_POWER_MODE_ENABLED is defined.
+  * @param  outputVoltage SMPS output voltage.
+  * @param  BOM           SMPS BOM.
+  * @retval HAL_StatusTypeDef Status of the operation (see @ref HAL_StatusTypeDef).
+  */
 HAL_StatusTypeDef HAL_PWREx_ConfigSMPS_Update(uint32_t outputVoltage, uint32_t BOM);
 
 /**

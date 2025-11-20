@@ -51,17 +51,14 @@ extern "C" {
 */
 #define WMBUS_RADIO_BUFFER_SIZE_MAX_NRZ (292 + 4) /**< Maximum buffer size for NRZ encoding */
 #define WMBUS_RADIO_BUFFER_SIZE_MAX_3O6 440       /**< Maximum buffer size for 3o6 encoding */
-#define WMBUS_RADIO_BUFFER_SIZE_MARGIN 12         /**< Margin to take into account delay between WmBus payload reception and SABORT command */
+#define WMBUS_RADIO_BUFFER_SIZE_MARGIN 12         /**< Margin to take into account delay between wM-Bus payload reception and SABORT command */
 #if !defined(T1C1_ACTIVATED) && !defined(T1C1_ACTIVATED_C1_MODE)
 #define WMBUS_RADIO_BUFFER_SIZE WMBUS_RADIO_BUFFER_SIZE_MAX_NRZ /* 290 but to be aligned on 32-bit */
 #else
 #define WMBUS_RADIO_BUFFER_SIZE WMBUS_RADIO_BUFFER_SIZE_MAX_3O6 /* 438 but to be aligned on 32-bit */
 #endif
 
-/**
-  * @brief  wM-Bus Phy Radio mode number
-  */
-#define WMBUS_MODE_NUMBER 11
+#define WMBUS_MODE_NUMBER 11        /**< wM-Bus Phy mode number */
 /**
   * @}
   */
@@ -70,7 +67,7 @@ extern "C" {
   * @{
   */
 /**
-  * @brief Enumeration of wM-Bus Phy Radio submodes
+  * @brief Enumeration of wM-Bus Phy modes
   */
 typedef enum
 {
@@ -88,7 +85,7 @@ typedef enum
 } wMBus_Phy_submode_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Rx state machine states
+  * @brief Enumeration of wM-Bus Phy Rx state machine states
   */
 typedef enum
 {
@@ -98,7 +95,7 @@ typedef enum
 } wMBus_Phy_state_machine_Rx_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Frame Formats
+  * @brief Enumeration of wM-Bus Phy Frame Formats
   * @note  If AUTOMATIC_FORMAT_DETECTION_C_MODE is defined, value 0 is WMBUS_FORMAT_A_B else WMBUS_FORMAT_UNDEFINED
   */
 typedef enum
@@ -113,7 +110,7 @@ WMBUS_FORMAT_A_B = 0, /**< Format A or B */
 } wMBus_Phy_frame_format_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio 1st Block size
+  * @brief Enumeration of wM-Bus Phy 1st Block size
   */
 typedef enum
 {
@@ -122,7 +119,7 @@ typedef enum
 } wMBus_Phy_first_block_size_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Subsequent Block size
+  * @brief Enumeration of wM-Bus Phy Subsequent Block size
   */
 typedef enum
 {
@@ -133,7 +130,7 @@ typedef enum
 
 #ifdef WMBUS_DEBUG
 /**
-  * @brief Structure of wM-Bus Phy Radio debug
+  * @brief Structure of wM-Bus Phy debug
   * @note  This struct is defined only if WMBUS_DEBUG is defined
   */
 typedef struct
@@ -146,7 +143,7 @@ typedef struct
 } wMBus_Phy_debug_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio debug information
+  * @brief Enumeration of wM-Bus Phy debug information
   * @note  This enum is defined only if WMBUS_DEBUG is defined
   */
 typedef enum
@@ -182,7 +179,7 @@ typedef enum
 #endif
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Rx Timer timeout mask
+  * @brief Enumeration of wM-Bus Phy Rx Timer timeout mask
   */
 typedef enum
 {
@@ -193,7 +190,7 @@ typedef enum
 } wMBus_Phy_RxTimer_timeout_mask_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Direction
+  * @brief Enumeration of wM-Bus Phy Direction
   */
 typedef enum
 {
@@ -202,7 +199,7 @@ typedef enum
 } wMBus_Phy_direction_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Meter modes
+  * @brief Enumeration of wM-Bus Phy Meter modes
   */
 typedef enum
 {
@@ -211,7 +208,7 @@ typedef enum
 } wMBus_Phy_meter_modes_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio events
+  * @brief Enumeration of wM-Bus Phy events
   */
 typedef enum
 {
@@ -230,7 +227,7 @@ typedef enum
 } wMBus_Phy_events_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Sync patterns
+  * @brief Enumeration of wM-Bus Phy Sync patterns
   * @note  If T1C1_ACTIVATED or T1C1_ACTIVATED_C1_MODE are defined WMBUS_SYNC_PATTERN_T1C1_MODE_M2O_GATEWAY is defined
   *        If AUTOMATIC_FORMAT_DETECTION_C_MODE is defined WMBUS_SYNC_PATTERN_C_MODE_M2O_FORMAT_UNDEFINED is defined
   */
@@ -255,7 +252,7 @@ typedef enum
 } wMBus_Phy_sync_pattern_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Sync lengths
+  * @brief Enumeration of wM-Bus Phy Sync lengths
   * @note  If T1C1_ACTIVATED or T1C1_ACTIVATED_C1_MODE are defined WMBUS_SYNC_LENGTH_T1C1_MODE_M2O_GATEWAY is defined
   *        If AUTOMATIC_FORMAT_DETECTION_C_MODE is defined WMBUS_SYNC_LENGTH_C_MODE_M2O_FORMAT_UNDEFINED is defined
   */
@@ -278,7 +275,7 @@ typedef enum
 } wMBus_Phy_sync_length_t;
 
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Tx test modes
+  * @brief Enumeration of wM-Bus Phy Tx test modes
   */
 typedef enum
 {
@@ -288,7 +285,7 @@ typedef enum
 
 #ifdef WMBUS_ACTIVE_POWER_MODE_ENABLED
 /**
-  * @brief Enumeration of wM-Bus Phy Radio Active Power modes
+  * @brief Enumeration of wM-Bus Phy Active Power modes
   * @note  This enumeration is defined only if WMBUS_ACTIVE_POWER_MODE_ENABLED is defined
   */
 typedef enum
@@ -301,7 +298,7 @@ typedef enum
 #endif
 
 /**
-  * @brief Structure of wM-Bus Phy Radio tRO
+  * @brief Structure of wM-Bus Phy tRO
   */
 typedef struct
 {
@@ -316,55 +313,194 @@ typedef struct
 /** @defgroup Radio_Exported_Functions Radio Exported Functions
   * @{
   */
+/**
+  * @brief  Interrupt handler for wM-Bus Phy.
+  * @retval None.
+  */
 void wMBus_Phy_IRQHandler(void);
 
+/**
+  * @brief  Initialize the wM-Bus phy with the specified mode, direction, and format.
+  * @param  wMBus_mode      mode of wM-Bus (see @ref wMBus_Phy_submode_t).
+  * @param  wMBus_Direction direction of wM-Bus (see @ref wMBus_Phy_direction_t).
+  * @param  wMBus_Format    format of wM-Bus(see @ref wMBus_Phy_frame_format_t).
+  * @retval None.
+  */
+void wMBus_Phy_init(uint8_t wMBus_mode, uint8_t wMBus_Direction, uint8_t wMBus_Format);
+
+/**
+  * @brief  Start the wM-Bus transmission.
+  * @retval uint8_t Status of the operation (0: success, otherwise error).
+  */
 uint8_t wMBus_Phy_start_transmission(void);
+
+/**
+  * @brief  Start the wM-Bus continuous reception mode.
+  * @retval uint8_t Status of the operation (0: success, otherwise error).
+  */
 uint8_t wMBus_Phy_start_continuousRx(void);
+
+/**
+  * @brief  Start the wM-Bus reception with a timeout.
+  * @param  RxTimeout              Timeout value in microseconds.
+  * @param  RxTimeoutStopCondition Stop condition mask (see @ref wMBus_Phy_RxTimer_timeout_mask_t).
+  * @retval uint8_t Status of the operation (0: success, otherwise error).
+  */
 uint8_t wMBus_Phy_start_RxTimer(uint32_t RxTimeout, uint8_t RxTimeoutStopCondition);
 
-void wMBus_Phy_init(uint8_t WmBus_mode, uint8_t WmBus_Direction, uint8_t WmBus_Format);
-
-#ifdef WMBUS_CRC_IN_HAL
-void wMBus_Phy_prepare_Tx_CRC_mngt(uint8_t *WmBus_TxBuffer, uint16_t WmBusTxBuffer_size, uint8_t FrameFormat);
-uint16_t wMBus_Phy_wait_Rx_CRC_mngt(uint8_t *LL_RxBuffer, int32_t *RssiDbm, uint8_t FrameFormat, uint32_t *RxSync);
-uint16_t wMBus_Phy_CRC_calc(uint16_t crcReg, uint8_t crcData);
-uint8_t wMBus_Phy_CRC_check(uint8_t *pStart, uint8_t *pStop);
-void wMBus_Phy_CRC_append(uint8_t *pStart, uint8_t *pStop);
-#endif
-
-void wMBus_Phy_prepare_Tx(uint8_t *WmBus_TxBuffer, uint16_t WmBusTxBuffer_size);
+/**
+  * @brief  Prepare wM-Bus phy for reception.
+  * @retval None.
+  */
 void wMBus_Phy_prepare_Rx(void);
+
+/**
+  * @brief  Prepare wM-Bus phy for transmission with CRC management by setting up the TX buffer, its size, and the frame format.
+  * @param  wMBus_TxBuffer      Pointer to the TX buffer.
+  * @param  wMBusTxBuffer_size  Size of the TX buffer.
+  * @param  FrameFormat         Frame format (see @ref wMBus_Phy_frame_format_t).
+  * @retval None
+  */
+void wMBus_Phy_prepare_Tx_CRC_mngt(uint8_t *wMBus_TxBuffer, uint16_t wMBusTxBuffer_size, uint8_t FrameFormat);
+
+/**
+  * @brief  Waits for RX completion and manages CRC.
+  * @param  RxBuffer    Pointer to the RX buffer.
+  * @param  RssiDbm     Pointer to store the received RSSI value (in dBm).
+  * @param  FrameFormat Frame format (see @ref wMBus_Phy_frame_format_t).
+  * @param  RxSync      Pointer to store the received sync word.
+  * @retval uint16_t Number of bytes received.
+  */
+uint16_t wMBus_Phy_wait_Rx_CRC_mngt(uint8_t *RxBuffer, int32_t *RssiDbm, uint8_t FrameFormat, uint32_t *RxSync);
+
+/**
+  * @brief  Calculates the 16-bit CRC.
+  * @param  crcReg Current or initial value of the CRC calculation
+  * @param  crcData Data to perform the CRC-16 operation on.
+  * @retval uint16_t crcReg Updated CRC value.
+  */
+uint16_t wMBus_Phy_CRC_calc(uint16_t crcReg, uint8_t crcData);
+
+/**
+  * @brief  Check CRC of the data between the specified start and stop pointers.
+  * @param  pStart Pointer to the start of the buffer.
+  * @param  pStop  Pointer to the end of the buffer.
+  * @retval uint8_t CRC check result (if CRC is valid, 0 otherwise).
+  */
+uint8_t wMBus_Phy_CRC_check(uint8_t *pStart, uint8_t *pStop);
+
+/**
+  * @brief  Append CRC to the data between the specified start and stop pointers.
+  * @param  pStart Pointer to the start of the buffer.
+  * @param  pStop  Pointer to the end of the buffer.
+  * @retval None.
+  */
+void wMBus_Phy_CRC_append(uint8_t *pStart, uint8_t *pStop);
+
+/**
+  * @brief  Abort current wM-Bus phy operation.
+  * @retval None.
+  */
 void wMBus_Phy_abort(void);
-uint8_t wMBus_Phy_wait_Tx_completed(void);
-uint16_t wMBus_Phy_wait_Rx_completed(uint8_t *LL_RxBuffer, int32_t *RssiDbm, uint32_t *RxSync);
 
-#ifdef WMBUS_NO_BLOCKING_HAL
-uint8_t wMBus_Phy_check_radio_events(uint32_t WmBus_RadioEvent_Mask);
-uint8_t wMBus_Phy_register_LL_buffer(uint8_t *LL_RxBuffer, uint16_t *LL_PacketLength_ptr, uint8_t *LL_FrameFormat_ptr, uint32_t *LL_WmBus_RxSync_ptr, int32_t *LL_WmBus_RssiDbm_ptr);
-#endif
+/**
+  * @brief  Check wM-Bus phy radio events based on the specified event mask.
+  * @param  wMBus_RadioEvent_Mask Event mask (see @ref wMBus_Phy_events_t).
+  * @retval uint8_t Status of the radio events (1 if event occurred, 0 otherwise).
+  */
+uint8_t wMBus_Phy_check_radio_events(uint32_t wMBus_RadioEvent_Mask);
 
+/**
+  * @brief  Register the local buffers and its associated parameters.
+  * @param  RxBuffer         Pointer to the RX buffer.
+  * @param  PacketLength_ptr Pointer to store the packet length.
+  * @param  FrameFormat_ptr  Pointer to store the frame format.
+  * @param  RxSync_ptr       Pointer to store the sync word.
+  * @param  RssiDbm_ptr      Pointer to store the RSSI value in dBm.
+  * @retval uint8_t check of PacketLength_ptr size vs Radio buffer size (1 if too small - error, 0 no error).
+  */
+uint8_t wMBus_Phy_register_LL_buffer(uint8_t *RxBuffer, uint16_t *PacketLength_ptr, uint8_t *FrameFormat_ptr, uint32_t *RxSync_ptr, int32_t *RssiDbm_ptr);
+
+/**
+  * @brief  Start TX test mode.
+  * @param  Tx_TestMode Test mode for TX (see @ref wMBus_Phy_tx_test_mode_t).
+  * @retval uint8_t Status of the operation (0: success, otherwise error).
+  */
 uint8_t wMBus_Phy_start_Tx_test_mode(uint8_t Tx_TestMode);
+
+/**
+  * @brief  Stop TX test mode.
+  * @retval uint8_t Status of the operation (0: success, otherwise error).
+  */
 uint8_t wMBus_Phy_stop_Tx_test_mode(void);
+
+/**
+  * @brief Measure the RSSI during a specified RX timeout.
+  * @param  RxTimeoutMicrosec  RX timeout in microseconds.
+  * @retval int32_t RSSI value in dBm.
+  */
 int32_t wMBus_Phy_sense_rssi(uint32_t RxTimeoutMicrosec);
 
 #ifdef WMBUS_RX_PERFORMANCE_ENABLED
-void wMBus_Phy_Rx_performance_settings(uint8_t WmBus_mode, uint8_t WmBus_Direction);
+/**
+  * @brief  Configure RX performance settings based on the specified mode and direction.
+  * @note   This function is defined only if WMBUS_RX_PERFORMANCE_ENABLED is defined
+  * @param  wMBus_mode      mode of wM-Bus (see @ref wMBus_Phy_submode_t).
+  * @param  wMBus_Direction Direction of wM-Bus (see @ref wMBus_Phy_direction_t).
+  * @retval None.
+  */
+void wMBus_Phy_Rx_performance_settings(uint8_t wMBus_mode, uint8_t wMBus_Direction);
 #endif
 
 #ifdef WMBUS_DEBUG
+/**
+  * @brief  Initialize debug log.
+  * @note   This function is defined only if WMBUS_DEBUG is defined
+  * @retval None.
+  */
 void wMBus_Phy_initialize_debug_log(void);
+
+/**
+  * @brief  Trace debug event.
+  * @note   This function is defined only if WMBUS_DEBUG is defined
+  * @param  event       Event value to log.
+  * @param  debug_info1 Debug information 1.
+  * @param  debug_info2 Debug information 2.
+  * @param  debug_info3 Debug information 3.
+  * @retval None.
+  */
 void wMBus_Phy_trace_debug_log(uint32_t event, uint32_t debug_info1, uint32_t debug_info2, uint32_t debug_info3);
 #endif
 
 #ifdef WMBUS_ACTIVE_POWER_MODE_ENABLED
+/**
+  * @brief  Set the active power mode.
+  * @note   This function is defined only if WMBUS_ACTIVE_POWER_MODE_ENABLED is defined
+  * @param  Active_PM Power mode to set (see @ref wMBus_Phy_active_power_mode_t).
+  * @retval None.
+  */
 void wMBus_Phy_set_active_power_mode(uint8_t Active_PM);
 #endif
 
 #ifdef WMBUS_FIRST_CRC_CHECK
+/**
+  * @brief  Perform the first CRC check.
+  * @note   This function is defined only if WMBUS_FIRST_CRC_CHECK is defined
+  * @retval uint8_t Result of the CRC check (1 if valid, 0 otherwise)
+  */
 uint8_t wMBus_Phy_first_CRC_check(void);
 #endif
 
+/**
+  * @brief  Get the tRO (minimum and maximum response time) timing values.
+  * @retval wMBus_Phy_tRO_t Structure containing tRO_min and tRO_max values in microseconds.
+  */
 wMBus_Phy_tRO_t wMBus_Phy_getTiming(void);
+
+/**
+ * @brief  Get the transmission delay (TxD) value.
+ * @retval uint32_t Transmission delay in microseconds.
+ */
 uint32_t wMBus_Phy_getTxD(void);
 
 /**

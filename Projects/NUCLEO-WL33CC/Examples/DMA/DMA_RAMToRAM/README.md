@@ -53,7 +53,7 @@ System, DMA, Data Transfer, Memory to memory, Stream, RAM
      
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3x Devices.
+  - This example runs on STM32WL33CCVx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL33CC 
     board and can be easily tailored to any other supported device 

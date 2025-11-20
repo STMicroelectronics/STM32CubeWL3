@@ -69,8 +69,8 @@ void HAL_MRSUBG_TIMER_StartConfigureTimer(uint32_t time);
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-SMRSubGConfig MRSUBG_RadioInitStruct;
-MRSubG_PcktBasicFields MRSUBG_PacketSettingsStruct;
+SMRSubGConfig_t MRSUBG_RadioInitStruct;
+MRSubG_PcktBasicFields_t MRSUBG_PacketSettingsStruct;
 
 /* USER CODE BEGIN PV */
 __attribute__((aligned(4))) uint8_t vectcTxBuff[MSG_SIZE]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0};
@@ -79,11 +79,11 @@ __attribute__((aligned(4))) uint8_t vectcTxBuff[MSG_SIZE]={1,2,3,4,5,6,7,8,9,10,
 /* Global variables ----------------------------------------------------------*/
 
 /* USER CODE BEGIN GV */
-VTIMER_HandleType timerHandle;
+VTIMER_HandleType_t timerHandle;
 uint8_t VTimer_Callback_flag = 0;
 #ifndef SINGLE_TIMER_OPT
-VTIMER_HandleType timerHandle2;
-VTIMER_HandleType timerHandle3;
+VTIMER_HandleType_t timerHandle2;
+VTIMER_HandleType_t timerHandle3;
 uint8_t VTimer_Callback2_flag = 0;
 uint8_t VTimer_Callback3_flag = 0;
 #endif
@@ -319,7 +319,11 @@ PowerSaveLevels App_PowerSaveLevel_Check(void)
 #else
   PowerSaveLevels output_level = POWER_SAVE_LEVEL_DEEPSTOP_TIMER;
 #ifdef SINGLE_TIMER_OPT
-  if(LL_MRSUBG_TIMER_GetCPUWakeupTime(MR_SUBG_GLOB_RETAINED) < (LL_MRSUBG_TIMER_GetAbsoluteTime(MR_SUBG_GLOB_MISC) + LOW_POWER_THR))
+  if(LL_MRSUBG_TIMER_GetCPUWakeupTime(MR_SUBG_GLOB_RETAINED) < (LL_MRSUBG_TIMER_GetAbsoluteTime(MR_SUBG_GLOB_MISC)))
+  {
+    HAL_MRSUBG_TIMER_StartConfigureTimer(TIMEOUT_10s);
+  }
+  else if(LL_MRSUBG_TIMER_GetCPUWakeupTime(MR_SUBG_GLOB_RETAINED) < (LL_MRSUBG_TIMER_GetAbsoluteTime(MR_SUBG_GLOB_MISC) + LOW_POWER_THR))
   {
     output_level = POWER_SAVE_LEVEL_SLEEP;
   }

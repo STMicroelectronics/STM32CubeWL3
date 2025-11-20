@@ -52,7 +52,7 @@ Analog, DAC, Digital to Analog, Continuous conversion,  DMA, Sine-wave generatio
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3XX devices.
+  - This example runs on STM32WL33CCVx devices.
     
   - This example has been tested with STM32WL33CCVx board and can be
     easily tailored to any other supported device and development board.

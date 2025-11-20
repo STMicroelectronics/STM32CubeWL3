@@ -161,6 +161,8 @@ void SystemClock_Config(void)
 
    /* Wait till HSE is ready */
   while(LL_RCC_HSE_IsReady() != 1)
+  {
+  }
 
   LL_FLASH_SetLatency(LL_FLASH_WAIT_STATES_1);
 
@@ -169,6 +171,8 @@ void SystemClock_Config(void)
 
    /* Wait till RC64MPLL is ready */
   while(LL_RCC_RC64MPLL_IsReady() != 1)
+  {
+  }
 
   LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_1);
 
@@ -211,6 +215,7 @@ static void MX_RNG_Init(void)
 
   /* USER CODE END RNG_Init 1 */
   LL_RNG_Enable(RNG);
+  LL_RNG_EnableClkDetect(RNG);
   /* USER CODE BEGIN RNG_Init 2 */
 
   /* USER CODE END RNG_Init 2 */
@@ -225,8 +230,8 @@ static void MX_RNG_Init(void)
 static void MX_GPIO_Init(void)
 {
   LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
@@ -255,9 +260,9 @@ static void MX_GPIO_Init(void)
   NVIC_SetPriority(GPIOA_IRQn, 0);
   NVIC_EnableIRQ(GPIOA_IRQn);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
   LL_EXTI_EnableIT(LL_EXTI_LINE_PA0);
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -395,8 +400,7 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

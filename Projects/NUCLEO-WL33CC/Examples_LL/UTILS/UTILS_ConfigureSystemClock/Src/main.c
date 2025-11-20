@@ -149,6 +149,8 @@ void SystemClock_Config(void)
 
    /* Wait till HSE is ready */
   while(LL_RCC_HSE_IsReady() != 1)
+  {
+  }
 
   LL_FLASH_SetLatency(LL_FLASH_WAIT_STATES_1);
 
@@ -157,7 +159,8 @@ void SystemClock_Config(void)
 
    /* Wait till RC64MPLL is ready */
   while(LL_RCC_RC64MPLL_IsReady() != 1)
-
+  {
+  }
   LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_1);
 
    /* Update the SystemCoreClock global variable */

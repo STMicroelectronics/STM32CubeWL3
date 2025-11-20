@@ -156,9 +156,9 @@ __vector_table:
   .word COMP1_IRQHandler              /* IRQ19: COMP1 interrupt               */
   .word MRSUBG_BUSY_IRQHandler       /* IRQ20: MR SUBG BUSY interrupt        */
   .word MRSUBG_IRQHandler            /* IRQ21: MR SUBG interrupt             */
-  .word TX_RX_SEQUENCE_IRQHandler     /* IRQ22: TX RX SEQUENCE interrupt      */
-  .word CPU_WKUP_IRQHandler           /* IRQ23: CPU Wakeup interrupt          */
-  .word SUBG_WKUP_IRQHandler          /* IRQ24: SUBG Wakeup interrupt         */
+  .word MRSUBG_TX_RX_SEQUENCE_IRQHandler      /* IRQ22: MR SUBG TX RX Sequence interrupt      */
+  .word MRSUBG_TIMER_CPU_WKUP_IRQHandler      /* IRQ23: MR SUBG TIMER CPU Wakeup interrupt    */
+  .word MRSUBG_WKUP_IRQHandler                /* IRQ24: MR SUBG Wakeup interrupt        */
   .word DAC_IRQHandler                /* IRQ25: DAC interrupt                 */
   .word TIM16_IRQHandler              /* IRQ26: TIM16 interrupt               */
   .word LCD_IRQHandler                /* IRQ27: LCD interrupt                 */
@@ -250,14 +250,14 @@ __vector_table:
    .weak      MRSUBG_IRQHandler
    .thumb_set MRSUBG_IRQHandler,Default_Handler
 
-   .weak      TX_RX_SEQUENCE_IRQHandler
-   .thumb_set TX_RX_SEQUENCE_IRQHandler,Default_Handler
+   .weak      MRSUBG_TX_RX_SEQUENCE_IRQHandler
+   .thumb_set MRSUBG_TX_RX_SEQUENCE_IRQHandler,Default_Handler
 
-   .weak      CPU_WKUP_IRQHandler
-   .thumb_set CPU_WKUP_IRQHandler,Default_Handler
+   .weak      MRSUBG_TIMER_CPU_WKUP_IRQHandler
+   .thumb_set MRSUBG_TIMER_CPU_WKUP_IRQHandler,Default_Handler
 
-   .weak      SUBG_WKUP_IRQHandler
-   .thumb_set SUBG_WKUP_IRQHandler,Default_Handler
+   .weak      MRSUBG_WKUP_IRQHandler
+   .thumb_set MRSUBG_WKUP_IRQHandler,Default_Handler
 
    .weak      DAC_IRQHandler
    .thumb_set DAC_IRQHandler,Default_Handler

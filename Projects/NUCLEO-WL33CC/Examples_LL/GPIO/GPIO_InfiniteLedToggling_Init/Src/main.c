@@ -133,22 +133,28 @@ void SystemClock_Config(void)
 
    /* Enable the HSE */
   LL_RCC_HSE_Enable();
-/* Wait till HSE is ready */
+
+   /* Wait till HSE is ready */
   while(LL_RCC_HSE_IsReady() != 1)
+  {
+  }
 
   LL_FLASH_SetLatency(LL_FLASH_WAIT_STATES_1);
 
    /* Enable the RC64MPLL*/
   LL_RCC_RC64MPLL_Enable();
-/* Wait till RC64MPLL is ready */
+
+   /* Wait till RC64MPLL is ready */
   while(LL_RCC_RC64MPLL_IsReady() != 1)
+  {
+  }
 
   LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_1);
 
- /* Update the SystemCoreClock global variable */
+   /* Update the SystemCoreClock global variable */
   LL_SetSystemCoreClock(64000000);
 
- /* Configure the source of time base considering new system clocks settings*/
+   /* Configure the source of time base considering new system clocks settings*/
   LL_Init1msTick(64000000);
 }
 
@@ -173,8 +179,8 @@ void PeriphCommonClock_Config(void)
 static void MX_GPIO_Init(void)
 {
   LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
@@ -190,8 +196,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(LD1_GPIO_Port, &GPIO_InitStruct);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -209,8 +215,7 @@ void Error_Handler(void)
 
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

@@ -23,7 +23,7 @@ LPAWUR, radio
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3 device.
+  - This example runs on STM32WL33CCVx devices.
     Connect the Nucleo Board to your PC with a USB cable type A to USB type C to ST-LINK connector (USB_STLINK). 
 
 ### <b>How to use it ?</b>

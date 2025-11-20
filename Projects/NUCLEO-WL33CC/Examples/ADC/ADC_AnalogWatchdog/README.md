@@ -81,7 +81,7 @@ ADC, analog digital converter, analog, conversion, voltage, channel, analog inpu
 
   - This example runs on STM32WL33CCVx devices.
 
-  - This example has been tested with NUCLEO-WL33CC board and can be
+  - This example has been tested with STMicroelectronics NUCLEO-WL33CC board and can be
     easily tailored to any other supported device and development board.
 
 ### <b>How to use it ?</b>

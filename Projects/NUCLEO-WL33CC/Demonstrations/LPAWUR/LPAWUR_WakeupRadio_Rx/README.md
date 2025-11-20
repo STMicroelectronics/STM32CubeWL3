@@ -26,7 +26,7 @@ LPAWUR, radio
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CCx application board.
+  - This example runs on STM32WL33CCVx devices.
 
   - For the receiver part: since the RF path of LPAWUR is not connected to the SMA connector, to run this example is needed to solder a 0 Ohm resistor on C3. The matching network is assembled and is tuned for the band 826-958 MHz.
 

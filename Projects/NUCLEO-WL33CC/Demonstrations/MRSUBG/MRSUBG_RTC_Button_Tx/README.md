@@ -27,7 +27,7 @@ MRSUBG, radio
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on NUCLEO-WL33CCx application board.
+  - This example runs on STM32WL33CCVx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL33CCx application board and can be easily tailored to any other supported device and development board.  
 

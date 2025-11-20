@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    SPI/SPI_FullDuplex_ComDMA_Master_Slave/Src/stm32wl3x_msp.c
+  * @file    SPI/SPI_FullDuplex_ComDMA_Master_Slave/Src/stm32wl3x_hal_msp.c
   * @author  MCD Application Team
   * @brief   HAL MSP module.
   ******************************************************************************

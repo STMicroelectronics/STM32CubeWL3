@@ -189,7 +189,7 @@ static void MX_MRSUBG_Init(void)
   /* USER CODE END Radio_Init 1 */
   
   /* Configures the radio parameters */
-  SMRSubGConfig MRSUBG_RadioInitStruct = {0};
+  SMRSubGConfig_t MRSUBG_RadioInitStruct = {0};
   
   MRSUBG_RadioInitStruct.lFrequencyBase = 868000000;
   MRSUBG_RadioInitStruct.xModulationSelect = MOD_2FSK;
@@ -198,11 +198,11 @@ static void MX_MRSUBG_Init(void)
   MRSUBG_RadioInitStruct.lBandwidth = 100000;
   MRSUBG_RadioInitStruct.dsssExp = 0;
   MRSUBG_RadioInitStruct.outputPower = 0;
-
+  MRSUBG_RadioInitStruct.PADrvMode = PA_DRV_TX_HP;
   HAL_MRSubG_Init(&MRSUBG_RadioInitStruct);
   
   /* Configures the packet parameters */
-  MRSubG_PcktBasicFields MRSUBG_PacketSettingsStruct = {0};
+  MRSubG_PcktBasicFields_t MRSUBG_PacketSettingsStruct = {0};
   
   MRSUBG_PacketSettingsStruct.PreambleLength = PREAMBLE_BYTE(4);
   MRSUBG_PacketSettingsStruct.PostambleLength = PREAMBLE_BYTE(0);
@@ -243,7 +243,7 @@ static void MX_MRSUBG_TIMER_Init(void)
   /* USER CODE END MRSUBG_TIMER_Init 1 */
   while(LL_MRSUBG_TIMER_GetAbsoluteTime(MR_SUBG_GLOB_MISC) < 0x10);
   MRSUBG_TIMER_InitStruct.HSE_XTAL_freq = 48000000;
-  MRSUBG_TIMER_InitStruct.XTAL_StartupTime = 1500;
+  MRSUBG_TIMER_InitStruct.XTAL_StartupTime = 1260;
   MRSUBG_TIMER_InitStruct.enableInitialCalibration = FALSE;
   MRSUBG_TIMER_InitStruct.periodicCalibrationInterval = 0;
   HAL_MRSUBG_TIMER_Init(&MRSUBG_TIMER_InitStruct);
