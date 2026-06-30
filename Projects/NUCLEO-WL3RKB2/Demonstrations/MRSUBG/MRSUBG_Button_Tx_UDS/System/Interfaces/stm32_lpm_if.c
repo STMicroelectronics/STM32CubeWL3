@@ -1,0 +1,469 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file    stm32_lpm_if.c
+  * @author  GPM WBL Application Team
+  * @brief   Low layer function to enter/exit low power modes (stop, sleep)
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
+#include "device_context_switch.h"
+#include "assert.h"
+
+/** @addtogroup TINY_LPM_IF
+  * @{
+  */
+
+/* USER CODE BEGIN include */
+#include "stm32wl3x_hal.h"
+/* USER CODE END include */
+
+/* Exported variables --------------------------------------------------------*/
+/** @defgroup TINY_LPM_IF_Exported_variables TINY LPM IF exported variables
+  * @{
+  */
+
+/**
+ * @brief Array of LPM driver configurations.
+ *
+ * This array contains the configurations for different low power modes
+ * and the corresponding functions to handle those modes.
+ *
+ *@note It must be ordered from the less efficient (index 0) 
+ *      to the most efficient low power mode 
+ */  
+const UTIL_LPM_Driver_fp UTIL_LPM_Driver[] =
+{
+  LPM_SLEEP_Mode,
+  LPM_DEEPSTOP_LS_Mode,
+  LPM_DEEPSTOP_NOLS_Mode,
+  LPM_ULTRADEEPSTOP_Mode
+};
+
+/**
+ * @brief Number of LPM drivers.
+ *
+ * This constant holds the number of entries in the UTIL_LPM_Driver array.
+ */
+const uint32_t UTIL_LPM_Driver_num = sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp);
+
+/**
+ * @brief Assertion to ensure at least one driver is registered in interface file.
+ */
+static_assert(sizeof(UTIL_LPM_Driver) != 0, "at least one LPM driver is required");
+
+/**
+ * @brief Assertion to ensure registered drivers are within boundaries.
+ */
+static_assert((sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp)) <= UTIL_LPM_DRIVER_MAX_NUM,
+              "too many LPM drivers registered");
+
+/**
+ * @brief Assertion to ensure drivers and associated enum type are aligned
+ */
+static_assert((sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp)) == UTIL_LPM_NUM_MODES,
+              "UTIL_LPM_Mode_t enum not aligned with UTIL_LPM_Driver size");
+
+              
+/**
+ * @}
+ */
+/* Private function prototypes -----------------------------------------------*/
+static void PWR_EnterSleepMode( void );
+static void PWR_ExitSleepMode( void );
+static void PWR_EnterStopMode( void );
+static void PWR_ExitStopMode( void );
+static void PWR_EnterOffMode( void );
+static void PWR_ExitOffMode( void );
+static void PWR_EnterUDSMode( void );
+static void PWR_ExitUDSMode( void );
+
+/* USER CODE BEGIN Private_Function_Prototypes */
+
+/* USER CODE END Private_Function_Prototypes */
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN Private_Typedef */
+
+/* USER CODE END Private_Typedef */
+/* Private define ------------------------------------------------------------*/
+typedef struct clockContextS
+{
+  uint8_t directHSEenabled;
+  uint8_t LSEenabled;
+  uint8_t LSIenabled;
+  uint32_t clkDiv;
+} clockContextT;
+
+/* USER CODE BEGIN Private_Define */
+
+/* USER CODE END Private_Define */
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN Private_Macro */
+
+/* USER CODE END Private_Macro */
+/* Private variables ---------------------------------------------------------*/
+static apb0PeriphT apb0={0};
+static apb1PeriphT apb1={0};
+static apb2PeriphT apb2={0};
+static ahb0PeriphT ahb0={0};
+static cpuPeriphT  cpuPeriph={0};
+static uint32_t    cStackPreamble[CSTACK_PREAMBLE_NUMBER];
+static clockContextT clockContext;
+
+/* USER CODE BEGIN Private_Variables */
+extern void CPUcontextSave(void);
+
+/* USER CODE END Private_Variables */
+
+/** @addtogroup TINY_LPM_IF_Exported_functions
+ * @{
+ */
+
+/**
+ * @brief Manage the device SLEEP mode.
+ *
+ * This function configures the system to enter and exit Sleep mode. 
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the SLEEP mode.        
+ *
+ * @return None
+ */
+void LPM_SLEEP_Mode(uint32_t param)
+{
+  PWR_EnterSleepMode();
+  PWR_ExitSleepMode();
+}
+
+/**
+ * @brief Manage the device DEEPSTOP_LS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is kept active.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_LS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_LS_Mode(uint32_t param)
+{
+  PWR_EnterStopMode();
+  PWR_ExitStopMode();
+}
+
+/**
+ * @brief Manage the device DEEPSTOP_NOLS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is disabled.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_NOLS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_NOLS_Mode(uint32_t param)
+{
+  PWR_EnterOffMode();
+  PWR_ExitOffMode();
+}
+
+/**
+ * @brief Manage the device ULTRADEEPSTOP mode.
+ *
+ * This function configures the system to enter and exit the Ultra-DeepStop mode. 
+* Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the ULTRADEEPSTOP mode.        
+ *
+ * @return None
+ */
+void LPM_ULTRADEEPSTOP_Mode(uint32_t param)
+{
+/* USER CODE BEGIN LPM_ULTRADEEPSTOP_Mode */
+  PWR_EnterUDSMode();
+  
+  /* Note: the function below is only executed if a context save/restore is implemented for ultra-deepstop. */
+  PWR_ExitUDSMode();
+/* USER CODE END LPM_ULTRADEEPSTOP_Mode */
+}
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN Private_Functions */
+
+/* USER CODE END Private_Functions */
+
+static void PWR_EnterOffMode( void )
+{
+  PWR_DEEPSTOPTypeDef configDS;
+
+  /* USER CODE BEGIN PWR_EnterOffMode */
+  /* USER CODE END PWR_EnterOffMode */
+
+  /* Save the clock configuration */
+  clockContext.directHSEenabled = FALSE;
+  clockContext.LSEenabled = FALSE;
+  clockContext.LSIenabled = FALSE;
+  if (LL_RCC_DIRECT_HSE_IsEnabled())
+  {
+    clockContext.directHSEenabled = TRUE;
+  }
+  clockContext.clkDiv = LL_RCC_GetCLKSYSPrescalerStatus();
+  if (LL_RCC_LSE_IsEnabled())
+  {
+    clockContext.LSEenabled = TRUE;
+    /* Enable pull down for LSE pins */
+    HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_12);
+    HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_13);
+  }
+  if (LL_RCC_LSI_IsEnabled())
+  {
+    clockContext.LSIenabled = TRUE;
+  }
+
+  /* Save all the peripheral registers and CPU peripipheral configuration */
+  apb0.deepstop_wdg_state = ENABLE;
+  prepareDeviceLowPower(&apb0, &apb1, &apb2, &ahb0, &cpuPeriph, cStackPreamble);
+
+  /* DEEPSTOP configuration */
+  configDS.deepStopMode = PWR_DEEPSTOP_WITH_SLOW_CLOCK_OFF;
+  HAL_PWR_ConfigDEEPSTOP(&configDS);
+
+  /* Clear all the wake-up pin flags */
+  LL_PWR_ClearWakeupSource(LL_PWR_WAKEUP_PORTA, LL_PWR_WAKEUP_ALL);
+  LL_PWR_ClearWakeupSource(LL_PWR_WAKEUP_PORTB, LL_PWR_WAKEUP_ALL);
+  LL_PWR_ClearInternalWakeupSource(LL_PWR_WAKEUP_ALL);
+
+  /* Enable the device DEEPSTOP configuration */
+  LL_PWR_SetPowerMode(LL_PWR_MODE_DEEPSTOP);
+
+  /* Set SLEEPDEEP bit of Cortex System Control Register */
+  SET_BIT(SCB->SCR, SCB_SCR_SLEEPDEEP_Msk);
+
+  /* Setup the SYS CLK DIV with the reset value */
+  if (clockContext.clkDiv == LL_RCC_RC64MPLL_DIV_1)
+  {
+    LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_4);
+  }
+
+  /* Save the CPU context & Wait for Interrupt Request to enter in DEEPSTOP */
+  CPUcontextSave();
+}
+
+static void PWR_ExitOffMode( void )
+{
+  /* USER CODE BEGIN PWR_ExitOffMode */
+  
+  /* USER CODE END PWR_ExitOffMode */
+
+  /* Restore low speed clock configuration */
+  if (clockContext.LSEenabled == TRUE)
+  {
+    LL_PWR_SetNoPullB(LL_PWR_GPIO_BIT_12 | LL_PWR_GPIO_BIT_13);
+    LL_RCC_LSE_Enable();
+  }
+  if (clockContext.LSIenabled == TRUE)
+  {
+    LL_RCC_LSI_Enable();
+  }
+
+  /* Clear SLEEPDEEP bit of Cortex System Control Register */
+  CLEAR_BIT(SCB->SCR, SCB_SCR_SLEEPDEEP_Msk);
+	
+  /* Restore all the peripheral registers and CPU peripipheral configuration */
+  restoreDeviceLowPower(&apb0, &apb1, &apb2, &ahb0, &cpuPeriph, cStackPreamble);
+	
+#if defined(PWR_CR2_GPIORET)
+  /* Disable the GPIO retention at wake DEEPSTOP configuration */
+  LL_PWR_DisableGPIORET();
+#endif
+
+  /* Restore the CLK SYS DIV */
+  if (clockContext.clkDiv == LL_RCC_RC64MPLL_DIV_1)
+  {
+    LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_1);
+  }
+
+  /* Wait until the HSE is ready */
+  while(LL_RCC_HSE_IsReady() == 0U);
+
+  /* Restore the DIRECT_HSE configuration */
+  if (clockContext.directHSEenabled == TRUE)
+  {
+    LL_RCC_DIRECT_HSE_Enable();
+    LL_RCC_RC64MPLL_Disable();
+  }
+  if (clockContext.LSEenabled == TRUE)
+  {
+    /* Wait until the LSE is ready */
+    while(LL_RCC_LSE_IsReady() == 0U);
+  }
+  if (clockContext.LSIenabled == TRUE)
+  {
+    /* Wait until the LSI is ready */
+    while(LL_RCC_LSI_IsReady() == 0U);
+  }
+  if (LL_APB2_GRP1_IsEnabledClock(LL_APB2_GRP1_PERIPH_ALL))
+  {
+    /* Wait untile the ABSOLUTE TIME clock correctly */
+    while(MR_SUBG_GLOB_MISC->ABSOLUTE_TIME < 0x10);
+  }
+	
+  /* Handler to manage the IOs IRQ if needed */
+  HAL_PWR_WKUP_IRQHandler();
+}
+
+static void PWR_EnterStopMode( void )
+{
+  PWR_DEEPSTOPTypeDef configDS;
+
+  /* USER CODE BEGIN PWR_EnterStopMode */
+  
+  /* USER CODE END PWR_EnterStopMode */
+
+  /* Save the clock configuration */
+  clockContext.directHSEenabled = FALSE;
+  clockContext.LSEenabled = FALSE;
+  clockContext.LSIenabled = FALSE;
+  if (LL_RCC_DIRECT_HSE_IsEnabled())
+  {
+    clockContext.directHSEenabled = TRUE;
+  }
+  clockContext.clkDiv = LL_RCC_GetCLKSYSPrescalerStatus();
+
+  /* Setup the wakeup sources */
+  HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_SUBG|PWR_WAKEUP_SUBGHOST, 0);
+  
+  /* Save all the peripheral registers and CPU peripipheral configuration */
+  apb0.deepstop_wdg_state = ENABLE;
+  prepareDeviceLowPower(&apb0, &apb1, &apb2, &ahb0, &cpuPeriph, cStackPreamble);
+
+  /* Clear all the wake-up pin flags */
+  LL_PWR_ClearWakeupSource(LL_PWR_WAKEUP_PORTA, LL_PWR_WAKEUP_ALL);
+  LL_PWR_ClearWakeupSource(LL_PWR_WAKEUP_PORTB, LL_PWR_WAKEUP_ALL);
+  LL_PWR_ClearInternalWakeupSource(LL_PWR_WAKEUP_ALL);
+
+  /* DEEPSTOP configuration */
+  configDS.deepStopMode = PWR_DEEPSTOP_WITH_SLOW_CLOCK_ON;
+  HAL_PWR_ConfigDEEPSTOP(&configDS);
+
+  /* Enable the device DEEPSTOP configuration */
+  LL_PWR_SetPowerMode(LL_PWR_MODE_DEEPSTOP);
+
+  /* Set SLEEPDEEP bit of Cortex System Control Register */
+  SET_BIT(SCB->SCR, SCB_SCR_SLEEPDEEP_Msk);
+
+  /* Setup the SYS CLK DIV with the reset value */
+  if (clockContext.clkDiv == LL_RCC_RC64MPLL_DIV_1)
+  {
+    LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_4);
+  }
+
+  /* Save the CPU context & Wait for Interrupt Request to enter in DEEPSTOP */
+  CPUcontextSave();
+}
+
+static void PWR_ExitStopMode( void )
+{
+  /* USER CODE BEGIN PWR_ExitStopMode */
+  
+  /* USER CODE END PWR_ExitStopMode */
+
+  /* Clear SLEEPDEEP bit of Cortex System Control Register */
+  CLEAR_BIT(SCB->SCR, SCB_SCR_SLEEPDEEP_Msk);
+
+  /* Restore all the peripheral registers and CPU peripipheral configuration */
+  restoreDeviceLowPower(&apb0, &apb1, &apb2, &ahb0, &cpuPeriph, cStackPreamble);
+
+#if defined(PWR_CR2_GPIORET)
+  /* Disable the GPIO retention at wake DEEPSTOP configuration */
+  LL_PWR_DisableGPIORET();
+#endif
+
+  /* Restore the CLK SYS DIV */
+  if (clockContext.clkDiv == LL_RCC_RC64MPLL_DIV_1)
+  {
+    LL_RCC_SetRC64MPLLPrescaler(LL_RCC_RC64MPLL_DIV_1);
+  }
+
+  /* Wait until the HSE is ready */
+  while(LL_RCC_HSE_IsReady() == 0U);
+
+  /* Restore the DIRECT_HSE configuration */
+  if (clockContext.directHSEenabled == TRUE)
+  {
+    LL_RCC_DIRECT_HSE_Enable();
+    LL_RCC_RC64MPLL_Disable();
+  }
+
+  /* Handler to manage the IOs IRQ if needed */
+  HAL_PWR_WKUP_IRQHandler();
+}
+
+static void PWR_EnterSleepMode( void )
+{
+  /* USER CODE BEGIN PWR_EnterSleepMode */
+  HAL_SuspendTick();
+  HAL_PWR_EnterSLEEPMode();
+  /* USER CODE END PWR_EnterSleepMode */
+}
+
+static void PWR_ExitSleepMode( void )
+{
+  /* USER CODE BEGIN PWR_ExitSleepMode */
+  HAL_ResumeTick();
+  /* USER CODE END PWR_ExitSleepMode */
+}
+
+static void PWR_EnterUDSMode( void )
+{
+  PWR_ULTRA_DEEPSTOPTypeDef configUDS;
+ 
+  /* USER CODE BEGIN PWR_EnterUDSMode */
+  /* USER CODE END PWR_EnterUDSMode */
+ 
+  /* UDS configuration */
+  configUDS.BORStatus = ENABLE;
+  configUDS.WakeUpPinStatus = ENABLE;
+  configUDS.WakeUpPol = LL_PWR_WUP_FALLEDG;
+
+  /* Enable the device Ultra DeepStop configuration */
+  HAL_PWR_ConfigUltraDeepStop(&configUDS);
+ 
+  /* Clear all related wakeup flags*/
+  __HAL_PWR_CLEAR_FLAG(PWR_SDWN_WUF_WUF);
+
+  HAL_PWR_EnterUltraDeepStopMode();
+}
+
+static void PWR_ExitUDSMode( void )
+{
+  /* 
+    empty as no context save/restore is implemented for ultra-deepstop 
+    so execution restarts from CPU boot
+  */
+  return;
+}
+
+/**
+ * @}
+ */
+
+/**
+ * @}
+ */

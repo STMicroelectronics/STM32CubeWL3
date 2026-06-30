@@ -22,6 +22,7 @@
 #include "app_wMBus.h"
 
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -77,6 +78,7 @@ static void wMBus_init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
+
 /* Exported functions --------------------------------------------------------*/
 void MX_wMBus_Init()
 {
@@ -225,20 +227,17 @@ void MX_wMBus_Idle()
       return;
       break;
     case POWER_SAVE_LEVEL_SLEEP:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_SLEEP_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_TIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_LS_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_NOTIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_NOLS_MODE);
       break;
     }
 
-    UTIL_LPM_EnterLowPower();
+    UTIL_LPM_Enter(0);
   }
 #endif /* CFG_LPM_SUPPORTED */
 
@@ -290,7 +289,7 @@ static void wMBus_init()
   wMBus_Phy_init(WMBUS_MODE, WMBUS_DIRECTION, WMBUS_FORMAT);
   /* USER CODE BEGIN wMBus_init_2 */
   printf("STM32WL3 wM-Bus Phy Demo - Meter Radio Timer.\r\n");
-  printf("Wakeup every xxx seconds.\r\n");
+  printf("Wakeup every %d seconds.\r\n", (WAKEUP_TIMEOUT/1000));
   /* USER CODE END wMBus_init_2 */
 }
 

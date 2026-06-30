@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="C:/git/wl3_release_v1.4.0.rc1/Firmware/_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<h2
+id="hal_timebase_rtc_wkup-example-description"><b>HAL_TimeBase_RTC_WKUP
+Example Description</b></h2>
+<p>How to customize HAL using RTC wakeup as main source of time base,
+instead of Systick.</p>
+<p>The USER push-button is used to suspend or resume tick increment.</p>
+<p>Each time the button is pressed; an interrupt is generated (B1_PIN)
+and in the ISR the uwIncrementState is checked:</p>
+<ol type="1">
+<li>If the uwIncrementState = 0: the tick increment is suspended by
+calling HAL_SuspendTick() API (RTC wakeup timer interrupt is
+disabled).</li>
+<li>If the uwIncrementState = 1: the tick increment is Resumed by
+calling HAL_ResumeTick() API(RTC wakeup timer interrupt is
+enabled).</li>
+</ol>
+<p>The wakeup feature is configured to assert an interrupt each 1ms.</p>
+<p>The example brings, in user file, a new implementation of the
+following HAL weak functions:</p>
+<pre><code>HAL_InitTick() 
+HAL_SuspendTick()
+HAL_ResumeTick()</code></pre>
+<p>This implementation will overwrite native implementation in
+stm32wl3x_hal.c and so user functions will be invoked instead when
+called.</p>
+<p>The following time base functions are kept as implemented
+natively:</p>
+<pre><code>HAL_IncTick()
+HAL_Delay()</code></pre>
+<p>In an infinite loop, LD1 toggles spaced out over 500ms delay, except
+when tick increment is suspended.</p>
+<h4 id="notes"><b>Notes</b></h4>
+<ol type="1">
+<li><p>Care must be taken when using HAL_Delay(), this function provides
+accurate delay (in milliseconds) based on variable incremented in HAL
+time base ISR. This implies that if HAL_Delay() is called from a
+peripheral ISR process, then the HAL time base interrupt must have
+higher priority (numerically lower) than the peripheral interrupt.
+Otherwise the caller ISR process will be blocked. To change the HAL time
+base interrupt priority you have to use HAL_NVIC_SetPriority()
+function.</p></li>
+<li><p>The application needs to ensure that the HAL time base is always
+set to 1 millisecond to have correct HAL operation.</p></li>
+</ol>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>System, RTC Wakeup, Time base, HAL</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Inc/stm32wl3r_nucleo_conf.h BSP
+configuration file</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Inc/stm32wl3x_hal_conf.h HAL configuration
+file</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Inc/stm32wl3x_it.h Interrupt handlers
+header file</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Inc/main.h Header for main.c module<br />
+</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Src/main.c Main program</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Src/stm32wl3x_hal_msp.c HAL MSP file</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Src/stm32wl3x_hal_timebase_rtc_wakeup.c
+HAL time base functions</li>
+<li>HAL/HAL_TimeBase_RTC_WKUP/Src/system_stm32wl3x.c STM32WL3x system
+source file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL3RKBVx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics
+NUCLEO-WL3RKB2 board and can be easily tailored to any other supported
+device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</body>
+</html>

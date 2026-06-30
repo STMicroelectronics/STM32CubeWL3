@@ -232,6 +232,7 @@
                     <state>AUTOMATIC_FORMAT_DETECTION_C_MODE</state>
                     <state>WMBUS_RX_PERFORMANCE_ENABLED</state>
                     <state>PROCESS_FRAME</state>
+                    <state>WMBUS_FIRST_CRC_CHECK</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

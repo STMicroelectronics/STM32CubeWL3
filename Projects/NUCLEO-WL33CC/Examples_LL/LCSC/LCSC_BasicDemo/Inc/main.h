@@ -39,6 +39,7 @@ extern "C" {
 #include "stm32wl3x_ll_dma.h"
 #include "stm32wl3x_ll_dmamux.h"
 #include "stm32wl3x_ll_gpio.h"
+#include "stm32wl3x_ll_usart.h"
 
 #if defined(USE_FULL_ASSERT)
 #include "stm32_assert.h"

@@ -9,6 +9,10 @@ interrupt on falling edge.
 The SysTick is programmed to generate an interrupt each 1 ms and in the SysTick
 interrupt handler, LD1 is toggled in order to indicate whether the MCU is in Deepstop or Run mode.
 
+After startup, the example remains in Run mode for 5 seconds, then enters Deepstop mode.
+When the user presses B1, the wakeup event is generated and the device exits Deepstop mode.
+After wake-up, the program restarts and the same sequence is repeated continuously.
+
 When a falling edge is detected on the EXTI line, an interrupt is generated and the system wakes up
 the program then checks and clears the Deepstop flag.
 

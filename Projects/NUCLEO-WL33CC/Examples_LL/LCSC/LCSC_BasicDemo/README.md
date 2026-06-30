@@ -36,9 +36,26 @@ Hardware used for the LC network in this example :
 
 Note: The configuration of the LCSC must be updated based on the inductors and capacitors used.
 
+A virtual COM port will then appear in the HyperTerminal:
+- Hyperterminal configuration
+      - Data Length = 7 Bits
+      - One Stop Bit
+      - odd parity
+      - BaudRate = 115200 baud
+        Flow control: None
+
+- The USART1 interface available on PA1 and PA15 of the microcontroller are connected to ST-LINK MCU.
+  - By default the USRT1 communication between the target MCU and ST-LINK MCU is enabled. 
+  It's configuration is as following:
+    - BaudRate = 115200 baud
+    - Word Length = 8 Bits (7 data bit + 1 parity bit)
+    - Stop Bit = 1
+    - Parity = odd
+    - Flow control = None
+
 ### <b>Keywords</b>
 
-LCSC, COMP, DAC, LCA, LCB, LCT, LC network
+LCSC, COMP, DAC, LCA, LCB, LCT, LC network, USART1, HyperTerminal
 
 ### <b>Directory contents</b>
 

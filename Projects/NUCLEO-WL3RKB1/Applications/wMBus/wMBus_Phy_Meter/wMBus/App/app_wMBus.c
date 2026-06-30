@@ -151,7 +151,7 @@ static void wMBus_init()
   /* USER CODE END wMBus_init_1 */
   wMBus_Phy_init(WMBUS_MODE, WMBUS_DIRECTION, WMBUS_FORMAT);
   /* USER CODE BEGIN wMBus_init_2 */
-  printf("STM32WL3 wM-Bus Phy Demo - Meter.\r\n");
+  printf("STM32WL3R wM-Bus Phy Demo - Meter.\r\n");
   /* USER CODE END wMBus_init_2 */
 }
 

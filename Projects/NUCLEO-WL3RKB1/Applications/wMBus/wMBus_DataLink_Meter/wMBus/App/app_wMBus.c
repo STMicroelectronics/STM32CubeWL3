@@ -178,7 +178,7 @@ static void wMBus_init()
   uint8_t m_field[2] = {0x85, 0x5D};
   wMBus_DataLink_init(m_field, a_field, WMBUS_DEVICE_TYPE, WMBUS_MODE, WMBUS_FORMAT, WMBUS_DIRECTION);
   /* USER CODE BEGIN wMBus_init_2 */
-  printf("STM32WL3 wM-Bus DataLink Demo - Meter.\r\n");
+  printf("STM32WL3R wM-Bus DataLink Demo - Meter.\r\n");
   /* USER CODE END wMBus_init_2 */
 }
 

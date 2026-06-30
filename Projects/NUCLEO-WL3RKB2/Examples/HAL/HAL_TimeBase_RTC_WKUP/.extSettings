@@ -1,0 +1,9 @@
+[ProjectFiles]
+HeaderPath=..\..\..\..\..\..\Drivers\BSP\STM32WL3R-Nucleo
+[Others]
+Define=NUCLEO_WL3RKB1
+HALModule=RTC
+[Groups]
+Application/User=../Src/stm32wl3x_hal_timebase_rtc_wakeup.c;
+Doc=../README.md;
+Drivers/BSP/STM32WL3R-Nucleo=../../../../../../Drivers/BSP/STM32WL3R-Nucleo/stm32wl3r_nucleo.c;

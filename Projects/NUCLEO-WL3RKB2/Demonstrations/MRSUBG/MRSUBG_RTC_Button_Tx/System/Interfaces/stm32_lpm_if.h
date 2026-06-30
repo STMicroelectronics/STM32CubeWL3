@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -32,39 +32,89 @@ extern "C" {
   * @{
   */
 
-/* Exported Functions ------------------------------------------------------------------*/
+/* Exported Definitions ------------------------------------------------------------------*/
+
+/** @defgroup TINY_LPM_IF_Exported_definitions TINY LPM IF Exported definitions
+ * @{
+ */
+
+/* Exported typedef ---------------------------------------------------------*/
+/** @defgroup TINY_LPM_Exported_typedef TINY LPM exported typedef
+  * @{
+  */
+  
+/**
+ * @brief Enumeration for low power modes.
+ *
+ * This enumeration defines the various low power modes that the system can enter.
+ *
+ * @note It must be consistent with UTIL_LPM_Driver array definition
+ */
+typedef enum
+{
+  UTIL_LPM_SLEEP_MODE,           /**< Sleep mode */
+  UTIL_LPM_DEEPSTOP_LS_MODE,     /**< DeepStop mode with low-speed clock active */
+  UTIL_LPM_DEEPSTOP_NOLS_MODE,   /**< DeepStop mode with low-speed clock disabled */
+  UTIL_LPM_ULTRADEEPSTOP_MODE,   /**< Ultra-DeepStop mode */
+  UTIL_LPM_NUM_MODES             /**< Number of supported modes */
+} UTIL_LPM_Mode_t;
+
+
+  /* Exported Functions ------------------------------------------------------------------*/
 
 /** @defgroup TINY_LPM_IF_Exported_functions TINY LPM IF Exported functions
  * @{
  */
 
 /**
-  * @brief Enters Low Power Off Mode
-  */
-void PWR_EnterOffMode( void );
-/**
-  * @brief Exits Low Power Off Mode
-  */
-void PWR_ExitOffMode( void );
+ * @brief Manage the device SLEEP mode.
+ *
+ * This function configures the system to enter and exit Sleep mode. 
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the SLEEP mode.        
+ *
+ * @return None
+ */
+void LPM_SLEEP_Mode(uint32_t param);
 
 /**
-  * @brief Enters Low Power Stop Mode
-  */
-void PWR_EnterStopMode( void );
-/**
-  * @brief Exits Low Power Stop Mode
-  */
-void PWR_ExitStopMode( void );
+ * @brief Manage the device DEEPSTOP_LS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is kept active.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_LS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_LS_Mode(uint32_t param);
 
 /**
-  * @brief Enters Low Power Sleep Mode
-  */
-void PWR_EnterSleepMode( void );
+ * @brief Manage the device DEEPSTOP_NOLS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is disabled.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_NOLS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_NOLS_Mode(uint32_t param);
 
 /**
-  * @brief Exits Low Power Sleep Mode
-  */
-void PWR_ExitSleepMode( void );
+ * @brief Manage the device ULTRADEEPSTOP mode.
+ *
+ * This function configures the system to enter and exit the Ultra-DeepStop mode. 
+* Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the ULTRADEEPSTOP mode.        
+ *
+ * @return None
+ */
+void LPM_ULTRADEEPSTOP_Mode(uint32_t param);
 
 /**
  * @}

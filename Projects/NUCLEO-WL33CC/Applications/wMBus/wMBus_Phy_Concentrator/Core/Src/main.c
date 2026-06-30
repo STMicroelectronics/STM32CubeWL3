@@ -104,6 +104,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
     MX_wMBus_Process();
 
     /* USER CODE BEGIN 3 */

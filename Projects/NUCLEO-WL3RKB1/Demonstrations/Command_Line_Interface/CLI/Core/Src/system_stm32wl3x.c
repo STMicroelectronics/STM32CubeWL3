@@ -35,7 +35,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2024-2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -109,9 +109,9 @@
 /******************************************************************************/
 
 /*!< HW TRIMMING Defines */
-#define VALIDITY_TAG      0xFCBCECCC  /*!< TAG to validate the content of the 
-					   trimming area content. */
-#define VALIDITY_LOCATION 0x10001EF8  /*!< ROM address of the the validity trimming values content. */
+#define VALIDITY_TAG            0xFCBCECCC      /*!< TAG to validate the content of the trimming area content. */
+#define VALIDITY_LOCATION       0x10001EF8      /*!< ROM address of the validity trimming values content. */
+#define XTAL_TRIM_LOCATION      0x10001EE0UL    /*!< ROM address of the XTAL trimming values content. */
 
 /*!< SMPS Configuration Defines */
 #if !defined(CFG_HW_SMPS)
@@ -201,11 +201,13 @@ void SystemInit(void)
   if ((RCC->CSR == 0) && ((PWR->IWUF != 0) || (PWR->WUFA != 0) || (PWR->WUFB != 0)))
   {
     RAM_VR.WakeupFromSleepFlag = 1; /* A wakeup from power save occurred */
+#if !defined(NO_CTX_RESTORE)
     CPUcontextRestore();            /* Restore the context */
     /* if the context restore worked properly, we should never return here */
     while(1) { 
       NVIC_SystemReset(); 
     }
+#endif /* NO_CTX_RESTORE */
   }
 
   /* Configure the Vector Table location */
@@ -271,7 +273,15 @@ void SystemInit(void)
 
     /* Set SMPS output voltage Trimming value */
     MODIFY_REG(PWR->ENGTRIM, PWR_ENGTRIM_SMPS_TRIM, ((smpsOutVoltage << PWR_ENGTRIM_SMPS_TRIM_Pos) & PWR_ENGTRIM_SMPS_TRIM));
-    SET_BIT(PWR->ENGTRIM, PWR_ENGTRIM_SMPSTRIMEN);    
+    SET_BIT(PWR->ENGTRIM, PWR_ENGTRIM_SMPSTRIMEN);
+  }
+  
+  /* Load trim values in case of 50MHz XTAL */
+  if(HSE_VALUE == 50000000U){
+    int32_t xtal50_trim = *(uint32_t*)XTAL_TRIM_LOCATION;
+    
+    MODIFY_REG_FIELD(RCC->CSSWCR, RCC_CSSWCR_HSITRIMSW, xtal50_trim);
+    SET_BIT(RCC->CSSWCR, RCC_CSSWCR_HSISWTRIMEN);
   }
 
   /* Set all the interrupt with low priprity */

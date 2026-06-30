@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="C:/git/wl3_release_v1.4.0.rc1/Firmware/_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="mrsubg_button_tx_uds-example-description"
+class="col-sm-12 col-lg-4">
+<h2><b>MRSUBG_Button_Tx_UDS Example Description</b></h2>
+<p>This example shows how to set the SoC in Ultra-DeepStop using by
+using the Low-Power Manager (LPM) and configure the MRSUBG to wakeup the
+SOC pressing PB2. Execution will then restart and a frame will be sent.
+This example demonstrates the transmitter side and requires another
+device as a receiver.</p>
+<p>The receiver example is located under NUCLEO-WL3RKB2_Sequencer_Sniff.
+Moreover, a Virtual Com stream is open. Both the transmitter and the
+receiver will write their own buffer on video every time a transmission
+or a reception is performed.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>MRSUBG, radio, Ultra-DeepStop</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<pre><code>  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/stm32wl3r_nucleo_conf.h   BSP configuration file
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/stm32wl3x_hal_conf.h      HAL Configuration file
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/stm32wl3x_it.h            Header for stm32wl3x_it.c
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/main.h                    Header file for main.c
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/stm32_assert.h            Assert description file
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/app_conf.h                STM32WPAN middleware configuration file
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Inc/app_entry.h               Application interface
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Src/system_stm32wl3x.c        STM32WL3x system clock configuration file
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Src/stm32wl3x_it.c            Interrupt handlers
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Src/stm32wl3x_hal_msp.c       HAL MSP module
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Src/main.c                    Main program
+  - MRSUBG/MRSUBG_Button_Tx_UDS/Core/Src/app_entry.c               Application entry point file</code></pre>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL3Rx devices.</p></li>
+<li><p>This example has been tested with STMicroelectronics
+NUCLEO-WL3RKB2 application board and can be easily tailored to any other
+supported device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li>Open your preferred toolchain and import the .c files in your
+workspace</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

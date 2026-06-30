@@ -25,7 +25,7 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <link rel="stylesheet" href="./_htmresc/mini-st_2020.css" />
   <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
 </head>
 <body>
@@ -35,7 +35,7 @@
 <h1 id="release-notes-for">Release Notes for</h1>
 <h1 id="stm32cubewl3-firmware-package"><mark>STM32CubeWL3 Firmware
 Package</mark></h1>
-<p>Copyright © 2024-2025 STMicroelectronics<br />
+<p>Copyright © 2024-2026 STMicroelectronics<br />
 </p>
 <a href="https://www.st.com" class="logo"><img
 src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
@@ -72,16 +72,569 @@ provided within this package support the STM32WL3x lines.</p>
 <section id="update-history" class="col-sm-12 col-lg-8">
 <h1>Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section5" checked aria-hidden="true">
+<input type="checkbox" id="collapse-section7" checked aria-hidden="true">
+<label for="collapse-section7" checked aria-hidden="true"><strong>V1.5.0
+/ 05-June-2026</strong></label>
+<div>
+<h2 id="main-changes">Main Changes</h2>
+<h3
+id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices">Release
+of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
+supporting <strong>STM32WL3x</strong> devices</h3>
+<ul>
+<li>Added WL33CC demonstration showing how to operate MRSUBG in GPIO
+direct RX mode.</li>
+<li>Added WL33CC demonstration implementing an Over-The-Air device
+firmware update (SFUOTA).</li>
+<li>Updated PWR and MRSUBG HAL/LL drivers.</li>
+<li>Bug fixed in STM32WL3x-Nucleo BSP.</li>
+<li>CMSIS Device updated.</li>
+<li>Security level information now available for all middleware
+components.</li>
+<li>All projects now support STM32CubeIDE v2.1.1 (using gcc14).</li>
+<li>IAR and Keil IDE patches updated.</li>
+</ul>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><strong>CMSIS Devices drivers</strong>
+<ul>
+<li>Support for <strong>STM32WL3x</strong> devices</li>
+</ul></li>
+<li><strong>HAL/LL Drivers</strong>
+<ul>
+<li>HAL and LL drivers are available for all peripherals:
+<ul>
+<li>HAL: ADC, COMP, CORTEX, CRC, CRYP, DMA, FLASH, GPIO, I2C, I2S, IRDA,
+IWDG, LCD, LPAWUR, MRSUBG, PWR, RCC, RNG, RTC, SMARTCARD, SMBUS, SPI,
+TIM, UART, USART</li>
+<li>LL: ADC, COMP, CRC, DMA, GPIO, I2C, IWDG, LCSC, LPUART, MRSUBG, PWR,
+RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
+</ul></li>
+</ul></li>
+<li><strong>BSP</strong>
+<ul>
+<li>Support for <strong>NUCLEO-WL33CCx</strong> and
+<strong>NUCLEO-WL3RKBx</strong> boards</li>
+</ul></li>
+<li><strong>Middlewares</strong>
+<ul>
+<li>Sigfox middleware for WL3x devices.</li>
+<li>wM-Bus middleware for WL3x devices.</li>
+<li>FatFs middleware for WL3x devices.</li>
+<li>FreeRTOS middleware for WL3x devices.</li>
+</ul></li>
+<li><strong>Projects</strong>
+<ul>
+<li>Templates and Templates_LL projects based on HAL/LL APIs.</li>
+<li>Examples HAL/LL/MIX for all available IP peripherals on
+NUCLEO-WL33CCx and NUCLEO-WL3RKBx boards.</li>
+<li>Demonstrations combining radio IP operation and low-power modes, and
+illustrating Over-The-Air device Firmware update.</li>
+<li>Applications: Sigfox, FreeRTOS, and wM-Bus applications.<br />
+</li>
+</ul></li>
+</ul>
+<h2 id="projects">Projects</h2>
+<ul>
+<li>The STM32CubeWL3 Firmware package comes with a rich set of examples
+running on STMicroelectronics boards, organized by board and provided
+with preconfigured projects for the main supported toolchains.</li>
+<li>The exhaustive list of projects and their short description is
+provided in this table (<a
+href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a>).</li>
+</ul>
+<p><small>The projects flagged by “<span class="icon-st-update"></span>”
+have changed since the previous release. “<span
+class="icon-st-add"></span>” are new.</small></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th style="text-align: left;">Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projects</td>
+<td>V1.5.0 <span class="icon-st-update"></span></td>
+<td style="text-align: left;"><a
+href="Projects/Release_Notes.html">release notes</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="components">Components</h2>
+<p><small>Components flagged by “<span class="icon-st-update"></span>”
+have changed since the previous release. “<span
+class="icon-st-add"></span>” are new.</small></p>
+<p><strong>Drivers</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMSIS</td>
+<td>V5.9.0</td>
+<td><a href="Drivers/CMSIS/Documentation/index.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3x CMSIS</td>
+<td>V1.5.0 <span class="icon-st-update"></span></td>
+<td><a
+href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/cmsis-device-wl3/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3x_HAL_Driver</td>
+<td>V1.5.0 <span class="icon-st-update"></span></td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32wl3x-hal-driver/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>BSP Drivers</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STM32WL3x-Nucleo</td>
+<td>V1.4.0 <span class="icon-st-update"></span></td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32wl3x-nucleo-bsp/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3R-Nucleo</td>
+<td>V1.0.0</td>
+<td><a href="Drivers/BSP/STM32WL3R-Nucleo/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>Middlewares</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FatFS</td>
+<td>R0.15 <span class="icon-st-update"></span></td>
+<td><a
+href="Middlewares/Third_Party/FatFs/documents/updates.html">release
+notes</a> ST modified 20260403 <a
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td>FreeRTOS</td>
+<td>v11.2.0 <span class="icon-st-update"></span></td>
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
+notes</a> ST modified 20260327 <a
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td>Sigfox</td>
+<td>v1.1.0 <span class="icon-st-update"></span></td>
+<td><a href="Middlewares/Third_Party/Sigfox/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>wM-Bus</td>
+<td>v1.2.0 <span class="icon-st-update"></span></td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32-mw-wmbus/blob/TAG/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>Utilities</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tiny_lpm</td>
+<td>v1.5.1</td>
+<td><a href="Utilities/lpm/tiny_lpm/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers">Development Toolchains and
+Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
+patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.3.1.zip">Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.3.1.zip</a></li>
+<li>This patch supports STM32WL3x devices<br />
+</li>
+</ul></li>
+<li>ARM KEIL V5.37, patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.1.zip">Utilities\PC_Software\Keil.STM32WL3x_DFP.V1.3.1.zip</a></li>
+<li>This patch supports STM32WL3x devices<br />
+</li>
+</ul></li>
+<li>STM32CubeIDE V2.1.1:
+<ul>
+<li>Supports STM32WL3x devices</li>
+</ul></li>
+</ul>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li>STM32WL3x devices</li>
+<li>NUCLEO-WL33CCx</li>
+<li>NUCLEO-WL3RKBx</li>
+</ul>
+<h2 id="known-limitations">Known limitations</h2>
+<h2 id="backward-compatibility">Backward compatibility</h2>
+<p>Yes</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section6" aria-hidden="true">
+<label for="collapse-section6" checked aria-hidden="true"><strong>V1.4.0
+/ 04-February-2026</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
+<h3
+id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-1">Release
+of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
+supporting <strong>STM32WL3x</strong> devices</h3>
+<ul>
+<li>NUCLEO-WL33CC IP examples now also available for NUCLEO-WL3RKBx
+boards (only for STM32WL3R available peripherals).</li>
+<li>Added demonstrations on STM32WL3R’s Ultra-DeepStop low-power mode,
+and joint usage of RTC and Radio Timer.</li>
+<li>Low Power Manager (LPM) upgraded to v1.5.1.</li>
+<li>CLI demonstration supports boards with a 50 MHz crystal.</li>
+<li>wM-Bus Middleware updated to increase robustness.</li>
+</ul>
+<h2 id="contents-1">Contents</h2>
+<ul>
+<li><strong>CMSIS Devices drivers</strong>
+<ul>
+<li>Support for <strong>STM32WL3x</strong> devices</li>
+</ul></li>
+<li><strong>HAL/LL Drivers</strong>
+<ul>
+<li>HAL and LL drivers are available for all peripherals:
+<ul>
+<li>HAL: ADC, COMP, CORTEX, CRC, CRYP, DMA, FLASH, GPIO, I2C, I2S, IRDA,
+IWDG, LCD, LPAWUR, MRSUBG, PWR, RCC, RNG, RTC, SMARTCARD, SMBUS, SPI,
+TIM, UART, USART</li>
+<li>LL: ADC, COMP, CRC, DMA, GPIO, I2C, IWDG, LCSC, LPUART, MRSUBG, PWR,
+RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
+</ul></li>
+</ul></li>
+<li><strong>BSP</strong>
+<ul>
+<li>Support for <strong>NUCLEO-WL33CCx</strong> and
+<strong>NUCLEO-WL3RKBx</strong> boards</li>
+</ul></li>
+<li><strong>Middlewares</strong>
+<ul>
+<li>Sigfox middleware for WL3x devices</li>
+<li>wM-Bus middleware for WL3x devices</li>
+<li>FatFs middleware for WL3x devices</li>
+<li>FreeRTOS middleware for WL3x devices</li>
+</ul></li>
+<li><strong>Projects</strong>
+<ul>
+<li>Templates and Templates_LL projects based on HAL/LL APIs</li>
+<li>Examples HAL/LL/MIX for all available IP peripherals on
+NUCLEO-WL33CCx and NUCLEO-WL3RKBx boards.</li>
+<li>Demonstrations
+<ul>
+<li>Added 2 WL3R demonstrations exercising the Ultra-DeepStop low-power
+mode using the Low Power Manager (LPM).</li>
+<li>Added 1 demonstration making use of RTC timer together with Radio
+Timer</li>
+</ul></li>
+<li>Applications: Sigfox, FreeRTOS, and wM-Bus applications.<br />
+</li>
+</ul></li>
+</ul>
+<h2 id="projects-1">Projects</h2>
+<ul>
+<li>The STM32CubeWL3 Firmware package comes with a rich set of examples
+running on STMicroelectronics boards, organized by board and provided
+with preconfigured projects for the main supported toolchains.</li>
+<li>The exhaustive list of projects and their short description is
+provided in this table (<a
+href="Projects/STM32CubeProjectsList.html">STM32CubeProjectsList.html</a>).</li>
+</ul>
+<p><small>The projects flagged by “<span class="icon-st-update"></span>”
+have changed since the previous release. “<span
+class="icon-st-add"></span>” are new.</small></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th style="text-align: left;">Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projects</td>
+<td>V1.4.0 <span class="icon-st-update"></span></td>
+<td style="text-align: left;"><a
+href="Projects/Release_Notes.html">release notes</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="components-1">Components</h2>
+<p><small>Components flagged by “<span class="icon-st-update"></span>”
+have changed since the previous release. “<span
+class="icon-st-add"></span>” are new.</small></p>
+<p><strong>Drivers</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMSIS</td>
+<td>V5.9.0</td>
+<td><a href="Drivers/CMSIS/Documentation/index.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3x CMSIS</td>
+<td>V1.4.0 <span class="icon-st-update"></span></td>
+<td><a
+href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/cmsis-device-wl3/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3x_HAL_Driver</td>
+<td>V1.4.0 <span class="icon-st-update"></span></td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32wl3x-hal-driver/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>BSP Drivers</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STM32WL3x-Nucleo</td>
+<td>V1.3.0</td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32wl3x-nucleo-bsp/blob/main/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>STM32WL3R-Nucleo</td>
+<td>V1.0.0</td>
+<td><a href="Drivers/BSP/STM32WL3R-Nucleo/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>Middlewares</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FatFS</td>
+<td>R0.15</td>
+<td><a
+href="Middlewares/Third_Party/FatFs/documents/updates.html">release
+notes</a> ST modified 20250314 <a
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td>FreeRTOS</td>
+<td>v11.2.0</td>
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
+notes</a> ST modified 20250620 <a
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
+notes</a></td>
+</tr>
+<tr>
+<td>Sigfox</td>
+<td>v1.0.1</td>
+<td><a href="Middlewares/Third_Party/Sigfox/Release_Notes.html">release
+notes</a></td>
+</tr>
+<tr>
+<td>wM-Bus</td>
+<td>v1.1.0 <span class="icon-st-update"></span></td>
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32-mw-wmbus/blob/TAG/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><strong>Utilities</strong></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version</th>
+<th>Release notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tiny_lpm</td>
+<td>v1.5.1 <span class="icon-st-update"></span></td>
+<td><a href="Utilities/lpm/tiny_lpm/Release_Notes.html">release
+notes</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-1">Development Toolchains
+and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
+patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.3.0.zip">Utilities\PC_Software\EWARMv9_STM32WL3xx_V1.3.0.zip</a></li>
+<li>This patch supports STM32WL3x devices<br />
+</li>
+</ul></li>
+<li>ARM KEIL V5.37, patch available here:
+<ul>
+<li><a
+href="Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.0.zip">Utilities\PC_Software\Keil.STM32WL3x_DFP.V1.3.0.zip</a></li>
+<li>This patch supports STM32WL3x devices<br />
+</li>
+</ul></li>
+<li>STM32CubeIDE V1.19.0:
+<ul>
+<li>Supports STM32WL3x devices</li>
+</ul></li>
+</ul>
+<h2 id="supported-devices-and-boards-1">Supported Devices and
+boards</h2>
+<ul>
+<li>STM32WL3x devices</li>
+<li>NUCLEO-WL33CCx</li>
+<li>NUCLEO-WL3RKBx</li>
+</ul>
+<h2 id="known-limitations-1">Known limitations</h2>
+<ul>
+<li>None</li>
+</ul>
+<h2 id="backward-compatibility-1">Backward compatibility</h2>
+<ul>
+<li>Due to the introduction of an updated LPM version, the APIs to
+interact with it at application level had their names and signature
+changed.</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section5" aria-hidden="true">
 <label for="collapse-section5" checked aria-hidden="true"><strong>V1.3.1
 / 20-November-2025</strong></label>
 <div>
-<h2 id="main-changes">Main Changes</h2>
+<h2 id="main-changes-2">Main Changes</h2>
 <h3
 id="patch-release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices">Patch
 release of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
 supporting <strong>STM32WL3x</strong> devices</h3>
-<h2 id="contents">Contents</h2>
+<h2 id="contents-2">Contents</h2>
 <ul>
 <li><strong>CMSIS Devices drivers updates</strong>
 <ul>
@@ -93,7 +646,7 @@ supporting <strong>STM32WL3x</strong> devices</h3>
 </ul></li>
 <li><strong>SBOM updated</strong></li>
 </ul>
-<h2 id="projects">Projects</h2>
+<h2 id="projects-2">Projects</h2>
 <ul>
 <li>The STM32CubeWL3 Firmware package comes with a rich set of examples
 running on STMicroelectronics boards, organized by board and provided
@@ -122,7 +675,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components">Components</h2>
+<h2 id="components-2">Components</h2>
 <p><small>Components flagged by “<span class="icon-st-update"></span>”
 have changed since the previous release. “<span
 class="icon-st-add"></span>” are new.</small></p>
@@ -216,15 +769,15 @@ notes</a></td>
 <td><a
 href="Middlewares/Third_Party/FatFs/documents/updates.html">release
 notes</a> ST modified 20250314 <a
-href="Middlewares/Third_Party/FatFs/source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
 <td>FreeRTOS</td>
 <td></td>
-<td><a href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt">release
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
 notes</a> ST modified 20250620 <a
-href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
@@ -236,15 +789,15 @@ notes</a></td>
 <tr>
 <td>wM-Bus</td>
 <td>v1.0.9</td>
-<td><a href="Middlewares/ST/wMBus/Release_Notes.html">release
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32-mw-wmbus/blob/TAG/Release_Notes.html">release
 notes</a></td>
 </tr>
 </tbody>
 </table>
 <p><br />
 </p>
-<h2 id="development-toolchains-and-compilers">Development Toolchains and
-Compilers</h2>
+<h2 id="development-toolchains-and-compilers-2">Development Toolchains
+and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
 patch available here:
@@ -266,17 +819,18 @@ href="Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.0.zip">Utilities\PC_Software\
 <li>Supports STM32WL3x devices</li>
 </ul></li>
 </ul>
-<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<h2 id="supported-devices-and-boards-2">Supported Devices and
+boards</h2>
 <ul>
 <li>STM32WL3x devices</li>
 <li>NUCLEO-WL33CCx</li>
 <li>NUCLEO-WL3RKBx</li>
 </ul>
-<h2 id="known-limitations">Known limitations</h2>
+<h2 id="known-limitations-2">Known limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility">Backward compatibility</h2>
+<h2 id="backward-compatibility-2">Backward compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -287,9 +841,9 @@ href="Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.0.zip">Utilities\PC_Software\
 <label for="collapse-section4" checked aria-hidden="true"><strong>V1.3.0
 / 29-October-2025</strong></label>
 <div>
-<h2 id="main-changes-1">Main Changes</h2>
+<h2 id="main-changes-3">Main Changes</h2>
 <h3
-id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices">Release
+id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-2">Release
 of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
 supporting <strong>STM32WL3x</strong> devices</h3>
 <ul>
@@ -306,7 +860,7 @@ the STM32WL3R ShutDown and the new ‘UltraDeepStop’ low-power modes</li>
 <li>SLA0044 legal terms updated (rev6/October 2025)</li>
 <li>SLA0048 legal terms updated (rev5/October 2025)</li>
 </ul>
-<h2 id="contents-1">Contents</h2>
+<h2 id="contents-3">Contents</h2>
 <ul>
 <li><strong>CMSIS Devices drivers</strong>
 <ul>
@@ -349,7 +903,7 @@ mode</li>
 </li>
 </ul></li>
 </ul>
-<h2 id="projects-1">Projects</h2>
+<h2 id="projects-3">Projects</h2>
 <ul>
 <li>The STM32CubeWL3 Firmware package comes with a rich set of examples
 running on STMicroelectronics boards, organized by board and provided
@@ -378,7 +932,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components-1">Components</h2>
+<h2 id="components-3">Components</h2>
 <p><small>Components flagged by “<span class="icon-st-update"></span>”
 have changed since the previous release. “<span
 class="icon-st-add"></span>” are new.</small></p>
@@ -472,15 +1026,15 @@ notes</a></td>
 <td><a
 href="Middlewares/Third_Party/FatFs/documents/updates.html">release
 notes</a> ST modified 20250314 <a
-href="Middlewares/Third_Party/FatFs/source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
 <td>FreeRTOS</td>
 <td>v11.2.0 <span class="icon-st-update"></span></td>
-<td><a href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt">release
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
 notes</a> ST modified 20250620 <a
-href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
@@ -492,14 +1046,14 @@ notes</a></td>
 <tr>
 <td>wM-Bus</td>
 <td>v1.0.9 <span class="icon-st-update"></span></td>
-<td><a href="Middlewares/ST/wMBus/Release_Notes.html">release
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32-mw-wmbus/blob/TAG/Release_Notes.html">release
 notes</a></td>
 </tr>
 </tbody>
 </table>
 <p><br />
 </p>
-<h2 id="development-toolchains-and-compilers-1">Development Toolchains
+<h2 id="development-toolchains-and-compilers-3">Development Toolchains
 and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
@@ -522,18 +1076,18 @@ href="Utilities\PC_Software\Keil.STM32WL3x_DFP.1.3.0.zip">Utilities\PC_Software\
 <li>Supports STM32WL3x devices</li>
 </ul></li>
 </ul>
-<h2 id="supported-devices-and-boards-1">Supported Devices and
+<h2 id="supported-devices-and-boards-3">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32WL3x devices</li>
 <li>NUCLEO-WL33CCx</li>
 <li>NUCLEO-WL3RKBx</li>
 </ul>
-<h2 id="known-limitations-1">Known limitations</h2>
+<h2 id="known-limitations-3">Known limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility-1">Backward compatibility</h2>
+<h2 id="backward-compatibility-3">Backward compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -544,9 +1098,9 @@ boards</h2>
 <label for="collapse-section3" aria-hidden="true"><strong>V1.2.0 /
 04-June-2025</strong></label>
 <div>
-<h2 id="main-changes-2">Main Changes</h2>
+<h2 id="main-changes-4">Main Changes</h2>
 <h3
-id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-1">Release
+id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-3">Release
 of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
 supporting <strong>STM32WL3x</strong> devices</h3>
 <ul>
@@ -562,7 +1116,7 @@ supporting <strong>STM32WL3x</strong> devices</h3>
 </ul>
 <p><br />
 </p>
-<h2 id="contents-2">Contents</h2>
+<h2 id="contents-4">Contents</h2>
 <ul>
 <li><strong>SBOM</strong>
 <ul>
@@ -603,7 +1157,7 @@ RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
 </li>
 </ul></li>
 </ul>
-<h2 id="projects-2">Projects</h2>
+<h2 id="projects-4">Projects</h2>
 <p><small>The projects flagged by “<span class="icon-st-update"></span>”
 have changed since the previous release. “<span
 class="icon-st-add"></span>” are new.</small></p>
@@ -634,7 +1188,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components-2">Components</h2>
+<h2 id="components-4">Components</h2>
 <p><small>The components flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -722,15 +1276,15 @@ notes</a></td>
 <td><a
 href="Middlewares/Third_Party/FatFs/documents/updates.html">release
 notes</a> ST modified 20250314 <a
-href="Middlewares/Third_Party/FatFs/source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
 <td>FreeRTOS</td>
 <td>v10.6.2</td>
-<td><a href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt">release
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
 notes</a> ST modified 20241011 <a
-href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
@@ -742,14 +1296,14 @@ notes</a></td>
 <tr>
 <td>wM-Bus</td>
 <td>v1.0.6 <span class="icon-st-update"></span></td>
-<td><a href="Middlewares/ST/wMBus/Release_Notes.html">release
+<td><a href="https://htmlpreview.github.io/?https://github.com/STMicroelectronics/stm32-mw-wmbus/blob/TAG/Release_Notes.html">release
 notes</a></td>
 </tr>
 </tbody>
 </table>
 <p><br />
 </p>
-<h2 id="development-toolchains-and-compilers-2">Development Toolchains
+<h2 id="development-toolchains-and-compilers-4">Development Toolchains
 and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
@@ -770,17 +1324,17 @@ patch available here:
 <li>Supports STM32WL3x devices</li>
 </ul></li>
 </ul>
-<h2 id="supported-devices-and-boards-2">Supported Devices and
+<h2 id="supported-devices-and-boards-4">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32WL3x devices</li>
 <li>NUCLEO-WL33CCx</li>
 </ul>
-<h2 id="known-limitations-2">Known limitations</h2>
+<h2 id="known-limitations-4">Known limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility-2">Backward compatibility</h2>
+<h2 id="backward-compatibility-4">Backward compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -791,9 +1345,9 @@ boards</h2>
 <label for="collapse-section2" aria-hidden="true"><strong>V1.1.0 /
 05-February-2025</strong></label>
 <div>
-<h2 id="main-changes-3">Main Changes</h2>
+<h2 id="main-changes-5">Main Changes</h2>
 <h3
-id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-2">Release
+id="release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices-4">Release
 of <strong>STM32CubeWL3</strong> (STM32Cube for STM32WL3x lines)
 supporting <strong>STM32WL3x</strong> devices</h3>
 <ul>
@@ -801,7 +1355,7 @@ supporting <strong>STM32WL3x</strong> devices</h3>
 </ul>
 <p><br />
 </p>
-<h2 id="contents-3">Contents</h2>
+<h2 id="contents-5">Contents</h2>
 <ul>
 <li><strong>CMSIS Devices drivers</strong> updates
 <ul>
@@ -837,7 +1391,7 @@ RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
 </li>
 </ul></li>
 </ul>
-<h2 id="projects-3">Projects</h2>
+<h2 id="projects-5">Projects</h2>
 <p><small>The projects flagged by “<span class="icon-st-update"></span>”
 have changed since the previous release. “<span
 class="icon-st-add"></span>” are new.</small></p>
@@ -868,7 +1422,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components-3">Components</h2>
+<h2 id="components-5">Components</h2>
 <p><small>The components flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -956,15 +1510,15 @@ notes</a></td>
 <td><a
 href="Middlewares/Third_Party/FatFs/documents/updates.html">release
 notes</a> ST modified 20230818 <a
-href="Middlewares/Third_Party/FatFs/source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
 <td>FreeRTOS</td>
 <td>v10.6.2</td>
-<td><a href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt">release
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
 notes</a> ST modified 20241011 <a
-href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
@@ -982,7 +1536,7 @@ notes</a></td>
 </table>
 <p><br />
 </p>
-<h2 id="development-toolchains-and-compilers-3">Development Toolchains
+<h2 id="development-toolchains-and-compilers-5">Development Toolchains
 and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
@@ -1003,17 +1557,17 @@ patch available here:
 <li>Supports STM32WL33 devices</li>
 </ul></li>
 </ul>
-<h2 id="supported-devices-and-boards-3">Supported Devices and
+<h2 id="supported-devices-and-boards-5">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32WL3x devices</li>
 <li>NUCLEO-WL33CCx</li>
 </ul>
-<h2 id="known-limitations-3">Known limitations</h2>
+<h2 id="known-limitations-5">Known limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility-3">Backward compatibility</h2>
+<h2 id="backward-compatibility-5">Backward compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>
@@ -1024,14 +1578,14 @@ boards</h2>
 <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 /
 30-October-2024</strong></label>
 <div>
-<h2 id="main-changes-4">Main Changes</h2>
+<h2 id="main-changes-6">Main Changes</h2>
 <h3
 id="first-official-release-of-stm32cubewl3-stm32cube-for-stm32wl3x-lines-supporting-stm32wl3x-devices">First
 Official Release of <strong>STM32CubeWL3</strong> (STM32Cube for
 STM32WL3x lines) supporting <strong>STM32WL3x</strong> devices</h3>
 <p><br />
 </p>
-<h2 id="contents-4">Contents</h2>
+<h2 id="contents-6">Contents</h2>
 <ul>
 <li><strong>CMSIS Devices drivers</strong> updates
 <ul>
@@ -1064,7 +1618,7 @@ RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
 </li>
 </ul></li>
 </ul>
-<h2 id="projects-4">Projects</h2>
+<h2 id="projects-6">Projects</h2>
 <p><small>The projects flagged by “<span class="icon-st-update"></span>”
 have changed since the previous release. “<span
 class="icon-st-add"></span>” are new.</small></p>
@@ -1095,7 +1649,7 @@ href="Projects/Release_Notes.html">release notes</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="components-4">Components</h2>
+<h2 id="components-6">Components</h2>
 <p><small>The components flagged by “<span
 class="icon-st-update"></span>” have changed since the previous release.
 “<span class="icon-st-add"></span>” are new.</small></p>
@@ -1183,15 +1737,15 @@ notes</a></td>
 <td><a
 href="Middlewares/Third_Party/FatFs/documents/updates.html">release
 notes</a> ST modified 20230818 <a
-href="Middlewares/Third_Party/FatFs/source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-fatfs/blob/TAG/source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
 <td>FreeRTOS</td>
 <td>v10.6.2</td>
-<td><a href="Middlewares/Third_Party/FreeRTOS/Source/readme.txt">release
+<td><a href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/readme.txt">release
 notes</a> ST modified 20241011 <a
-href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release
+href="https://github.com/STMicroelectronics/stm32-mw-freertos/blob/TAG/Source/st_readme.txt">release
 notes</a></td>
 </tr>
 <tr>
@@ -1204,7 +1758,7 @@ notes</a></td>
 </table>
 <p><br />
 </p>
-<h2 id="development-toolchains-and-compilers-4">Development Toolchains
+<h2 id="development-toolchains-and-compilers-6">Development Toolchains
 and Compilers</h2>
 <ul>
 <li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.30.1 + ST-LINK,
@@ -1225,17 +1779,17 @@ patch available here:
 <li>Supports STM32WL33 devices</li>
 </ul></li>
 </ul>
-<h2 id="supported-devices-and-boards-4">Supported Devices and
+<h2 id="supported-devices-and-boards-6">Supported Devices and
 boards</h2>
 <ul>
 <li>STM32WL33 devices</li>
 <li>NUCLEO-WL33CC</li>
 </ul>
-<h2 id="known-limitations-4">Known limitations</h2>
+<h2 id="known-limitations-6">Known limitations</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2 id="backward-compatibility-4">Backward compatibility</h2>
+<h2 id="backward-compatibility-6">Backward compatibility</h2>
 <ul>
 <li>Not applicable</li>
 </ul>

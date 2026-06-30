@@ -22,6 +22,7 @@
 #include "app_wMBus.h"
 
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -49,7 +50,7 @@
 
 #define MAX_WMBUS_PHY_PACKET 435 /* maximum buffer size: T-mode 3o6 frame format A */
 /* USER CODE BEGIN PD */
-#define CRC_POLYNOM 0x3D65
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -214,10 +215,9 @@ static void wMBus_init()
 #ifdef WFI_ENABLE
 void Enter_WFI()
 {
-  UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-  UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+  UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_SLEEP_MODE);
 
-  UTIL_LPM_EnterLowPower();
+  UTIL_LPM_Enter(0);
 }
 #endif
 /* USER CODE END PrFD */

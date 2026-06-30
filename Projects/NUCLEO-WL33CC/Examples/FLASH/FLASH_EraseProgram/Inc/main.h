@@ -61,8 +61,8 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 /* Base address of the Flash pages */
 
-#define ADDR_FLASH_PAGE_14    ((uint32_t)0x1004D500) /* Base @ of Page 14, 2 Kbytes */
-#define ADDR_FLASH_PAGE_127    ((uint32_t)0x1004F800) /* Base @ of Page 127, 2 Kbytes */
+#define ADDR_FLASH_PAGE_14    ((uint32_t)0x10047000) /* Base @ of Page 14, 2 Kbytes */
+#define ADDR_FLASH_PAGE_127    ((uint32_t)0x1007F800) /* Base @ of Page 127, 2 Kbytes */
       
 /* USER CODE END Private defines */
 

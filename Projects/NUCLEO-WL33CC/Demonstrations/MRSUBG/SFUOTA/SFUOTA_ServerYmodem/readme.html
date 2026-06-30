@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme for STM32CubeWL3 SFUOTA Server Ymodem
+Demonstration</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../../_htmresc/mini-st_2020.css" />
+  <link rel="icon" type="image/x-icon" href="../../../../../../_htmresc/favicon.png"/>
+</head>
+<body>
+<div class="row">
+<section id="sfuota_serverymodem-demonstration-description"
+class="col-sm-12 col-lg-4">
+<h2><b>SFUOTA_ServerYmodem Demonstration Description</b></h2>
+<p>How to configure a simple Sub-GHz OTA server application with Ymodem
+image input.</p>
+<p>This code runs a Ymodem + OTA server flow: - firmware chunks are
+received over COM1 (Ymodem), - chunks are served to OTA client over
+MRSUBG packet exchange. The OTA/Ymodem protocol handling is implemented
+in radio_ota.c/.h and ymodem.c/.h.</p>
+<p>The application supports YMODEM + OTA mode and a YMODEM debug-only
+mode controlled at build time.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>Connectivity, MRSUBG, OTA, Sub-GHz radio</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>Core/Inc/app_conf.h Application configuration file</li>
+<li>Core/Inc/app_entry.h Interface header for application entry</li>
+<li>Core/Inc/main.h Header file for main.c</li>
+<li>Core/Inc/radio_ota.h OTA server protocol definitions and server
+state machine interface</li>
+<li>Core/Inc/ymodem.h Ymodem protocol interface</li>
+<li>Core/Inc/stm32_assert.h STM32 assert file</li>
+<li>Core/Inc/stm32wl3x_hal_conf.h HAL Configuration file</li>
+<li>Core/Inc/stm32wl3x_it.h Header for stm32wl3x_it.c</li>
+<li>Core/Inc/stm32wl3x_nucleo_conf.h BSP configuration file</li>
+<li>Core/Inc/utilities_conf.h Utilities configuration file</li>
+<li>Core/Src/app_entry.c Application entry implementation</li>
+<li>Core/Src/main.c Main program</li>
+<li>Core/Src/radio_ota.c OTA server protocol + Ymodem/OTA arbitration
+implementation</li>
+<li>Core/Src/ymodem.c Ymodem protocol implementation</li>
+<li>Core/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+<li>Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>Core/Src/system_stm32wl3x.c STM32WL3x system clock configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.c Low power mode configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.h Header for stm32_lpm_if.c</li>
+<li>System/Modules/asm.h ASM Compiler-dependent macros file</li>
+<li>System/Modules/osal.c OS abstraction layer definition file</li>
+<li>System/Modules/osal.h Header for osal.c</li>
+<li>System/Startup/cpu_context_switch.s Context restore file</li>
+<li>System/Startup/device_context_switch.c STM32WL3 context switch
+file</li>
+<li>System/Startup/device_context_switch.h Header for
+device_context_switch.c</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li>This demonstration runs on STM32WL33CCVx devices.</li>
+<li>This demonstration has been tested with STMicroelectronics
+NUCLEO-WL33CC1 application board and can be easily tailored to any other
+supported device and development board.</li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li><p>Open your preferred toolchain (IAR EWARM project is
+provided)</p></li>
+<li><p>Rebuild all files and load your image into target memory</p></li>
+<li><p>Start SFUOTA_Client on the target node to pull image chunks over
+MRSUBG</p></li>
+<li><p>Run the Server app, use a Ymodem terminal to select an
+application image to send to the client.</p>
+<p>E.g. if using “Tera Term” go to File &gt; Transfer &gt; YMODEM &gt;
+Send… aand select the binary to use</p>
+<ul>
+<li>Sample application images are provided
+(SFUOTA_Tx/Binary/SFUOTA_Tx.bin and SFUOTA_Rx/Binary/SFUOTA_Rx.bin)</li>
+</ul></li>
+</ul>
+<h3 id="static-configuration"><b>Static configuration</b></h3>
+<p>The OTA server uses MRSUBG with packet exchange managed in
+radio_ota.c.</p>
+<p>Key configuration points include:</p>
+<ul>
+<li>OTA protocol headers, sequence handling, and data request flow</li>
+<li>Ymodem packet reception and buffering over COM1</li>
+<li>Optional YMODEM_DEBUG_ONLY and OTA_DEBUG_ONLY build-time modes</li>
+</ul>
+<p>These settings can be found in files app_entry.c, radio_ota.c/.h, and
+ymodem.c/.h.</p>
+<h3 id="notes"><b>Notes</b></h3>
+<ol type="1">
+<li>This demonstration currently provides IAR EWARM project files.</li>
+</ol>
+</section>
+</div>
+</body>
+</html>

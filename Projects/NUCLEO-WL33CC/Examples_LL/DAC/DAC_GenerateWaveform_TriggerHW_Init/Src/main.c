@@ -5,7 +5,6 @@
   * @author  MCD Application Team
   * @brief   This example describes how to use the DAC peripheral to generate
   *          a voltage waveform from digital data stream transferred by DMA.
-  *          This example is based on the STM32U0xx DAC LL API;
   *          Peripheral initialization done using LL initialization function.
   ******************************************************************************
   * @attention

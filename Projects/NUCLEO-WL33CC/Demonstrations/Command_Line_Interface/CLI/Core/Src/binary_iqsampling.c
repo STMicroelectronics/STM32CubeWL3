@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2024-2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -24,7 +24,9 @@
 #define PACKET_RINGBUFFER_COUNT 5
 #define S3_IQSAMPLING_SYNC_WORD 0x413f35d9
 #define S3_IQSAMPLING_ESCAPESEQ 0x2e7e2e7e
-#define USART_PERIPHCLK 16000000 
+
+#define USART_PERIPHCLK HSE_VALUE/3
+
 #define _current_databuffer() ((READ_BIT(MR_SUBG_GLOB_STATUS->DATABUFFER_INFO, MR_SUBG_GLOB_STATUS_DATABUFFER_INFO_CURRENT_DATABUFFER) ? 1 : 0))
 
 /*

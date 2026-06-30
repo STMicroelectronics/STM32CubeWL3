@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="mrsubg_directmode_rx-example-description"
+class="col-sm-12 col-lg-4">
+<h2><b>MRSUBG_DirectMode_Rx Example Description</b></h2>
+<p>This example shows how to operate the MRSUBG Radio in “Direct through
+GPIO” Rx to receive and decode packets with OOK modulation.</p>
+<p>When in direct through GPIO mode, MRSUBG outputs RX clock on PB2 and
+RX data on PB1. RX data is looped to PB10 (TIM2 CH2) to capture RX data
+rising and falling edges and decode the packet (sync word + payload).
+The default configuration will listen to OOK packet with a 0x88888888
+sync word, a 16-byte payload, and a 2400 bps data rate. If CRC is
+enabled at build time (CRC_SIZE = 1), the firmware performs a CRC check
+on the decoded packet and prints the result on the virtual COM port.
+LED2 blinks on when a valid packet is detected.</p>
+<h4 id="notes"><b>Notes</b></h4>
+<p>Transmitter RF and PHY parameters must be compatible with the
+receiver radio settings. To test this demonstration, the following
+MRSUBG configuration was used on the transmitter board:</p>
+<ul>
+<li>MRSUBG_PacketSettingsStruct.PreambleLength = 16;</li>
+<li>MRSUBG_PacketSettingsStruct.PostambleLength = 0;</li>
+<li>MRSUBG_PacketSettingsStruct.SyncLength = 31;</li>
+<li>MRSUBG_PacketSettingsStruct.SyncWord = 0x88888888;</li>
+<li>MRSUBG_PacketSettingsStruct.FixVarLength = FIXED;</li>
+<li>MRSUBG_PacketSettingsStruct.PreambleSequence = PRE_SEQ_0101;</li>
+<li>MRSUBG_PacketSettingsStruct.PostambleSequence = POST_SEQ_0101;</li>
+<li>MRSUBG_PacketSettingsStruct.CrcMode = PKT_CRC_MODE_8BITS;</li>
+<li>MRSUBG_PacketSettingsStruct.DataWhitening = DISABLE;</li>
+<li>MRSUBG_PacketSettingsStruct.LengthWidth = BYTE_LEN_1;</li>
+<li>MRSUBG_PacketSettingsStruct.SyncPresent = ENABLE;</li>
+</ul>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>MRSUBG, Radio, OOK modulation</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>.extSettings/ STM32CubeMX settings directory</li>
+<li>.mxproject STM32CubeMX project file</li>
+<li>readme.html HTML version of this README</li>
+<li>README.md This file</li>
+<li>Core/Inc/app_entry.h Application entry header</li>
+<li>Core/Inc/main.h Header for main.c module</li>
+<li>Core/Inc/stm32wl3x_hal_conf.h HAL configuration file</li>
+<li>Core/Inc/stm32wl3x_it.h Interrupt handlers header file</li>
+<li>Core/Inc/stm32wl3x_nucleo_conf.h BSP configuration file</li>
+<li>Core/Src/app_entry.c Application entry point and OOK decoder</li>
+<li>Core/Src/main.c Main program</li>
+<li>Core/Src/stm32wl3x_hal_msp.c HAL MSP file</li>
+<li>Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>Core/Src/system_stm32wl3x.c STM32WL3x system source file</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL33CCVx devices</p></li>
+<li><p>This example has been tested with NUCLEO-WL33CC1 board and can be
+easily tailored to any other supported device and development
+board</p></li>
+<li><p>Test environment setup</p>
+<ul>
+<li>MRSUBG RX data output on PB1 must be connected to TIM2 Channel2
+input on PB10 On a NUCLEO-WL3CCx, this is achieved connecting CN7-A2 to
+CN6-D13 on the Arduino board</li>
+<li>MRSUBG radio settings have been tested OK with a transmitter output
+power of 0 dBm, at about 20-30 cm from the receiver Nucleo (wireless
+communication) If test conditions vary, it may be required to adapt the
+RSSI threshold of the receiver and/or adjust transmitter output
+power</li>
+</ul></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li>Open your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

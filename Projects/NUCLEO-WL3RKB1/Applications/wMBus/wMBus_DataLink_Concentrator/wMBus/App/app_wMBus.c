@@ -191,7 +191,7 @@ static void wMBus_init()
   wMBus_DataLink_init(m_field, a_field, WMBUS_DEVICE_TYPE, WMBUS_MODE, WMBUS_FORMAT, WMBUS_DIRECTION);
   wMBus_DataLink_startRx();
   /* USER CODE BEGIN wMBus_init_2 */
-  printf("STM32WL3 wM-Bus DataLink Demo - Concentrator.\r\n");
+  printf("STM32WL3R wM-Bus DataLink Demo - Concentrator.\r\n");
   /* USER CODE END wMBus_init_2 */
 }
 

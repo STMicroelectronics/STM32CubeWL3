@@ -184,7 +184,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>1</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -448,6 +448,11 @@
               <FileType>1</FileType>
               <FilePath>../../../../../../Drivers/STM32WL3x_HAL_Driver/Src/stm32wl3x_ll_pwr.c</FilePath>
             </File>
+			<File>
+              <FileName>stm32wl3x_ll_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Drivers/STM32WL3x_HAL_Driver/Src/stm32wl3x_ll_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -476,4 +481,3 @@
     <files />
   </RTE>
 </Project>
-

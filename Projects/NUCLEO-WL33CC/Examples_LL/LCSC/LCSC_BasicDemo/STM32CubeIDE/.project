@@ -86,6 +86,11 @@
 			<locationURI>PARENT-6-PROJECT_LOC/Drivers/STM32WL3x_HAL_Driver/Src/stm32wl3x_ll_rcc.c</locationURI>
 		</link>
 		<link>
+			<name>Drivers/STM32WL3x_HAL_Driver/stm32wl3x_ll_usart.c</name>
+			<type>1</type>
+			<locationURI>PARENT-6-PROJECT_LOC/Drivers/STM32WL3x_HAL_Driver/Src/stm32wl3x_ll_usart.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/STM32WL3x_HAL_Driver/stm32wl3x_ll_utils.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Drivers/STM32WL3x_HAL_Driver/Src/stm32wl3x_ll_utils.c</locationURI>

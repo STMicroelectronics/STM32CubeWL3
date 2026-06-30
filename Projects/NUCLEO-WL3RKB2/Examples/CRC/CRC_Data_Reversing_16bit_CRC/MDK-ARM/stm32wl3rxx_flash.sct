@@ -28,10 +28,6 @@ STM32WL3x memory map
 |                       |
 |  FLASH (128K)         |
 +-----------------------+ 0x10040000
-|                       |
-+-----------------------| 0x100017FF
-|   ROM (6K)            |
-+-----------------------+ 0x10000000
 */
 
 #define _MEMORY_RAM_BEGIN_    0x20000000
@@ -41,10 +37,6 @@ STM32WL3x memory map
 #define _MEMORY_FLASH_BEGIN_  0x10040000  
 #define _MEMORY_FLASH_SIZE_   0x20000          /* 128KB */ 
 #define _MEMORY_FLASH_END_    0x1005FFFF  
-
-#define _MEMORY_ROM_BEGIN_    0x10000000    
-#define _MEMORY_ROM_SIZE_     0x1800           /* 6KB */ 
-#define _MEMORY_ROM_END_      0x100017FF  
 
 #ifndef MEMORY_FLASH_APP_OFFSET
 #define MEMORY_FLASH_APP_OFFSET  (0)

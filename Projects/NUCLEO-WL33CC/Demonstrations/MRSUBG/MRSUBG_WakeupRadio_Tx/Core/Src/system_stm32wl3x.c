@@ -204,13 +204,14 @@ void SystemInit(void)
   {
     
     RAM_VR.WakeupFromSleepFlag = 1; /* A wakeup from power save occurred */
-
+#if !defined(NO_CTX_RESTORE)
     CPUcontextRestore();            /* Restore the context */
-
     /* if the context restore worked properly, we should never return here */
-    while(1) { 
+    while(1) 
+    { 
       NVIC_SystemReset(); 
     }
+#endif /* NO_CTX_RESTORE */
   }
   
   /* Configure the Vector Table location */

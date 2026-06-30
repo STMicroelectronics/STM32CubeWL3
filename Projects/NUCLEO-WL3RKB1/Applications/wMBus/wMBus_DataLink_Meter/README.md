@@ -20,7 +20,6 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
   - Core/Inc/app_conf.h                     Application configuration file
   - Core/Inc/main.h                         Header file for main.c
-  - Core/Inc/stm32_assert.h                 STM32 assert file
   - Core/Inc/stm32wl3x_hal_conf.h           HAL Configuration file
   - Core/Inc/stm32wl3x_it.h                 Header for stm32wl3x_it.c
   - Core/Inc/stm32wl3r_nucleo_conf.h        BSP configuration file
@@ -42,11 +41,11 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3RKBVx devices.
+  - This example runs on STM32WL3xx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL3RKB1 application board and can be easily tailored to any other supported device and development board.  
 
-### <b>How to use it ?</b>
+### <b>How to use it?</b>
 
 In order to make the program work, you must do the following:
 
@@ -71,6 +70,7 @@ Furthermore, this project defines the following macros:
 | PREAMBLE_AND_SYNC_IRQ_ENABLE      | Enable   Radio event for Preamble detection and HW Sync detection                                  |
 | AUTOMATIC_FORMAT_DETECTION_C_MODE | Activate   dynamic frame format detection (A/B) in C-mode reception (to be removed for other modes)|
 | WMBUS_RX_PERFORMANCE_ENABLED      | Enable   RX performance optimizations                                                              |
+| WMBUS_FIRST_CRC_CHECK             | Activate CRC verification when receiving first block                                               |
 
 ::: 
 ::: 

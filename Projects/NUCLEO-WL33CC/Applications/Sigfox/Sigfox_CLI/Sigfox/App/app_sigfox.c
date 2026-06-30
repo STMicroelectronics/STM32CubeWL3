@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 #include "app_sigfox.h"
 
 /* USER CODE BEGIN Includes */

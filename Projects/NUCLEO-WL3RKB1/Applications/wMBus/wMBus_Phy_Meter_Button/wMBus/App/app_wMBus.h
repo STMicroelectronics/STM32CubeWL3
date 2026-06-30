@@ -28,6 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stm32wl3_wMBus_Phy_radio.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -61,7 +62,9 @@ void MX_wMBus_Init(void);
 void MX_wMBus_Process(void);
 void MX_wMBus_Idle(void);
 
+#if (CFG_LPM_SUPPORTED == 1)
 PowerSaveLevels HAL_MRSUBG_TIMER_PowerSaveLevelCheck(void);
+#endif
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

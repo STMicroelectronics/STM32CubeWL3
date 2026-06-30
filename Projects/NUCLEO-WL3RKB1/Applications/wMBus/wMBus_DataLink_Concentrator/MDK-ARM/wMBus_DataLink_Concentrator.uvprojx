@@ -329,7 +329,7 @@
             <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
-            <v6Lang>3</v6Lang>
+            <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -338,7 +338,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-Wno-format</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32WL3RX,PREAMBLE_AND_SYNC_IRQ_ENABLE,AUTOMATIC_FORMAT_DETECTION_C_MODE,WMBUS_RX_PERFORMANCE_ENABLED,PROCESS_FRAME</Define>
+              <Define>USE_HAL_DRIVER,STM32WL3RX,PREAMBLE_AND_SYNC_IRQ_ENABLE,AUTOMATIC_FORMAT_DETECTION_C_MODE,WMBUS_RX_PERFORMANCE_ENABLED,PROCESS_FRAME,WMBUS_FIRST_CRC_CHECK</Define>
               <Undefine></Undefine>
               <IncludePath>../Core/Inc;../System/Interfaces;../System/Modules;../System/Startup;../wMBus/App;../../../../../../Drivers/BSP/STM32WL3R-Nucleo;../../../../../../Drivers/CMSIS/Device/ST/STM32WL3X/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/STM32WL3x_HAL_Driver/Inc;../../../../../../Middlewares/ST/wMBus/Phy/Inc;../../../../../../Middlewares/ST/wMBus/DataLink/Inc;../../../../../../Utilities/lpm/tiny_lpm</IncludePath>
             </VariousControls>

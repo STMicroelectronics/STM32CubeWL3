@@ -32,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define WAKEUP_TIMEOUT 10000 // 10 seconds
+#define WAKEUP_TIMEOUT 1000 // 1 second
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

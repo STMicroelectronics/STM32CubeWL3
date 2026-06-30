@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme for STM32CubeWL3 SFUOTA Tx Demonstration</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../../_htmresc/mini-st_2020.css" />
+  <link rel="icon" type="image/x-icon" href="../../../../../../_htmresc/favicon.png"/>
+</head>
+<body>
+<div class="row">
+<section id="sfuota_tx-demonstration-description"
+class="col-sm-12 col-lg-4">
+<h2><b>SFUOTA_Tx Demonstration Description</b></h2>
+<p>How to configure a simple TX application with over-the-air (OTA)
+upgrade capability.</p>
+<p>This code runs a TX scenario that sends packets in sequence using
+TX_DONE polling. The last byte of each packet contains a sequential
+counter value, and after a burst of MAX_NUM_PACKET transmissions,
+frequency and packet count information are printed on the terminal.
+Sleep management is integrated to conserve power. PB2 is used to request
+a jump to OTA reset manager mode through a software reset sequence. The
+firmware image is built with the correct offset to ensure it is
+compatible with the OTA client, preventing overwriting of the OTA client
+area during the firmware upgrade process.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>Connectivity, MRSUBG, OTA, Sub-GHz radio</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>Binary/SFUOTA_Tx.bin Prebuilt TX image used as OTA payload
+candidate</li>
+<li>Core/Inc/app_conf.h Application configuration file</li>
+<li>Core/Inc/app_entry.h Interface header for application entry</li>
+<li>Core/Inc/main.h Header file for main.c</li>
+<li>Core/Inc/stm32_assert.h STM32 assert file</li>
+<li>Core/Inc/stm32wl3x_hal_conf.h HAL Configuration file</li>
+<li>Core/Inc/stm32wl3x_it.h Header for stm32wl3x_it.c</li>
+<li>Core/Inc/stm32wl3x_nucleo_conf.h BSP configuration file</li>
+<li>Core/Inc/utilities_conf.h Utilities configuration file</li>
+<li>Core/Src/app_entry.c Application entry implementation</li>
+<li>Core/Src/main.c Main program</li>
+<li>Core/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+<li>Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>Core/Src/system_stm32wl3x.c STM32WL3x system clock configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.c Low power mode configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.h Header for stm32_lpm_if.c</li>
+<li>System/Modules/asm.h ASM Compiler-dependent macros file</li>
+<li>System/Modules/osal.c OS abstraction layer definition file</li>
+<li>System/Modules/osal.h Header for osal.c</li>
+<li>System/Startup/cpu_context_switch.s Context restore file</li>
+<li>System/Startup/device_context_switch.c STM32WL3 context switch
+file</li>
+<li>System/Startup/device_context_switch.h Header for
+device_context_switch.c</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li>This demonstration runs on STM32WL33CCVx devices.</li>
+<li>This demonstration has been tested with STMicroelectronics
+NUCLEO-WL33CC1 application board and can be easily tailored to any other
+supported device and development board.</li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it?</b></h3>
+<p>This application is configured to be placed at a defined offset in
+FLASH, through the use of the MEMORY_FLASH_APP_OFFSET linker symbol. As
+such, it cannot start right away, but an OTA client is needed to launch
+it. Default offset is 0x7000.</p>
+<p>A pre-built binary image is provided, this has to be used in
+conjunction with the SFUOTA_ServerYmodem application (see the
+corresponding README for further details) If you want to modify/re-build
+the application, you must do the following:</p>
+<ul>
+<li>Open your preferred toolchain (IAR EWARM project is provided)</li>
+<li>Rebuild all files and generate a new target image</li>
+</ul>
+<h3 id="static-configuration"><b>Static configuration</b></h3>
+<p>Key runtime configuration is defined in app_entry.c, including:</p>
+<ul>
+<li>TX packet format, payload length, and transmission burst
+settings</li>
+<li>TX_DONE polling flow for packet transmission completion</li>
+<li>OTA reset manager jump trigger on PB2 Default runtime values are
+MAX_NUM_PACKET=100, TX_PAYLOAD_LEN=7, MRSUBG_TX_CHANNEL_HZ=868000000,
+and TX_INTER_PACKET_DELAY_MS=100.</li>
+</ul>
+<h3 id="notes"><b>Notes</b></h3>
+<ol type="1">
+<li>This demonstration currently provides IAR EWARM project files.</li>
+</ol>
+</section>
+</div>
+</body>
+</html>

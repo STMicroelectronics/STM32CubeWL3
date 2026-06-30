@@ -22,6 +22,7 @@
 #include "app_wMBus.h"
 
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -92,15 +93,21 @@ void MX_wMBus_Init()
 void MX_wMBus_Process()
 {
   /* USER CODE BEGIN MX_wMBus_Process_1 */
-  /* Wakeup source configuration */
-  HAL_PWR_EnableWakeUpPin(LL_PWR_WAKEUP_PORTA, PWR_WAKEUP_PIN7, PWR_WUP_FALLEDG);
+#ifdef ULTRA_DEEPSTOP
+  if ((LL_PWR_IsIOWakeupSDN() != 0) && (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET))      /* Wake-up from UDS and transmit wM-Bus frame if PB2 is pressed */
+#else
+  HAL_PWR_EnableWakeUpPin(LL_PWR_WAKEUP_PORTA, PWR_WAKEUP_PIN7, PWR_WUP_FALLEDG);           /* Wakeup source configuration */
   uint32_t wakeupPin = HAL_PWR_GetClearWakeupSource(LL_PWR_WAKEUP_PORTA);
-
-  if (wakeupPin & B2_PIN)       /* Wake-up using PB2 and transmit wM-Bus frame */
+  if (wakeupPin & B2_PIN)                                                                   /* Wake-up using PB2 and transmit wM-Bus frame */
+#endif
   {
 #ifdef PRINT_DEBUG
     BSP_LED_On(LD2);
     printf("Wakeup on Button B2!\r\n");
+#ifdef ULTRA_DEEPSTOP
+    printf("\tfrom ULTRA DEEPSTOP\r\n");
+    HAL_Delay(2000);            /* Wait for the release of PB2 */
+#endif
     BSP_LED_Off(LD2);
 #endif
   /* USER CODE END MX_wMBus_Process_1 */
@@ -124,7 +131,11 @@ void MX_wMBus_Process()
 #if (CFG_LPM_SUPPORTED == 1)
 static PowerSaveLevels App_PowerSaveLevel_Check(void)
 {
+#ifdef ULTRA_DEEPSTOP
+  PowerSaveLevels output_level = POWER_SAVE_LEVEL_ULTRADEEPSTOP;
+#else
   PowerSaveLevels output_level = POWER_SAVE_LEVEL_DEEPSTOP_NOTIMER;
+#endif
 
   /* USER CODE BEGIN App_PowerSaveLevel_Check_1 */
 
@@ -135,7 +146,11 @@ static PowerSaveLevels App_PowerSaveLevel_Check(void)
 
 __weak PowerSaveLevels HAL_MRSUBG_TIMER_PowerSaveLevelCheck()
 {
+#ifdef ULTRA_DEEPSTOP
+  return POWER_SAVE_LEVEL_ULTRADEEPSTOP;
+#else
   return POWER_SAVE_LEVEL_DEEPSTOP_TIMER;
+#endif
 }
 #endif
 
@@ -162,24 +177,20 @@ void MX_wMBus_Idle()
       return;
       break;
     case POWER_SAVE_LEVEL_SLEEP:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_SLEEP_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_TIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_LS_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_NOTIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_NOLS_MODE);
       break;
     case POWER_SAVE_LEVEL_ULTRADEEPSTOP:
-      /* Not yet supported by LPM */
-      return;
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_ULTRADEEPSTOP_MODE);
       break;
     }
 
-    UTIL_LPM_EnterLowPower();
+    UTIL_LPM_Enter(0);
   }
 #endif /* CFG_LPM_SUPPORTED */
 
@@ -232,7 +243,7 @@ static void wMBus_init()
   /* USER CODE END wMBus_init_1 */
   wMBus_Phy_init(WMBUS_MODE, WMBUS_DIRECTION, WMBUS_FORMAT);
   /* USER CODE BEGIN wMBus_init_2 */
-  printf("STM32WL3 wM-Bus Phy Demo - Meter Button.\r\n");
+  printf("STM32WL3R wM-Bus Phy Demo - Meter Button.\r\n");
   printf("Wakeup pushing Button 2\r\n");
   /* USER CODE END wMBus_init_2 */
 }

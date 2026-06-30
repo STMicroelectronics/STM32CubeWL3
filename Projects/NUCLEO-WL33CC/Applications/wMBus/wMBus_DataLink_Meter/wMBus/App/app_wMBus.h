@@ -29,7 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32wl3_wMBus_DataLink.h"
-#include "stm32wl3_wMBus_DataLink_timer.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */

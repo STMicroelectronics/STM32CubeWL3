@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -108,7 +108,7 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   /* Uncomment to be able to debug after wake-up from Deepstop. Consumption will be increased */
-// HAL_DBGMCU_EnableDBGDeepstopMode();
+// HAL_DBGMCU_EnableDBGStopMode();
 
   /* USER CODE END SysInit */
 

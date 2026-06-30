@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
 * STM32WL3x generic linker file for IAR
 * Main linker variables to control it are:
 *
@@ -28,10 +28,6 @@ STM32WL3x memory map
 |                       |
 |  FLASH (128K)         |
 +-----------------------+ 0x10040000
-|                       |
-+-----------------------| 0x100017FF
-|   ROM (6K)            |
-+-----------------------+ 0x10000000
 */
 
 define symbol _MEMORY_RAM_BEGIN_      = 0x20000000;
@@ -41,10 +37,6 @@ define symbol _MEMORY_RAM_END_        = 0x20003FFF;
 define symbol _MEMORY_FLASH_BEGIN_    = 0x10040000;
 define symbol _MEMORY_FLASH_SIZE_     = 0x20000;      /* 128KB */
 define symbol _MEMORY_FLASH_END_      = 0x1005FFFF; 
-
-define symbol _MEMORY_ROM_BEGIN_      = 0x10000000;
-define symbol _MEMORY_ROM_SIZE_       = 0x01800;      /* 6KB */ 
-define symbol _MEMORY_ROM_END_        = 0x100017FF; 
 
 
 if( !isdefinedsymbol( MEMORY_RAM_APP_OFFSET) ) {
@@ -74,10 +66,6 @@ define region REGION_RAM   = mem:[from _MEMORY_RAM_BEGIN_ + MEMORY_RAM_APP_OFFSE
                                    
 define region REGION_FLASH = mem:[from _MEMORY_FLASH_BEGIN_ + MEMORY_FLASH_APP_OFFSET
                                   to  _MEMORY_FLASH_BEGIN_ + MEMORY_FLASH_APP_OFFSET + MEMORY_FLASH_APP_SIZE - 1];
-
-define region REGION_ROM = mem:[from _MEMORY_ROM_BEGIN_ to  _MEMORY_ROM_END_];
-
-
 /*******************************************************************************
 * FLASH Sections
 *******************************************************************************/

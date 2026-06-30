@@ -4,13 +4,13 @@
 
 This example demonstrates how to use the STM32WL3 MRSUBG sequencer feature to automatically transmit and receive packet acknowledgements (ACKs).
 
-The TX has two sequencer ActionConfigurations: WaitMsg and SendACK. When a valid message is received, the sequencer automatically transitions from the WaitMsg state to the SendACK state. After the ACK is transmitted, an interrupt is triggered and the CPU resets the sequencer back into the WaitMsg state.
-
-The RX also has two sequencer ActionConfigurations: SendMsg and WaitACK. After reset, the STM32WL3 first transmits a message containing a counter value.   
+The TX has two sequencer ActionConfigurations: SendMsg and WaitACK. After reset, the STM32WL3 first transmits a message containing a counter value.   
 
 When the message transmission is done, the sequencer automatically transitions from the SendMsg state to the WaitACK state, where this device awaits an ACK from the other device.
 
 Once that is received, an interrupt is triggered and the CPU resets the sequencer back into the SendMsg state (after a short 50ms delay).
+
+The RX also has two sequencer ActionConfigurations: WaitMsg and SendACK. When a valid message is received, the sequencer automatically transitions from the WaitMsg state to the SendACK state. After the ACK is transmitted, an interrupt is triggered and the CPU resets the sequencer back into the WaitMsg state.
 
 TX and RX will "ping-pong" messages and ACKs back and forth until any message / ACK is lost, at which point the exchange will stop.
 

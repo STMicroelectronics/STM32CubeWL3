@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 #include "app_sigfox.h"
 
 /* USER CODE BEGIN Includes */
@@ -122,16 +123,13 @@ void MX_Sigfox_Process(void)
       return;
       break;
     case POWER_SAVE_LEVEL_SLEEP:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_SLEEP_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_TIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_LS_MODE);
       break;
     case POWER_SAVE_LEVEL_DEEPSTOP_NOTIMER:
-      UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-      UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
+      UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_NOLS_MODE);
       break;
     case POWER_SAVE_LEVEL_ULTRADEEPSTOP:
       /* Not yet supported by LPM */
@@ -139,7 +137,7 @@ void MX_Sigfox_Process(void)
       break;
     }
 
-    UTIL_LPM_EnterLowPower();
+    UTIL_LPM_Enter(0);
   }
 #endif /* CFG_LPM_SUPPORTED */
   /* USER CODE END MX_Sigfox_Process_2 */

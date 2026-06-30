@@ -35,7 +35,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -201,11 +201,13 @@ void SystemInit(void)
   if ((RCC->CSR == 0) && ((PWR->IWUF != 0) || (PWR->WUFA != 0) || (PWR->WUFB != 0)))
   {
     RAM_VR.WakeupFromSleepFlag = 1; /* A wakeup from power save occurred */
+#if !defined(NO_CTX_RESTORE)
     CPUcontextRestore();            /* Restore the context */
     /* if the context restore worked properly, we should never return here */
     while(1) { 
       NVIC_SystemReset(); 
     }
+#endif /* NO_CTX_RESTORE */
   }
 
   /* Configure the Vector Table location */

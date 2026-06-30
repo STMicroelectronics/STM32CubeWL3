@@ -28,6 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stm32wl3_wMBus_Phy_radio.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */

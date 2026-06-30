@@ -10,7 +10,8 @@ header-includes: <link rel="icon" type="image/x-icon" href="../../../../../_htmr
 
 This simple application implements a meter. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication. 
 After initialization, it sends the device in deepstop low power mode setting the button B2 as wakeup source.
-It transmits a sample wM-Bus SND-NR frame based on the specified configurationeach time the button B2 is pressed, while printing relevant information.
+If the macro ULTRA_DEEPSTOP is defined, after initialization, it sends the device in ultra deepstop low power mode.
+It transmits a sample wM-Bus SND-NR frame based on the specified configuration each time the button B2 is pressed, while printing relevant information.
 
 ### <b>Keywords</b>
 
@@ -20,7 +21,6 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
   - Core/Inc/app_conf.h                     Application configuration file
   - Core/Inc/main.h                         Header file for main.c
-  - Core/Inc/stm32_assert.h                 STM32 assert file
   - Core/Inc/stm32wl3x_hal_conf.h           HAL Configuration file
   - Core/Inc/stm32wl3x_it.h                 Header for stm32wl3x_it.c
   - Core/Inc/stm32wl3r_nucleo_conf.h        BSP configuration file
@@ -42,7 +42,7 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3RKBVx devices.
+  - This example runs on STM32WL3xx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL3RKB1 application board and can be easily tailored to any other supported device and development board.  
 
@@ -69,6 +69,7 @@ Furthermore, this project defines the following macros:
 | Compilation   switch  | Purpose                                                                          |
 |-----------------------|----------------------------------------------------------------------------------|
 | PRINT_DEBUG           | Verbose   debug print                                                            |
+| ULTRA_DEEPSTOP        | Put the device in Ultra Deepstop mode instead of Deepstop (disabled by default)  |
 
 ::: 
 ::: 

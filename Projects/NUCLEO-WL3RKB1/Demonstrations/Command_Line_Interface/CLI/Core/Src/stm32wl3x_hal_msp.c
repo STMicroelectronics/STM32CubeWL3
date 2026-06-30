@@ -85,23 +85,32 @@ void HAL_MspInit(void)
   */
 static void lowPowerIOSetup(void)
 {
-  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A,                              
-                       PWR_GPIO_BIT_4|  
-                       PWR_GPIO_BIT_5|  
-                       PWR_GPIO_BIT_6|                                
-                       PWR_GPIO_BIT_12|
-                       PWR_GPIO_BIT_13|
-                       PWR_GPIO_BIT_14|
-                       PWR_GPIO_BIT_15);
+	HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+	HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+	HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_B, LL_PWR_WAKEUP_ALL);
 
-  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B,
-                       PWR_GPIO_BIT_3|
-                       PWR_GPIO_BIT_4|
-                       PWR_GPIO_BIT_5|
-                       PWR_GPIO_BIT_8|
-                       PWR_GPIO_BIT_9|
-                       PWR_GPIO_BIT_10|
-                       PWR_GPIO_BIT_11);
+	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, LL_PWR_WAKEUP_ALL);
+	
+	HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_A,
+	PWR_GPIO_BIT_0|
+	PWR_GPIO_BIT_1|
+	PWR_GPIO_BIT_2|
+	PWR_GPIO_BIT_3|
+	PWR_GPIO_BIT_7|
+	PWR_GPIO_BIT_8|
+	PWR_GPIO_BIT_9|
+	PWR_GPIO_BIT_11);
+
+  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_B,
+	PWR_GPIO_BIT_0|
+	PWR_GPIO_BIT_1|
+	PWR_GPIO_BIT_2|
+	PWR_GPIO_BIT_7|
+	PWR_GPIO_BIT_12|
+	PWR_GPIO_BIT_13|
+	PWR_GPIO_BIT_14|
+        PWR_GPIO_BIT_15);
 }
 /* USER CODE END 1 */
 

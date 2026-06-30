@@ -30,8 +30,6 @@ extern "C" {
 #include "stm32wl3x_hal.h"
 #include "app_wMBus.h"
 #include "app_conf.h"
-#include "stm32wl3_wMBus_Phy_radio.h"
-#include "stm32wl3_wMBus_Phy_pwr.h"
 
 #include "stm32wl3x_ll_bus.h"
 #include "stm32wl3x_ll_cortex.h"

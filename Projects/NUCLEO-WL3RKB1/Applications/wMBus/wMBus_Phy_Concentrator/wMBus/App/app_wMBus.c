@@ -22,6 +22,7 @@
 #include "app_wMBus.h"
 
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -205,7 +206,7 @@ static void wMBus_init()
   wMBus_Phy_set_active_power_mode(WMBUS_LPM);
 #endif
   /* USER CODE BEGIN wMBus_init_2 */
-  printf("STM32WL3 wM-Bus Phy Demo - Concentrator.\r\n");
+  printf("STM32WL3R wM-Bus Phy Demo - Concentrator.\r\n");
   /* USER CODE END wMBus_init_2 */
 }
 
@@ -214,10 +215,9 @@ static void wMBus_init()
 #ifdef WFI_ENABLE
 void Enter_WFI()
 {
-  UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
-  UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+  UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_SLEEP_MODE);
 
-  UTIL_LPM_EnterLowPower();
+  UTIL_LPM_Enter(0);
 }
 #endif
 /* USER CODE END PrFD */

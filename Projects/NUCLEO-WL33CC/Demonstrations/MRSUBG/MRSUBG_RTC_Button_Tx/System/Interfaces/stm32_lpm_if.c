@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -22,6 +22,7 @@
 #include "stm32_lpm.h"
 #include "stm32_lpm_if.h"
 #include "device_context_switch.h"
+#include "assert.h"
 
 /** @addtogroup TINY_LPM_IF
   * @{
@@ -37,24 +38,57 @@
   */
 
 /**
- * @brief variable to provide all the functions corresponding to the different low power modes.
- */
-const struct UTIL_LPM_Driver_s UTIL_PowerDriver =
+ * @brief Array of LPM driver configurations.
+ *
+ * This array contains the configurations for different low power modes
+ * and the corresponding functions to handle those modes.
+ *
+ *@note It must be ordered from the less efficient (index 0) 
+ *      to the most efficient low power mode 
+ */  
+const UTIL_LPM_Driver_fp UTIL_LPM_Driver[] =
 {
-  PWR_EnterSleepMode,
-  PWR_ExitSleepMode,
-
-  PWR_EnterStopMode,
-  PWR_ExitStopMode,
-
-  PWR_EnterOffMode,
-  PWR_ExitOffMode,
+  LPM_SLEEP_Mode,
+  LPM_DEEPSTOP_LS_Mode,
+  LPM_DEEPSTOP_NOLS_Mode
 };
 
+/**
+ * @brief Number of LPM drivers.
+ *
+ * This constant holds the number of entries in the UTIL_LPM_Driver array.
+ */
+const uint32_t UTIL_LPM_Driver_num = sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp);
+
+/**
+ * @brief Assertion to ensure at least one driver is registered in interface file.
+ */
+static_assert(sizeof(UTIL_LPM_Driver) != 0, "at least one LPM driver is required");
+
+/**
+ * @brief Assertion to ensure registered drivers are within boundaries.
+ */
+static_assert((sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp)) <= UTIL_LPM_DRIVER_MAX_NUM, 
+              "too many LPM drivers registered");
+
+/**
+ * @brief Assertion to ensure drivers and associated enum type are aligned
+ */
+static_assert((sizeof(UTIL_LPM_Driver) / sizeof(UTIL_LPM_Driver_fp)) == UTIL_LPM_NUM_MODES, 
+              "UTIL_LPM_Mode_t enum not aligned with UTIL_LPM_Driver size");
+
+              
 /**
  * @}
  */
 /* Private function prototypes -----------------------------------------------*/
+static void PWR_EnterSleepMode( void );
+static void PWR_ExitSleepMode( void );
+static void PWR_EnterStopMode( void );
+static void PWR_ExitStopMode( void );
+static void PWR_EnterOffMode( void );
+static void PWR_ExitOffMode( void );
+
 /* USER CODE BEGIN Private_Function_Prototypes */
 
 /* USER CODE END Private_Function_Prototypes */
@@ -96,7 +130,62 @@ extern void CPUcontextSave(void);
  * @{
  */
 
-void PWR_EnterOffMode( void )
+/**
+ * @brief Manage the device SLEEP mode.
+ *
+ * This function configures the system to enter and exit Sleep mode. 
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the SLEEP mode.        
+ *
+ * @return None
+ */
+void LPM_SLEEP_Mode(uint32_t param)
+{
+  PWR_EnterSleepMode();
+  PWR_ExitSleepMode();
+}
+
+/**
+ * @brief Manage the device DEEPSTOP_LS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is kept active.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_LS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_LS_Mode(uint32_t param)
+{
+  PWR_EnterStopMode();
+  PWR_ExitStopMode();
+}
+
+/**
+ * @brief Manage the device DEEPSTOP_NOLS mode.
+ *
+ * This function configures the system to enter and exit the DeepStop mode, 
+ * where the low-speed clock is disabled.
+ * Any specific behavior can be controlled by the `param` parameter.
+ *
+ * @param param Configuration parameter for the DEEPSTOP_NOLS mode.        
+ *
+ * @return None
+ */
+void LPM_DEEPSTOP_NOLS_Mode(uint32_t param)
+{
+  PWR_EnterOffMode();
+  PWR_ExitOffMode();
+}
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN Private_Functions */
+
+/* USER CODE END Private_Functions */
+
+static void PWR_EnterOffMode( void )
 {
   PWR_DEEPSTOPTypeDef configDS;
 
@@ -153,7 +242,7 @@ void PWR_EnterOffMode( void )
   CPUcontextSave();
 }
 
-void PWR_ExitOffMode( void )
+static void PWR_ExitOffMode( void )
 {
   /* USER CODE BEGIN PWR_ExitOffMode */
   
@@ -216,7 +305,7 @@ void PWR_ExitOffMode( void )
   HAL_PWR_WKUP_IRQHandler();
 }
 
-void PWR_EnterStopMode( void )
+static void PWR_EnterStopMode( void )
 {
   PWR_DEEPSTOPTypeDef configDS;
 
@@ -235,8 +324,8 @@ void PWR_EnterStopMode( void )
   clockContext.clkDiv = LL_RCC_GetCLKSYSPrescalerStatus();
 
   /* Setup the wakeup sources */
-  HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_LPAWUR|PWR_WAKEUP_SUBG|PWR_WAKEUP_SUBGHOST, 0);
-
+  HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_SUBG|PWR_WAKEUP_SUBGHOST, 0);
+  
   /* Save all the peripheral registers and CPU peripipheral configuration */
   apb0.deepstop_wdg_state = ENABLE;
   prepareDeviceLowPower(&apb0, &apb1, &apb2, &ahb0, &cpuPeriph, cStackPreamble);
@@ -266,7 +355,7 @@ void PWR_EnterStopMode( void )
   CPUcontextSave();
 }
 
-void PWR_ExitStopMode( void )
+static void PWR_ExitStopMode( void )
 {
   /* USER CODE BEGIN PWR_ExitStopMode */
   
@@ -303,7 +392,7 @@ void PWR_ExitStopMode( void )
   HAL_PWR_WKUP_IRQHandler();
 }
 
-void PWR_EnterSleepMode( void )
+static void PWR_EnterSleepMode( void )
 {
   /* USER CODE BEGIN PWR_EnterSleepMode */
   HAL_SuspendTick();
@@ -311,16 +400,13 @@ void PWR_EnterSleepMode( void )
   /* USER CODE END PWR_EnterSleepMode */
 }
 
-void PWR_ExitSleepMode( void )
+static void PWR_ExitSleepMode( void )
 {
   /* USER CODE BEGIN PWR_ExitSleepMode */
   HAL_ResumeTick();
   /* USER CODE END PWR_ExitSleepMode */
 }
 
-/* USER CODE BEGIN Private_Functions */
-
-/* USER CODE END Private_Functions */
 
 /**
  * @}

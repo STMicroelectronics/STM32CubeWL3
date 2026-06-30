@@ -8,7 +8,7 @@ header-includes: <link rel="icon" type="image/x-icon" href="../../../../../_htmr
 ::: {.col-sm-12 .col-lg-4}
 ## <b>wMBus_Phy_Meter Application Description</b>
 
-This simple application implements a meter. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication. 
+This application implements a meter. It uses the wM-Bus middleware at the physical layer to manage unidirectional communication.
 After initialization, it continuously transmits sample wM-Bus SND-NR frames based on the specified configuration, while printing relevant information.
 
 ### <b>Keywords</b>
@@ -19,7 +19,6 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
   - Core/Inc/app_conf.h                     Application configuration file
   - Core/Inc/main.h                         Header file for main.c
-  - Core/Inc/stm32_assert.h                 STM32 assert file
   - Core/Inc/stm32wl3x_hal_conf.h           HAL Configuration file
   - Core/Inc/stm32wl3x_it.h                 Header for stm32wl3x_it.c
   - Core/Inc/stm32wl3x_nucleo_conf.h        BSP configuration file
@@ -41,15 +40,15 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL33CCVx devices.
+  - This application runs on STM32WL33CCV1 devices.
 
-  - This example has been tested with STMicroelectronics NUCLEO-WL33CCx application board and can be easily tailored to any other supported device and development board.  
+  - This application has been tested with STMicroelectronics NUCLEO-WL33CC1 application board and can be easily tailored to any other supported device and development board.
 
 ### <b>How to use it?</b>
 
 In order to make the program work, you must do the following:
 
- - Open your preferred toolchain
+ - Open the project with your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the application
 
@@ -65,9 +64,9 @@ These settings can be found in file app_wMBus.c.
 
 Furthermore, this project defines the following macros:
 
-| Compilation   switch  | Purpose                                                                          |
-|-----------------------|----------------------------------------------------------------------------------|
-| SENSE_RSSI            | Prints   the RSSI                                                                |
+| Compilation switch | Purpose         |
+|--------------------|-----------------|
+| SENSE_RSSI         | Prints the RSSI |
 
-::: 
-::: 
+:::
+:::

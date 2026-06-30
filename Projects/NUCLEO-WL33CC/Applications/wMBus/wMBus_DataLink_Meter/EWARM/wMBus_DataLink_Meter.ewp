@@ -231,6 +231,7 @@
                     <state>PREAMBLE_AND_SYNC_IRQ_ENABLE</state>
                     <state>AUTOMATIC_FORMAT_DETECTION_C_MODE</state>
                     <state>WMBUS_RX_PERFORMANCE_ENABLED</state>
+                    <state>WMBUS_FIRST_CRC_CHECK</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

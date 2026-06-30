@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme for STM32CubeWL3 wM-Bus DataLink Concentrator</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+  <link rel="icon" type="image/x-icon" href="../../../../../_htmresc/favicon.png"/>
+</head>
+<body>
+<div class="row">
+<section id="wmbus_datalink_concentrator-application-description"
+class="col-sm-12 col-lg-4">
+<h2><b>wMBus_DataLink_Concentrator Application Description</b></h2>
+<p>This application implements a concentrator. It uses the wM-Bus
+middleware at the data link layer to manage bidirectional communication.
+After initialization, it continuously listens for wM-Bus frames based on
+the specified configuration, and prints relevant information, including
+any errors.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>wM-Bus, wMBus, Skeleton, MRSUBG</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>Core/Inc/app_conf.h Application configuration file</li>
+<li>Core/Inc/main.h Header file for main.c</li>
+<li>Core/Inc/stm32wl3x_hal_conf.h HAL Configuration file</li>
+<li>Core/Inc/stm32wl3x_it.h Header for stm32wl3x_it.c</li>
+<li>Core/Inc/stm32wl3x_nucleo_conf.h BSP configuration file</li>
+<li>Core/Inc/utilities_conf.h Utilities configuration file</li>
+<li>Core/Src/main.c Main program</li>
+<li>Core/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+<li>Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>Core/Src/system_stm32wl3x.c STM32WL3x system clock configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.c Low power mode configuration
+file</li>
+<li>System/Interfaces/stm32_lpm_if.h Header for stm32_lpm_if.c</li>
+<li>System/Modules/asm.h ASM Compiler-dependent macros file</li>
+<li>System/Modules/osal.c OS abstraction layer definition file</li>
+<li>System/Modules/osal.h Header for osal.c</li>
+<li>System/Startup/cpu_context_switch.s Context restore file</li>
+<li>System/Startup/device_context_switch.c STM32WL3 context switch
+file</li>
+<li>System/Startup/device_context_switch.h Header for
+device_context_switch.c</li>
+<li>wMBus/App/app_wMBus.h Header of application of the wM-Bus
+Middleware</li>
+<li>wMBus/App/app_wMBus.c Application of the wM-Bus Middleware</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This application runs on STM32WL33CCV1 devices.</p></li>
+<li><p>This application has been tested with STMicroelectronics
+NUCLEO-WL33CC1 application board and can be easily tailored to any other
+supported device and development board.</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it?</b></h3>
+<p>In order to make the program work, you must do the following:</p>
+<ul>
+<li>Open the project with your preferred toolchain</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the application</li>
+<li>Set baud rate in your preferred terminal to 460800</li>
+</ul>
+<h3 id="static-configuration"><b>Static configuration</b></h3>
+<p>The wM-Bus MW is configured as follow:</p>
+<ul>
+<li>wM-Bus Mode: C-mode</li>
+<li>wM-Bus Format: Format A</li>
+<li>wM-Bus Direction: Meter to Other</li>
+</ul>
+<p>These settings can be found in file app_wMBus.c.</p>
+<p>Furthermore, this project defines the following macros:</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr>
+<th>Compilation switch</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PREAMBLE_AND_SYNC_IRQ_ENABLE</td>
+<td>Enable Radio event for Preamble detection and HW Sync detection</td>
+</tr>
+<tr>
+<td>AUTOMATIC_FORMAT_DETECTION_C_MODE</td>
+<td>Activate dynamic frame format detection (A/B) in C-mode reception
+(to be removed for other modes)</td>
+</tr>
+<tr>
+<td>WMBUS_RX_PERFORMANCE_ENABLED</td>
+<td>Enable RX performance optimizations</td>
+</tr>
+<tr>
+<td>PROCESS_FRAME</td>
+<td>Enable frame processing to populate RX Frame</td>
+</tr>
+<tr>
+<td>WMBUS_FIRST_CRC_CHECK</td>
+<td>Activate CRC verification when receiving first block</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</body>
+</html>

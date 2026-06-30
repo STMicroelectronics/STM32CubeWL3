@@ -24,6 +24,7 @@
 
 #include "stm32wl3x_hal.h"
 #include "stm32_lpm.h"
+#include "stm32_lpm_if.h"
 #include "stm32wl3x_ll_usart.h"
 #include "wl3sfx_credentials.h"
 #include "wl3sfx_nvm_records.h"
@@ -92,14 +93,13 @@ sfx_u8 MCU_API_delay(sfx_delay_t delay_type)
      */
     HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_RTC, PWR_WUP_RISIEDG);
 
-    UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-    UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+    UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_LS_MODE);
 
     while (!wl3sfx_timer_expired(WL3SFX_TIMER_INTERFRAME_WAKEUP)) {
       /* wait until inter-frame timer expires */
 
       while ((LL_USART_IsActiveFlag_TXE_TXFNF(USART1) == RESET) || (LL_USART_IsActiveFlag_TC(USART1) == RESET)) {};
-      UTIL_LPM_EnterLowPower();
+      UTIL_LPM_Enter(0);
     };
 
     /*
@@ -193,12 +193,11 @@ sfx_u8 MCU_API_timer_wait_for_end(void)
 
   HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_RTC, PWR_WUP_RISIEDG);
 
-  UTIL_LPM_SetStopMode(1 << CFG_LPM_APP, UTIL_LPM_ENABLE);
-  UTIL_LPM_SetOffMode(1 << CFG_LPM_APP, UTIL_LPM_DISABLE);
+  UTIL_LPM_SetMaxMode(1 << CFG_LPM_APP, UTIL_LPM_DEEPSTOP_LS_MODE);
 
   while (!wl3sfx_timer_expired(WL3SFX_TIMER_GENERIC)) {
     while ((LL_USART_IsActiveFlag_TXE_TXFNF(USART1) == RESET) || (LL_USART_IsActiveFlag_TC(USART1) == RESET)) {};
-    UTIL_LPM_EnterLowPower();
+    UTIL_LPM_Enter(0);
   }
 
   return SFX_ERR_NONE;

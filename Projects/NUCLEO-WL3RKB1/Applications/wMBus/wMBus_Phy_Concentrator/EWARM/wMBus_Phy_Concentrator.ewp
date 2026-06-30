@@ -232,6 +232,7 @@
                     <state>AUTOMATIC_FORMAT_DETECTION_C_MODE</state>
                     <state>PREAMBLE_AND_SYNC_IRQ_ENABLE</state>
                     <state>WMBUS_RX_PERFORMANCE_ENABLED</state>
+                    <state>WMBUS_FIRST_CRC_CHECK</state>
                     <state>WMBUS_ACTIVE_POWER_MODE_ENABLED</state>
                     <state>WFI_ENABLE</state>
                 </option>

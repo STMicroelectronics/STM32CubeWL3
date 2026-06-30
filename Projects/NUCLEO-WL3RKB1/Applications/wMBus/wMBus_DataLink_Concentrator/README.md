@@ -19,7 +19,6 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
   - Core/Inc/app_conf.h                     Application configuration file
   - Core/Inc/main.h                         Header file for main.c
-  - Core/Inc/stm32_assert.h                 STM32 assert file
   - Core/Inc/stm32wl3x_hal_conf.h           HAL Configuration file
   - Core/Inc/stm32wl3x_it.h                 Header for stm32wl3x_it.c
   - Core/Inc/stm32wl3r_nucleo_conf.h        BSP configuration file
@@ -41,7 +40,7 @@ wM-Bus, wMBus, Skeleton, MRSUBG
 
 ### <b>Hardware and Software environment</b>
 
-  - This example runs on STM32WL3RKBVx devices.
+  - This example runs on STM32WL3xx devices.
 
   - This example has been tested with STMicroelectronics NUCLEO-WL3RKB1 application board and can be easily tailored to any other supported device and development board.  
 
@@ -52,6 +51,7 @@ In order to make the program work, you must do the following:
  - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the application
+ - Set baud rate in your preferred terminal to 460800
 
 ### <b>Static configuration</b>
 
@@ -71,6 +71,7 @@ Furthermore, this project defines the following macros:
 | AUTOMATIC_FORMAT_DETECTION_C_MODE | Activate   dynamic frame format detection (A/B) in C-mode reception                                                |
 | WMBUS_RX_PERFORMANCE_ENABLED      | Enable   RX performance optimizations                                                                              |
 | PROCESS_FRAME                     | Enable   frame processing to populate RX Frame                                                                     |
+| WMBUS_FIRST_CRC_CHECK             | Activate CRC verification when receiving first block                                                               |
 
-::: 
-::: 
+:::
+:::

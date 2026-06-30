@@ -92,7 +92,7 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   /* Uncomment to be able to debug after wake-up from Deepstop. Consumption will be increased */
-  //HAL_DBGMCU_EnableDBGDeepstopMode();
+  //HAL_DBGMCU_EnableDBGStopMode();
 
   /* USER CODE END SysInit */
 
@@ -117,11 +117,8 @@ int main(void)
       __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WUFA0);
     }
 
-    /* Wait that user release the USER push-button */
-    BSP_PB_Init(B1, BUTTON_MODE_GPIO);
-    while (BSP_PB_GetState(B1) == GPIO_PIN_RESET) {}
   }
- 
+
 
   /* Initialize the USER push-button to generate external interrupts */
   BSP_PB_Init(B1, BUTTON_MODE_EXTI);
