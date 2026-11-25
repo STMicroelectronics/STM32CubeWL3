@@ -58,15 +58,15 @@ static void MX_MRSUBG_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static void OTA_Try_Run_Downloaded_Application(void)
+static void SFUOTA_TryRunDownloadedApp(void)
 {
   uint32_t applicationAddress;
-  OTA_Check_ServiceManager_Operation();
+  SFUOTA_Boot_CheckRequest();
 
-  applicationAddress = OTA_Check_Application_Tags_Value();
-  if (applicationAddress == APP_WITH_OTA_SERVICE_ADDRESS)
+  applicationAddress = SFUOTA_Boot_SelectImage();
+  if (applicationAddress == SFUOTA_Image_GetBaseAddress())
   {
-    OTA_Jump_To_New_Application();
+    SFUOTA_Boot_JumpToApplication();
   }
 }
 
@@ -80,7 +80,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  OTA_Try_Run_Downloaded_Application();
+  SFUOTA_TryRunDownloadedApp();
 
   /* USER CODE END 1 */
 
@@ -196,11 +196,11 @@ static void MX_MRSUBG_Init(void)
 
   /** Configures the radio parameters
   */
-  MRSUBG_RadioInitStruct.lFrequencyBase = 868000000;
-  MRSUBG_RadioInitStruct.xModulationSelect = MOD_2FSK;
-  MRSUBG_RadioInitStruct.lDatarate = 38400;
-  MRSUBG_RadioInitStruct.lFreqDev = 20000;
-  MRSUBG_RadioInitStruct.lBandwidth = 100000;
+  MRSUBG_RadioInitStruct.lFrequencyBase = 868100000;
+  MRSUBG_RadioInitStruct.xModulationSelect = MOD_2GFSK05;
+  MRSUBG_RadioInitStruct.lDatarate = 100000;
+  MRSUBG_RadioInitStruct.lFreqDev = 45000;
+  MRSUBG_RadioInitStruct.lBandwidth = 200000;
   MRSUBG_RadioInitStruct.dsssExp = 0;
   MRSUBG_RadioInitStruct.outputPower = 10;
   MRSUBG_RadioInitStruct.PADrvMode = PA_DRV_TX_HP;
@@ -210,12 +210,12 @@ static void MX_MRSUBG_Init(void)
   */
   MRSUBG_PacketSettingsStruct.PreambleLength = PREAMBLE_BYTE(4);
   MRSUBG_PacketSettingsStruct.PostambleLength = PREAMBLE_BYTE(0);
-  MRSUBG_PacketSettingsStruct.SyncLength = SYNC_BYTE(4);
-  MRSUBG_PacketSettingsStruct.SyncWord = 0x88888888;
+  MRSUBG_PacketSettingsStruct.SyncLength = SYNC_BYTE(3);
+  MRSUBG_PacketSettingsStruct.SyncWord = 0x55543D00;
   MRSUBG_PacketSettingsStruct.FixVarLength = VARIABLE;
   MRSUBG_PacketSettingsStruct.PreambleSequence = PRE_SEQ_0101;
   MRSUBG_PacketSettingsStruct.PostambleSequence = POST_SEQ_0101;
-  MRSUBG_PacketSettingsStruct.CrcMode = PKT_NO_CRC;
+  MRSUBG_PacketSettingsStruct.CrcMode = PKT_CRC_MODE_24BITS;
   MRSUBG_PacketSettingsStruct.Coding = CODING_NONE;
   MRSUBG_PacketSettingsStruct.DataWhitening = DISABLE;
   MRSUBG_PacketSettingsStruct.LengthWidth = BYTE_LEN_1;
@@ -240,6 +240,7 @@ static void MX_MRSUBG_Init(void)
 
 /**
   * @brief  This function is executed in case of error occurrence.
+  * @param  None
   * @retval None
   */
 void Error_Handler(void)

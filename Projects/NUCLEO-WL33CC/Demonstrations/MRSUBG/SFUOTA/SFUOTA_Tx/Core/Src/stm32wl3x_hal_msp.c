@@ -1,10 +1,10 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    stm32wl3x_hal_msp.c
-  * @author  GPAM Wireless Application Team
-  * @brief   This file provides code for MSP initialization
-  *          and de-initialization.
+  * @file         stm32wl3x_hal_msp.c
+  * @author       MCD Application Team
+  * @brief        This file provides code for the MSP Initialization
+  *               and de-Initialization codes.
   ******************************************************************************
   * @attention
   *
@@ -59,10 +59,7 @@ static void lowPowerIOSetup(void);
 
 /* USER CODE END 0 */
 /**
-  * @brief  Initializes the Global MSP.
-  * @note   This function is called from HAL_Init() to perform system
-  *         level initialization (GPIOs, clock, DMA, interrupt).
-  * @retval None
+  * Initializes the Global MSP.
   */
 void HAL_MspInit(void)
 {
@@ -134,6 +131,7 @@ void HAL_MRSubG_MspDeInit(void)
 }
 
 /* USER CODE BEGIN 1 */
+
 /**
   * @brief  Configures the IO to have the optimized power consumption.
   * @param  None
@@ -146,11 +144,11 @@ static void lowPowerIOSetup(void)
                              PWR_GPIO_BIT_1 |
                              PWR_GPIO_BIT_2 |
                              PWR_GPIO_BIT_3 |
+                             PWR_GPIO_BIT_4 |
                              PWR_GPIO_BIT_11 |
                              PWR_GPIO_BIT_14 |
                              PWR_GPIO_BIT_15);
   HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A,
-                               PWR_GPIO_BIT_4 |
                                PWR_GPIO_BIT_5 |
                                PWR_GPIO_BIT_6 |
                                PWR_GPIO_BIT_7 |
@@ -178,4 +176,5 @@ static void lowPowerIOSetup(void)
                              PWR_GPIO_BIT_4 |
                              PWR_GPIO_BIT_5);
 }
+
 /* USER CODE END 1 */

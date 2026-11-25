@@ -40,7 +40,8 @@
 /* Private defines -----------------------------------------------------------*/
 
 /* USER CODE BEGIN PD */
-#define OTA_SWITCH_TO_OTA_RESET_MANAGER (0xB0U)
+/* Must match SFUOTA_BOOT_REQ_MANAGER in SFUOTA_Client/SFUOTA/Target/sfuota_flashmap.h. */
+#define SFUOTA_BOOT_REQ_MANAGER (0xB0U)
 #define RFSEQ_IRQ_ERROR_MASK   (MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_CRC_ERROR_F | \
                                 MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_HW_ANA_FAILURE_F | \
                                 MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_AHB_ACCESS_ERROR_F | \
@@ -74,7 +75,7 @@ static volatile uint32_t RxErrorIrqStatus;
 /* Private functions prototypes-----------------------------------------------*/
 
 /* USER CODE BEGIN PFP */
-void OTA_Jump_To_Reset_Manager(void);
+void SFUOTA_Boot_RequestManager(void);
 /* USER CODE END PFP */
 
 /* External variables --------------------------------------------------------*/
@@ -104,6 +105,10 @@ uint32_t MX_APPE_Init(void *p_param)
   COM_Init.Parity = COM_PARITY_NONE;
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
+
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
+  setvbuf(stdout, NULL, _IONBF, 0);
+#endif
 
   /* Initialize the button B2 */
   BSP_PB_Init(B2, BUTTON_MODE_GPIO);
@@ -185,9 +190,9 @@ void HAL_MRSubG_IRQ_Callback(void)
   }
 }
 
-void OTA_Jump_To_Reset_Manager(void)
+void SFUOTA_Boot_RequestManager(void)
 {
-  RAM_VR.bootloader_vr = OTA_SWITCH_TO_OTA_RESET_MANAGER;
+  RAM_VR.bootloader_vr = SFUOTA_BOOT_REQ_MANAGER;
 
   NVIC_SystemReset();
 }
@@ -209,7 +214,7 @@ void MX_APPE_Process(void)
   if (RxOkEventPending == TRUE)
   {
     RxOkEventPending = FALSE;
-    BSP_LED_Toggle(LD1);
+    BSP_LED_Toggle(LD2);
     RxReceivedByteCount = __HAL_MRSUBG_GET_DATABUFFER_COUNT();
     printf("Packet Received: ");
 
@@ -224,7 +229,7 @@ void MX_APPE_Process(void)
   if (RxErrorEventPending == TRUE)
   {
     RxErrorEventPending = FALSE;
-    BSP_LED_Toggle(LD2);
+    BSP_LED_Toggle(LD3);
     printf("RX error IRQ status: 0x%08lX\r\n", RxErrorIrqStatus);
     RxErrorIrqStatus = 0U;
     __HAL_MRSUBG_STROBE_CMD(CMD_RX);
@@ -232,7 +237,7 @@ void MX_APPE_Process(void)
 
   if (BSP_PB_GetState(B2) == SET)
   {
-    OTA_Jump_To_Reset_Manager();
+    SFUOTA_Boot_RequestManager();
   }
   /* USER CODE END MX_APPE_Process_2 */
 }

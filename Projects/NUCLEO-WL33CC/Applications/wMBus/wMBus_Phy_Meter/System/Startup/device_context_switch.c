@@ -287,7 +287,7 @@ static void APB1periphContextRestore(apb1PeriphT *apb1)
 
   if (LL_APB1_GRP1_IsEnabledClock(LL_APB1_GRP1_PERIPH_ADCDIG))
   {
-    Osal_MemCpy4((uint32_t *)&apb1->ADC_vr, (uint32_t *)ADC1, sizeof(ADC_TypeDef));
+    Osal_MemCpy4((uint32_t *)ADC1, (uint32_t *)&apb1->ADC_vr, sizeof(ADC_TypeDef));
   }
 
   if (LL_APB1_GRP1_IsEnabledClock(LL_APB1_GRP1_PERIPH_LPUART1) &&

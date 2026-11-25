@@ -153,7 +153,7 @@ void USART1_IRQHandler(void)
     read_data = LL_USART_ReceiveData8(USART1);
 
     /* Send the data received to the user RX callback */
-    processInputData(&read_data, 1U);
+    SFUOTA_Ymodem_PushBytes(&read_data, 1U);
   }
 
   /* USER CODE BEGIN USART1_IRQn 1 */

@@ -13,8 +13,8 @@ How to configure a simple RX application with over-the-air (OTA) upgrade capabil
 This code runs an RX scenario where the payload of each received frame is printed on the terminal.
 Sleep management is integrated to conserve power.
 RX data and RF error events are handled through IRQ flags and processed in the main loop.
-PB2 is used to request a jump to OTA reset manager mode through a software reset sequence.
-The firmware image is built with the correct offset to ensure it is compatible with the OTA client, preventing overwriting of the OTA client area during the firmware upgrade process.
+PB2 is used to request a jump to SFUOTA service manager mode through a software reset sequence.
+The firmware image is built with the correct offset to ensure it is compatible with the SFUOTA client, preventing overwriting of the SFUOTA client area during the firmware upgrade process.
 
 ### <b>Keywords</b>
 
@@ -53,8 +53,8 @@ Connectivity, MRSUBG, OTA, Sub-GHz radio
 
 In order to make the program work, you must do the following:
 
- - Open your preferred toolchain (IAR EWARM project is provided)
- - Program SFUOTA_Client before this image if OTA return path via PB2 is required
+ - Open the project with your preferred toolchain (EWARM, MDK-ARM and STM32CubeIDE projects are provided)
+ - Program SFUOTA_Client before this image if SFUOTA return path via PB2 is required
  - Rebuild all files and load your image into target memory
  - Run the demonstration
 
@@ -63,11 +63,15 @@ In order to make the program work, you must do the following:
 Key runtime configuration is defined in app_entry.c, including:
 
  - RX packet buffer length and IRQ-driven reception flow
- - OTA reset manager jump trigger on PB2
+ - SFUOTA service manager jump trigger on PB2
 
 ### <b>Notes</b>
 
- 1. This demonstration currently provides IAR EWARM project files.
+ 1. SFUOTA_Client and SFUOTA_ServerYmodem are linked at the beginning of the user flash (offset 0), while SFUOTA_Rx and SFUOTA_Tx are linked at offset 0x7000, right after the SFUOTA service manager.
+
+ 2. All the provided projects are built with size optimization in every build configuration (on STM32CubeIDE the Debug configuration is set to size optimization as well, instead of the default no-optimization level). This is required because SFUOTA_Client and SFUOTA_ServerYmodem must fit in the 0x7000 bytes reserved to the SFUOTA service manager: with a lower optimization level the image exceeds that limit and overwrites the beginning of the application area.
+
+ 3. Whatever toolchain is used, the application binary is generated in the Binary folder of the project, so that the image to be transferred with Ymodem is always available.
 
 :::
 :::

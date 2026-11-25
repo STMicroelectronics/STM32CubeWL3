@@ -1102,6 +1102,9 @@
       <file>
         <name>$PROJ_DIR$\..\Src\stm32wl3x_hal_msp.c</name>
       </file>
+	  <file>
+        <name>$PROJ_DIR$\..\Src\SequencerFlowgraph.c</name>
+      </file>
     </group>
   </group>
   <group>

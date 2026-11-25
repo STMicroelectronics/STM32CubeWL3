@@ -32,6 +32,7 @@ extern "C" {
 #include "app_conf.h"
 #include "stm32wl3x_nucleo.h"
 #include <stdio.h>
+#include "SequencerFlowgraph.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */

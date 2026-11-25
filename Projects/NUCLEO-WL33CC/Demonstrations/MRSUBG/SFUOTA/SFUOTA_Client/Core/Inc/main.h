@@ -33,7 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "app_entry.h"
 #include "app_conf.h"
-#include "radio_ota.h"
+#include "sfuota_client.h"
 
 #include "stm32wl3x_nucleo.h"
 #include "stm32wl3x_ll_usart.h"

@@ -27,7 +27,7 @@
 
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "radio_ota.h"
+#include "sfuota_client.h"
 #include <stdio.h>
 #include <string.h>
 /* USER CODE END Includes */
@@ -93,7 +93,11 @@ uint32_t MX_APPE_Init(void *p_param)
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
 
-  (void)OTA_Init();
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
+  setvbuf(stdout, NULL, _IONBF, 0);
+#endif
+
+  (void)SFUOTA_Init();
   /* USER CODE END APPE_Init_1 */
 
 #if (CFG_LPM_SUPPORTED == 1)
@@ -139,7 +143,7 @@ __weak PowerSaveLevels HAL_MRSUBG_TIMER_PowerSaveLevelCheck(void)
 
 void HAL_MRSubG_IRQ_Callback(void)
 {
-  OTA_Radio_IRQHandler();
+  SFUOTA_IRQHandler();
 }
 
 /* USER CODE END FD_LOCAL_FUNCTIONS */
@@ -156,9 +160,9 @@ void MX_APPE_Process(void)
   /* USER CODE END MX_APPE_Process_1 */
 
   /* USER CODE BEGIN MX_APPE_Process_2 */
-  if (OTA_Tick() == 1U)
+  if (SFUOTA_Tick() == 1U)
   {
-    OTA_Jump_To_New_Application(); 
+    SFUOTA_Boot_JumpToApplication(); 
   }
   /* USER CODE END MX_APPE_Process_2 */
 }

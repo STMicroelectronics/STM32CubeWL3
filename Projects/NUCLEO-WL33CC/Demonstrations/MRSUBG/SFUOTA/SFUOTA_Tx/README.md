@@ -13,8 +13,8 @@ How to configure a simple TX application with over-the-air (OTA) upgrade capabil
 This code runs a TX scenario that sends packets in sequence using TX_DONE polling.
 The last byte of each packet contains a sequential counter value, and after a burst of MAX_NUM_PACKET transmissions, frequency and packet count information are printed on the terminal.
 Sleep management is integrated to conserve power.
-PB2 is used to request a jump to OTA reset manager mode through a software reset sequence.
-The firmware image is built with the correct offset to ensure it is compatible with the OTA client, preventing overwriting of the OTA client area during the firmware upgrade process.
+PB2 is used to request a jump to SFUOTA service manager mode through a software reset sequence.
+The firmware image is built with the correct offset to ensure it is compatible with the SFUOTA client, preventing overwriting of the SFUOTA client area during the firmware upgrade process.
 
 ### <b>Keywords</b>
 
@@ -22,7 +22,7 @@ Connectivity, MRSUBG, OTA, Sub-GHz radio
 
 ### <b>Directory contents</b>
 
-  - Binary/SFUOTA_Tx.bin                    Prebuilt TX image used as OTA payload candidate
+  - Binary/SFUOTA_Tx.bin                    Prebuilt TX image used as SFUOTA payload candidate
   - Core/Inc/app_conf.h                     Application configuration file
   - Core/Inc/app_entry.h                    Interface header for application entry
   - Core/Inc/main.h                         Header file for main.c
@@ -53,13 +53,13 @@ Connectivity, MRSUBG, OTA, Sub-GHz radio
 ### <b>How to use it?</b>
 
 This application is configured to be placed at a defined offset in FLASH, through the use of the MEMORY_FLASH_APP_OFFSET linker symbol.
-As such, it cannot start right away, but an OTA client is needed to launch it.
+As such, it cannot start right away, but an SFUOTA client is needed to launch it.
 Default offset is 0x7000.
 
 A pre-built binary image is provided, this has to be used in conjunction with the SFUOTA_ServerYmodem application (see the corresponding README for further details)
 If you want to modify/re-build the application, you must do the following:
 
- - Open your preferred toolchain (IAR EWARM project is provided)
+ - Open the project with your preferred toolchain (EWARM, MDK-ARM and STM32CubeIDE projects are provided)
  - Rebuild all files and generate a new target image
 
 ### <b>Static configuration</b>
@@ -68,12 +68,16 @@ Key runtime configuration is defined in app_entry.c, including:
 
  - TX packet format, payload length, and transmission burst settings
  - TX_DONE polling flow for packet transmission completion
- - OTA reset manager jump trigger on PB2
+ - SFUOTA service manager jump trigger on PB2
 Default runtime values are MAX_NUM_PACKET=100, TX_PAYLOAD_LEN=7, MRSUBG_TX_CHANNEL_HZ=868000000, and TX_INTER_PACKET_DELAY_MS=100.
 
 ### <b>Notes</b>
 
- 1. This demonstration currently provides IAR EWARM project files.
+ 1. SFUOTA_Client and SFUOTA_ServerYmodem are linked at the beginning of the user flash (offset 0), while SFUOTA_Rx and SFUOTA_Tx are linked at offset 0x7000, right after the SFUOTA service manager.
+
+ 2. All the provided projects are built with size optimization in every build configuration (on STM32CubeIDE the Debug configuration is set to size optimization as well, instead of the default no-optimization level). This is required because SFUOTA_Client and SFUOTA_ServerYmodem must fit in the 0x7000 bytes reserved to the SFUOTA service manager: with a lower optimization level the image exceeds that limit and overwrites the beginning of the application area.
+
+ 3. Whatever toolchain is used, the application binary is generated in the Binary folder of the project, so that the image to be transferred with Ymodem is always available.
 
 :::
 :::

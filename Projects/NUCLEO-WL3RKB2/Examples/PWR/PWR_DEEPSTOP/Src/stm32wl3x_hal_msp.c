@@ -1,13 +1,14 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    PWR/PWR_DEEPSTOP/Src/stm32wl3x_hal_msp.c
-  * @author  MCD Application Team
-  * @brief   HAL MSP module.
+  * @file         stm32wl3x_hal_msp.c
+  * @author       MCD Application Team
+  * @brief        This file provides code for the MSP Initialization
+  *               and de-Initialization codes.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2025-2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -46,7 +47,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
+static void lowPowerIOSetup(void);
 /* USER CODE END PFP */
 
 /* External functions --------------------------------------------------------*/
@@ -55,51 +56,7 @@
 /* USER CODE END ExternalFunctions */
 
 /* USER CODE BEGIN 0 */
-/**
-  * @brief  Configures the IOs pull resistors to have the optimized power consumption.
-  * @param  None
-  * @retval None
-  */
-static void lowPowerIOSetup(void)
-{
-  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_A, 
-                       PWR_GPIO_BIT_0|
-                       PWR_GPIO_BIT_1|
-                       PWR_GPIO_BIT_2|
-                       PWR_GPIO_BIT_3|
-                       PWR_GPIO_BIT_11|
-                       PWR_GPIO_BIT_14|
-                       PWR_GPIO_BIT_15);
-  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A, 
-                       PWR_GPIO_BIT_4|
-                       PWR_GPIO_BIT_5|
-                       PWR_GPIO_BIT_6|
-                       PWR_GPIO_BIT_7|
-                       PWR_GPIO_BIT_8|
-                       PWR_GPIO_BIT_9|
-                       PWR_GPIO_BIT_10|
-                       PWR_GPIO_BIT_12|
-                       PWR_GPIO_BIT_13);
 
-  HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_B, 
-                       PWR_GPIO_BIT_0|
-                       PWR_GPIO_BIT_1|
-                       PWR_GPIO_BIT_2|
-                       PWR_GPIO_BIT_3|
-                       PWR_GPIO_BIT_6|
-                       PWR_GPIO_BIT_7|
-                       PWR_GPIO_BIT_8|
-                       PWR_GPIO_BIT_9|
-                       PWR_GPIO_BIT_10|
-                       PWR_GPIO_BIT_11|
-                       PWR_GPIO_BIT_12|
-                       PWR_GPIO_BIT_13|
-                       PWR_GPIO_BIT_14|
-                       PWR_GPIO_BIT_15);
-  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_B, 
-                       PWR_GPIO_BIT_4|
-                       PWR_GPIO_BIT_5);
-}
 /* USER CODE END 0 */
 /**
   * Initializes the Global MSP.
@@ -109,6 +66,9 @@ void HAL_MspInit(void)
 
   /* USER CODE BEGIN MspInit 0 */
 
+  /* IOs configuration to have the lowest power consumption in DEEPSTOP */
+  lowPowerIOSetup();
+
   /* USER CODE END MspInit 0 */
 
   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -116,10 +76,46 @@ void HAL_MspInit(void)
   /* System interrupt init*/
 
   /* USER CODE BEGIN MspInit 1 */
-  lowPowerIOSetup();
+
   /* USER CODE END MspInit 1 */
 }
 
 /* USER CODE BEGIN 1 */
+
+/**
+  * @brief  Configures the IO to have the optimized power consumption.
+  * @param  None
+  * @retval None
+  */
+static void lowPowerIOSetup(void)
+{
+  HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+  HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+  HAL_PWREx_DisableGPIOPullUp(PWR_GPIO_B, LL_PWR_WAKEUP_ALL);
+  HAL_PWREx_DisableGPIOPullDown(PWR_GPIO_B, LL_PWR_WAKEUP_ALL);
+
+  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A, LL_PWR_WAKEUP_ALL);
+  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, LL_PWR_WAKEUP_ALL);
+
+  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_A,
+                             PWR_GPIO_BIT_0|
+                             PWR_GPIO_BIT_1|
+                             PWR_GPIO_BIT_2|
+                             PWR_GPIO_BIT_3|
+                             PWR_GPIO_BIT_7|
+                             PWR_GPIO_BIT_8|
+                             PWR_GPIO_BIT_9|
+                             PWR_GPIO_BIT_11);
+
+  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_B,
+                             PWR_GPIO_BIT_0|
+                             PWR_GPIO_BIT_1|
+                             PWR_GPIO_BIT_2|
+                             PWR_GPIO_BIT_7|
+                             PWR_GPIO_BIT_12|
+                             PWR_GPIO_BIT_13|
+                             PWR_GPIO_BIT_14|
+                             PWR_GPIO_BIT_15);
+}
 
 /* USER CODE END 1 */

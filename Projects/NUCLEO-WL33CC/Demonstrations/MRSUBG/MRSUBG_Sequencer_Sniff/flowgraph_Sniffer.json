@@ -1,0 +1,389 @@
+{
+    "flowgraph": {
+        "seqActions": [
+            {
+                "uuid": "22f9211c077d4b2c970ef13600cca7b0",
+                "config": {
+                    "actionName": "ReceiveFrame",
+                    "actionTimeoutEnabled": false,
+                    "actionTimeout": {
+                        "value": 100,
+                        "unit": "ms"
+                    },
+                    "nextAction1": {
+                        "interval": {
+                            "value": 12,
+                            "unit": "ms"
+                        },
+                        "mask": {
+                            "maskType": "flagMatch",
+                            "flags": {
+                                "TX_DONE": false,
+                                "RX_OK": true,
+                                "RX_TIMEOUT": false,
+                                "RX_CRC_ERROR": false,
+                                "FAST_RX_TERM": false,
+                                "RXTIMER_STOP_CDT": false,
+                                "SABORT_DONE": false,
+                                "COMMAND_REJECTED": false,
+                                "CS": false,
+                                "PREAMBLE_VALID": false,
+                                "SYNC_VALID": false,
+                                "DATABUFFER0_USED": false,
+                                "DATABUFFER1_USED": false,
+                                "RX_ALMOST_FULL_0": false,
+                                "RX_ALMOST_FULL_1": false,
+                                "TX_ALMOST_EMPTY_0": false,
+                                "TX_ALMOST_EMPTY_1": false,
+                                "AHB_ACCESS_ERROR": false,
+                                "HW_ANA_FAILURE": false,
+                                "RRM_CMD_START": false,
+                                "RRM_CMD_END": false,
+                                "SAFEASK_CALIB_DONE": false,
+                                "AGC_CALIB_DONE": false
+                            }
+                        },
+                        "flags": {
+                            "SleepEn": false,
+                            "ForceReload": false,
+                            "ForceClear": true
+                        }
+                    },
+                    "nextAction2": {
+                        "interval": {
+                            "value": 12,
+                            "unit": "ms"
+                        },
+                        "mask": {
+                            "maskType": "flagMatch",
+                            "flags": {
+                                "TX_DONE": false,
+                                "RX_OK": false,
+                                "RX_TIMEOUT": true,
+                                "RX_CRC_ERROR": true,
+                                "FAST_RX_TERM": true,
+                                "RXTIMER_STOP_CDT": false,
+                                "SABORT_DONE": false,
+                                "COMMAND_REJECTED": false,
+                                "CS": false,
+                                "PREAMBLE_VALID": false,
+                                "SYNC_VALID": false,
+                                "DATABUFFER0_USED": false,
+                                "DATABUFFER1_USED": false,
+                                "RX_ALMOST_FULL_0": false,
+                                "RX_ALMOST_FULL_1": false,
+                                "TX_ALMOST_EMPTY_0": false,
+                                "TX_ALMOST_EMPTY_1": false,
+                                "AHB_ACCESS_ERROR": false,
+                                "HW_ANA_FAILURE": true,
+                                "RRM_CMD_START": false,
+                                "RRM_CMD_END": false,
+                                "SAFEASK_CALIB_DONE": false,
+                                "AGC_CALIB_DONE": false
+                            }
+                        },
+                        "flags": {
+                            "SleepEn": true,
+                            "ForceReload": false,
+                            "ForceClear": true
+                        }
+                    },
+                    "useAdvancedConfiguration": false,
+                    "basicDynamic": {
+                        "command": "RELOAD_RX_TIMER",
+                        "pcktlen": 15,
+                        "radioSettings": {
+                            "frequency": 868000000.0,
+                            "datarate": 38400.0,
+                            "f_dev": 20000.0,
+                            "channel_filter": 100000.0,
+                            "modulation": 0
+                        },
+                        "databufferThresholds": {
+                            "almost_empty_threshold": 10,
+                            "almost_full_threshold": 100
+                        },
+                        "timers": {
+                            "timeoutEnabled": true,
+                            "timeoutStopConditionsEnabled": false,
+                            "rxTimeout": {
+                                "value": 25,
+                                "unit": "ms"
+                            },
+                            "conditionOperator": "any",
+                            "conditionFlags": {
+                                "cs": false,
+                                "pqi": false,
+                                "sqi": false
+                            }
+                        },
+                        "fastRXTermination": {
+                            "enabled": false,
+                            "timeout": 0
+                        },
+                        "interrupts": {
+                            "TX_DONE": false,
+                            "RX_OK": true,
+                            "RX_TIMEOUT": true,
+                            "RX_CRC_ERROR": true,
+                            "FAST_RX_TERM": true,
+                            "RESERVED6": false,
+                            "RXTIMER_STOP_CDT": false,
+                            "SABORT_DONE": false,
+                            "COMMAND_REJECTED": false,
+                            "RESERVED11_": false,
+                            "CS": false,
+                            "PREAMBLE_VALID": false,
+                            "SYNC_VALID": false,
+                            "RESERVED": false,
+                            "DATABUFFER0_USED": false,
+                            "DATABUFFER1_USED": false,
+                            "RX_ALMOST_FULL_0": false,
+                            "RX_ALMOST_FULL_1": false,
+                            "TX_ALMOST_EMPTY_0": false,
+                            "TX_ALMOST_EMPTY_1": false,
+                            "AHB_ACCESS_ERROR": false,
+                            "HW_ANA_FAILURE": true,
+                            "SEQ": true,
+                            "RRM_CMD_START": false,
+                            "RRM_CMD_END": false,
+                            "SAFEASK_CALIB_DONE": false,
+                            "AGC_CALIB_DONE": false
+                        }
+                    },
+                    "advancedDynamic": {
+                        "1224738080": 231424,
+                        "1224738088": 0,
+                        "1224738072": 0,
+                        "1224738084": 0,
+                        "1224738052": 539283,
+                        "1224738056": 4195381,
+                        "1224738048": 20,
+                        "1224738076": 0,
+                        "1224738068": 0,
+                        "1224738060": 75830805,
+                        "1224738064": 4194440
+                    },
+                    "comment": "If a signal was previously detected (CS flag raised in WaitForMessage), restart RX timer from the beginning to give receiver more time to capture message.\nIf message is successfully received or CRC error occurs, the flowgraph terminates (unconnected NextAction1 output).\nIf CS was erroneous and actually no message is on the air, restart with WaitForMessage after a 100ms interval."
+                },
+                "isSelected": false,
+                "outports": {
+                    "outport1": {
+                        "target": "94239294556448539024887f211c6822"
+                    },
+                    "outport2": {
+                        "target": "94239294556448539024887f211c6822"
+                    }
+                },
+                "pos": {
+                    "x": 635.2400390982043,
+                    "y": -202.87141126768444
+                }
+            },
+            {
+                "uuid": "94239294556448539024887f211c6822",
+                "config": {
+                    "actionName": "WaitForMessage",
+                    "actionTimeoutEnabled": false,
+                    "actionTimeout": {
+                        "value": 100,
+                        "unit": "ms"
+                    },
+                    "nextAction1": {
+                        "interval": {
+                            "value": 0,
+                            "unit": "ms"
+                        },
+                        "mask": {
+                            "maskType": "flagMatch",
+                            "flags": {
+                                "TX_DONE": false,
+                                "RX_OK": false,
+                                "RX_TIMEOUT": false,
+                                "RX_CRC_ERROR": false,
+                                "FAST_RX_TERM": false,
+                                "RXTIMER_STOP_CDT": false,
+                                "SABORT_DONE": false,
+                                "COMMAND_REJECTED": false,
+                                "CS": true,
+                                "PREAMBLE_VALID": false,
+                                "SYNC_VALID": false,
+                                "DATABUFFER0_USED": false,
+                                "DATABUFFER1_USED": false,
+                                "RX_ALMOST_FULL_0": false,
+                                "RX_ALMOST_FULL_1": false,
+                                "TX_ALMOST_EMPTY_0": false,
+                                "TX_ALMOST_EMPTY_1": false,
+                                "AHB_ACCESS_ERROR": false,
+                                "HW_ANA_FAILURE": false,
+                                "RRM_CMD_START": false,
+                                "RRM_CMD_END": false,
+                                "SAFEASK_CALIB_DONE": false,
+                                "AGC_CALIB_DONE": false
+                            }
+                        },
+                        "flags": {
+                            "SleepEn": false,
+                            "ForceReload": false,
+                            "ForceClear": false
+                        }
+                    },
+                    "nextAction2": {
+                        "interval": {
+                            "value": 10,
+                            "unit": "ms"
+                        },
+                        "mask": {
+                            "maskType": "flagMatch",
+                            "flags": {
+                                "TX_DONE": false,
+                                "RX_OK": false,
+                                "RX_TIMEOUT": false,
+                                "RX_CRC_ERROR": false,
+                                "FAST_RX_TERM": true,
+                                "RXTIMER_STOP_CDT": false,
+                                "SABORT_DONE": false,
+                                "COMMAND_REJECTED": false,
+                                "CS": false,
+                                "PREAMBLE_VALID": false,
+                                "SYNC_VALID": false,
+                                "DATABUFFER0_USED": false,
+                                "DATABUFFER1_USED": false,
+                                "RX_ALMOST_FULL_0": false,
+                                "RX_ALMOST_FULL_1": false,
+                                "TX_ALMOST_EMPTY_0": false,
+                                "TX_ALMOST_EMPTY_1": false,
+                                "AHB_ACCESS_ERROR": false,
+                                "HW_ANA_FAILURE": false,
+                                "RRM_CMD_START": false,
+                                "RRM_CMD_END": false,
+                                "SAFEASK_CALIB_DONE": false,
+                                "AGC_CALIB_DONE": false
+                            }
+                        },
+                        "flags": {
+                            "SleepEn": true,
+                            "ForceReload": false,
+                            "ForceClear": true
+                        }
+                    },
+                    "useAdvancedConfiguration": false,
+                    "basicDynamic": {
+                        "command": "RX",
+                        "pcktlen": 8,
+                        "radioSettings": {
+                            "frequency": 868000000.0,
+                            "datarate": 38400.0,
+                            "f_dev": 20000.0,
+                            "channel_filter": 100000.0,
+                            "modulation": 0
+                        },
+                        "databufferThresholds": {
+                            "almost_empty_threshold": 10,
+                            "almost_full_threshold": 100
+                        },
+                        "timers": {
+                            "timeoutEnabled": false,
+                            "timeoutStopConditionsEnabled": false,
+                            "rxTimeout": {
+                                "value": 500,
+                                "unit": "ms"
+                            },
+                            "conditionOperator": "any",
+                            "conditionFlags": {
+                                "cs": false,
+                                "pqi": false,
+                                "sqi": false
+                            }
+                        },
+                        "fastRXTermination": {
+                            "enabled": true,
+                            "timeout": 80
+                        },
+                        "interrupts": {
+                            "TX_DONE": false,
+                            "RX_OK": false,
+                            "RX_TIMEOUT": true,
+                            "RX_CRC_ERROR": false,
+                            "FAST_RX_TERM": true,
+                            "RESERVED6": false,
+                            "RXTIMER_STOP_CDT": false,
+                            "SABORT_DONE": false,
+                            "COMMAND_REJECTED": false,
+                            "RESERVED11_": false,
+                            "CS": false,
+                            "PREAMBLE_VALID": false,
+                            "SYNC_VALID": false,
+                            "RESERVED": false,
+                            "DATABUFFER0_USED": false,
+                            "DATABUFFER1_USED": false,
+                            "RX_ALMOST_FULL_0": false,
+                            "RX_ALMOST_FULL_1": false,
+                            "TX_ALMOST_EMPTY_0": false,
+                            "TX_ALMOST_EMPTY_1": false,
+                            "AHB_ACCESS_ERROR": false,
+                            "HW_ANA_FAILURE": true,
+                            "SEQ": true,
+                            "RRM_CMD_START": false,
+                            "RRM_CMD_END": false,
+                            "SAFEASK_CALIB_DONE": false,
+                            "AGC_CALIB_DONE": false
+                        }
+                    },
+                    "advancedDynamic": {
+                        "1224738080": 231424,
+                        "1224738088": 0,
+                        "1224738072": 0,
+                        "1224738084": 0,
+                        "1224738052": 539283,
+                        "1224738056": 4195381,
+                        "1224738048": 20,
+                        "1224738076": 0,
+                        "1224738068": 0,
+                        "1224738060": 75830805,
+                        "1224738064": 4194440
+                    },
+                    "comment": "If some signal is received (CS flag raised), transition to ReceiveFrame state.\nOtherwise, if no signal is received within the RX timer interval (12ms), restart listening after a 10ms delay."
+                },
+                "isSelected": false,
+                "outports": {
+                    "outport1": {
+                        "target": "22f9211c077d4b2c970ef13600cca7b0"
+                    },
+                    "outport2": {
+                        "target": "94239294556448539024887f211c6822"
+                    }
+                },
+                "pos": {
+                    "x": 70.45619975062144,
+                    "y": -216.86010516813718
+                }
+            }
+        ],
+        "center": {
+            "x": 496.18644117061433,
+            "y": 21.721631103906248
+        },
+        "entrypoint": {
+            "target": "94239294556448539024887f211c6822"
+        },
+        "zoom": 0.7370393728531728
+    },
+    "globalSettings": {
+        "projectPath": "C:/Temp/CG_trials/Sniffer_fast_Rx_new",
+        "databufferSize": 15,
+        "databuffer0Contents": "STMicroelectron",
+        "databuffer1Contents": "STMicroelectron",
+        "txMode": "TX_NORMAL",
+        "rxMode": "RX_NORMAL",
+        "paDriveMode": "PA_DRV_TX_HP",
+        "paDrivePower": 10,
+        "rssiThreshold": -80,
+        "additionalInitializationCode": "#define PREAMBLE_LENGTH                 PREAMBLE_BYTE(4)\n#define POSTAMBLE_LENGTH                PREAMBLE_BYTE(0)\n#define SYNC_LENGTH                     SYNC_BYTE(4)\n#define SYNC_WORD                       0x88888888\n#define VARIABLE_LENGTH                 VARIABLE\n#define EXTENDED_LENGTH_FIELD           DISABLE\n#define PREAMBLE_SEQ                    PRE_SEQ_0101\n#define POSTAMBLE_SEQ                   POST_SEQ_0101\n#define CRC_MODE                        PKT_CRC_MODE_8BITS\n#define EN_ADDRESS                      DISABLE\n#define CODING                          CODING_NONE\n#define EN_WHITENING                    ENABLE\n#define LEN_WIDTH                       BYTE_LEN_1\n#define SYNC_PRESENT                    ENABLE\n\n#define PREAMBLE_BYTE(v)                (4*v)\n#define SYNC_BYTE(v)                    ((8*v)-1)\n\nMRSubG_PcktBasicFields_t xBasicInit={\n  PREAMBLE_LENGTH,\n  POSTAMBLE_LENGTH,\n  SYNC_LENGTH,\n  SYNC_WORD,\n  VARIABLE_LENGTH,\n  PREAMBLE_SEQ,\n  POSTAMBLE_SEQ,\n  CRC_MODE,\n  CODING,\n  EN_WHITENING,\n  LEN_WIDTH,\n  SYNC_PRESENT\n};\n\nHAL_MRSubG_PacketBasicInit(&xBasicInit);\n\n// MR_SUBG_GLOB_STATIC->CRC_INIT = 0;\n// MODIFY_REG_FIELD(MR_SUBG_GLOB_STATIC->PCKT_CTRL, MR_SUBG_GLOB_STATIC_PCKT_CTRL_WHIT_INIT, 0x00);",
+        "usestdio": true,
+        "indentation": "  ",
+        "noOverwrite": false,
+        "restartBehavior": true
+    },
+    "device": "STM32WL3x"
+}

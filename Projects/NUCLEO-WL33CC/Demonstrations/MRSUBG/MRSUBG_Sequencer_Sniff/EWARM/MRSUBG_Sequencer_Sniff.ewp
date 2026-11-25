@@ -1104,6 +1104,9 @@
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32wl3x_it.c</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\SequencerFlowgraph.c</name>
+                </file>				
             </group>
             <group>
                 <name>System</name>

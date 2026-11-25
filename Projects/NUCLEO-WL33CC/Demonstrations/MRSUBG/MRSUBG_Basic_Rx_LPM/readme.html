@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../../../_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="MRSUBG_Basic_Rx_LPM-example-description"
+class="col-sm-12 col-lg-4">
+<h2><b>MRSUBG_Basic_Rx_LPM Example Description</b></h2>
+<p>This example configures the NUCLEO-WL33CC1 as a basic MRSUBG packet
+receiver with low-power support. It receives variable-length 2-FSK packets at
+868 MHz with a 38.4 kbps data rate, a 20-byte maximum payload, an 8-bit CRC,
+and the sync word <code>0x88888888</code>.</p>
+<p>The MRSUBG interrupt is enabled before the receiver is started. After
+starting the receiver, the application waits for interrupts using
+<code>WFI</code>. The RX interrupt handler processes received packets through
+<code>RX_IRQHandler()</code>.</p>
+<h3><b>Low-power behavior</b></h3>
+<p>When no processing is pending, the device enters <b>Sleep mode</b>. It is
+woken by the MRSUBG <code>RX_OK</code> interrupt when a valid packet is
+received.</p>
+<p>Use <code>Examples/MRSUBG/MRSUBG_BasicGeneric_Tx</code> on a second
+NUCLEO-WL33CC1 board as the transmitter. Its radio and packet settings are
+compatible with this receiver.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>MRSUBG, radio, RX, low power, WFI</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/stm32wl3x_nucleo_conf.h BSP
+configuration file</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/stm32wl3x_hal_conf.h HAL
+Configuration file</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/stm32wl3x_it.h Header for
+stm32wl3x_it.c</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/main.h Header file for main.c</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/app_entry.h Application entry
+interface</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Inc/stm32_assert.h Assert description
+file</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Src/system_stm32wl3x.c STM32WL3x
+system clock configuration file</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Src/stm32wl3x_it.c Interrupt
+handlers</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Src/stm32wl3x_hal_msp.c HAL MSP
+module</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Src/main.c Main program</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/Core/Src/app_entry.c RX application and
+low-power processing</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/System/Interfaces Low-power mode
+interface</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/System/Modules OS abstraction layer</li>
+<li>MRSUBG/MRSUBG_Basic_Rx_LPM/System/Startup Context switching support</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li>This example runs on STM32WL33CCVx devices.</li>
+<li>This example has been tested with STMicroelectronics NUCLEO-WL33CC1
+application board and can be easily tailored to any other supported
+device and development board.</li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>In order to make the program work, you must do the following :</p>
+<ul>
+<li>Open the project for your preferred toolchain: <code>EWARM/Project.eww</code>,
+<code>MDK-ARM/MRSUBG_Basic_Rx_LPM.uvprojx</code>, or import the
+<code>STM32CubeIDE</code> directory.</li>
+<li>Rebuild all files and load your image into target memory</li>
+<li>Run the example and start <code>Examples/MRSUBG/MRSUBG_BasicGeneric_Tx</code>
+on a second NUCLEO-WL33CC1 board to transmit compatible packets</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

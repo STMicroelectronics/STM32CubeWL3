@@ -40,7 +40,8 @@
 /* Private defines -----------------------------------------------------------*/
 
 /* USER CODE BEGIN PD */
-#define OTA_SWITCH_TO_OTA_RESET_MANAGER (0xB0U)
+/* Must match SFUOTA_BOOT_REQ_MANAGER in SFUOTA_Client/SFUOTA/Target/sfuota_flashmap.h. */
+#define SFUOTA_BOOT_REQ_MANAGER (0xB0U)
 #define MAX_NUM_PACKET         (100U)            /* Number of packets used for the test */
 #define TX_PAYLOAD_LEN         (7U)
 #define MRSUBG_TX_CHANNEL_HZ   (868000000U)
@@ -58,7 +59,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint8_t TxPacketBuffer[MAX_PACKET_LENGTH];
+/* Word alignment required: the MRSubG data buffer pointer ignores the two LSBs. */
+static __attribute__((aligned(4))) uint8_t TxPacketBuffer[MAX_PACKET_LENGTH];
 static uint8_t TxSendPending;
 static uint16_t TxPacketCount = 0;
 /* USER CODE END PV */
@@ -72,7 +74,7 @@ static uint16_t TxPacketCount = 0;
 /* Private functions prototypes-----------------------------------------------*/
 
 /* USER CODE BEGIN PFP */
-void OTA_Jump_To_Reset_Manager(void);
+void SFUOTA_Boot_RequestManager(void);
 /* USER CODE END PFP */
 
 /* External variables --------------------------------------------------------*/
@@ -102,6 +104,10 @@ uint32_t MX_APPE_Init(void *p_param)
   COM_Init.Parity = COM_PARITY_NONE;
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
+
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
+  setvbuf(stdout, NULL, _IONBF, 0);
+#endif
 
   /* Initialize the button B2 */
   BSP_PB_Init(B2, BUTTON_MODE_GPIO);
@@ -167,9 +173,9 @@ __weak PowerSaveLevels HAL_MRSUBG_TIMER_PowerSaveLevelCheck(void)
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
 
-void OTA_Jump_To_Reset_Manager(void)
+void SFUOTA_Boot_RequestManager(void)
 {
-  RAM_VR.bootloader_vr = OTA_SWITCH_TO_OTA_RESET_MANAGER;
+  RAM_VR.bootloader_vr = SFUOTA_BOOT_REQ_MANAGER;
 
   NVIC_SystemReset();
 }
@@ -199,7 +205,7 @@ void MX_APPE_Process(void)
     while ((__HAL_MRSUBG_GET_RFSEQ_IRQ_STATUS() & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F) == 0);
 
     __HAL_MRSUBG_CLEAR_RFSEQ_IRQ_FLAG(MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F);
-    BSP_LED_Toggle(LD1);
+    BSP_LED_Toggle(LD2);
     HAL_Delay(TX_INTER_PACKET_DELAY_MS);
     TxSendPending = TRUE;
 
@@ -215,7 +221,7 @@ void MX_APPE_Process(void)
 
   if (BSP_PB_GetState(B2) == SET)
   {
-    OTA_Jump_To_Reset_Manager();
+    SFUOTA_Boot_RequestManager();
   }
   /* USER CODE END MX_APPE_Process_2 */
 }

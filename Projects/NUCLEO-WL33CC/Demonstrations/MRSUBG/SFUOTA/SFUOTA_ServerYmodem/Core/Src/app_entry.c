@@ -27,7 +27,7 @@
 
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "radio_ota.h"
+#include "sfuota_server.h"
 #include <stdio.h>
 #include <string.h>
 #include "stm32wl3x_ll_usart.h"
@@ -84,7 +84,6 @@ uint32_t MX_APPE_Init(void *p_param)
   BSP_LED_Init(LD1);
   BSP_LED_Init(LD2);
   BSP_LED_Init(LD3);
-  //BSP_LED_On(LD1);
 
   COM_InitTypeDef COM_Init = {0};
 
@@ -95,20 +94,24 @@ uint32_t MX_APPE_Init(void *p_param)
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
 
+#if defined(__GNUC__) && !defined(__ARMCC_VERSION)
+  setvbuf(stdout, NULL, _IONBF, 0);
+#endif
+
   RxUART_Init();
 
-  /* Initialize OTA path when not in YMODEM-only debug mode. */
-  if (YMODEM_DEBUG_ONLY == 0U)
+  if (SFUOTA_SERVER_MODE != SFUOTA_MODE_YMODEM)
   {
-    (void)OTA_Init();
+    (void)SFUOTA_Init();
   }
 
-  if (OTA_DEBUG_ONLY == 0U)
+  if (SFUOTA_SERVER_MODE != SFUOTA_MODE_RADIO)
   {
     Ymodem_Init();
   }
-  else {
-    preset_Ymodem_image();
+  else
+  {
+    SFUOTA_Ymodem_Preset();
   }
   /* USER CODE END APPE_Init_1 */
 
@@ -118,13 +121,17 @@ uint32_t MX_APPE_Init(void *p_param)
 #endif /* CFG_LPM_SUPPORTED */
 
   /* USER CODE BEGIN APPE_Init_2 */
-  if (YMODEM_DEBUG_ONLY != 0U)
+  if (SFUOTA_SERVER_MODE == SFUOTA_MODE_YMODEM)
   {
-    printf("STM32WL3 SFUOTA Ymodem Server Demo (YMODEM debug only).\r\n");
+    printf("STM32WL3 SFUOTA Ymodem Server Demo (YMODEM only).\r\n");
+  }
+  else if (SFUOTA_SERVER_MODE == SFUOTA_MODE_RADIO)
+  {
+    printf("STM32WL3 SFUOTA Ymodem Server Demo (SFUOTA only, simulated image).\r\n");
   }
   else
   {
-    printf("STM32WL3 SFUOTA Ymodem Server Demo (YMODEM + OTA).\r\n");
+    printf("STM32WL3 SFUOTA Ymodem Server Demo (YMODEM + SFUOTA).\r\n");
   }
   /* USER CODE END APPE_Init_2 */
 
@@ -149,12 +156,12 @@ static PowerSaveLevels App_PowerSaveLevel_Check(void)
   /* Keep SFUOTA server clocks/peripherals active to avoid missing UART YMODEM bytes. */
   output_level = POWER_SAVE_LEVEL_DISABLED;
 
-  if (OTA_Get_App_Token_Status() == TOKEN_TAKEN_YMODEM)
+  if (SFUOTA_GetTokenState() == SFUOTA_TOKEN_YMODEM)
   {
     output_level = POWER_SAVE_LEVEL_DISABLED;
   }
 
-  if (OTA_GetStatus() == OTA_DATAREQ)
+  if (SFUOTA_GetState() == SFUOTA_ST_DATAREQ)
   {
     output_level = POWER_SAVE_LEVEL_DISABLED;
   }
@@ -181,7 +188,7 @@ static void RxUART_Init(void)
 
 void HAL_MRSubG_IRQ_Callback(void)
 {
-  OTA_Radio_IRQHandler();
+  SFUOTA_IRQHandler();
 }
 
 /* USER CODE END FD_LOCAL_FUNCTIONS */
@@ -198,13 +205,13 @@ void MX_APPE_Process(void)
   /* USER CODE END MX_APPE_Process_1 */
 
   /* USER CODE BEGIN MX_APPE_Process_2 */
-  if (OTA_DEBUG_ONLY == 0U)
+  if (SFUOTA_SERVER_MODE != SFUOTA_MODE_RADIO)
   {
-    (void)OTA_ymodem_tick();
+    (void)SFUOTA_Ymodem_Tick();
   }
-  if (YMODEM_DEBUG_ONLY == 0U)
+  if (SFUOTA_SERVER_MODE != SFUOTA_MODE_YMODEM)
   {
-    (void)OTA_Tick();
+    (void)SFUOTA_Tick();
   }
   /* USER CODE END MX_APPE_Process_2 */
 }

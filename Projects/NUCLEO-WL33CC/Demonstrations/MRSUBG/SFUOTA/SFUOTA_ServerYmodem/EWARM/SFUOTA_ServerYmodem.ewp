@@ -349,6 +349,8 @@
                 <option>
                     <name>CCIncludePath2</name>
                     <state>$PROJ_DIR$/../Core/Inc</state>
+                    <state>$PROJ_DIR$/../SFUOTA/Protocol</state>
+                    <state>$PROJ_DIR$/../SFUOTA/Target</state>
                     <state>$PROJ_DIR$/../System/Interfaces</state>
                     <state>$PROJ_DIR$/../System/Modules</state>
                     <state>$PROJ_DIR$/../System/Startup</state>
@@ -1091,6 +1093,27 @@
         <group>
             <name>User</name>
             <group>
+                <name>SFUOTA</name>
+                <group>
+                    <name>Protocol</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\SFUOTA\Protocol\sfuota_server.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\SFUOTA\Protocol\ymodem.c</name>
+                    </file>
+                </group>
+                <group>
+                    <name>Target</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\SFUOTA\Target\sfuota_radio.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\SFUOTA\Target\sfuota_image.c</name>
+                    </file>
+                </group>
+            </group>
+            <group>
                 <name>Core</name>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\app_entry.c</name>
@@ -1099,16 +1122,10 @@
                     <name>$PROJ_DIR$\..\Core\Src\main.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\radio_ota.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32wl3x_hal_msp.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32wl3x_it.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\Core\Src\ymodem.c</name>
                 </file>
             </group>
             <group>

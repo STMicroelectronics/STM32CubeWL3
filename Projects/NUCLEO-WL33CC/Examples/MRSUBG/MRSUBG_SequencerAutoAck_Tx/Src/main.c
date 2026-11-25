@@ -33,7 +33,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DATABUFFERS_SIZE 8
 
 /* USER CODE END PD */
 
@@ -48,15 +47,12 @@ SMRSubGConfig_t MRSUBG_RadioInitStruct;
 MRSubG_PcktBasicFields_t MRSUBG_PacketSettingsStruct;
 
 /* USER CODE BEGIN PV */
-__attribute__((aligned(4))) volatile uint8_t databuf0[DATABUFFERS_SIZE];
-__attribute__((aligned(4))) volatile uint8_t databuf1[DATABUFFERS_SIZE];
+extern uint8_t databuf0[];
+extern uint8_t databuf1[];
 
 static volatile uint8_t ack_failed = 0, ack_received = 0, sequencer_timeout = 0;
 static uint32_t msg_count = 0;
 
-static MRSubG_Sequencer_GlobalConfiguration_t globalcfg;
-static MRSubG_Sequencer_ActionConfiguration_t actioncfgSendMsg;
-static MRSubG_Sequencer_ActionConfiguration_t actioncfgWaitACK;
 
 /* USER CODE END PV */
 
@@ -117,74 +113,15 @@ int main(void)
   COM_Init.StopBits = COM_STOPBITS_1;
   BSP_COM_Init(COM1, &COM_Init);
   
-  /* Assign allocated buffers to databuffer pointer registers */
-  __HAL_MRSUBG_SET_DATABUFFER0_POINTER((uint32_t)&databuf0[0]);
-  __HAL_MRSUBG_SET_DATABUFFER1_POINTER((uint32_t)&databuf1[0]);
-  __HAL_MRSUBG_SET_DATABUFFER_SIZE(DATABUFFERS_SIZE);
-
-  HAL_MRSubG_SetPALeveldBm(7, 14, PA_DRV_TX_HP);
-
-  /* Set a 500ms RX Timeout */
-  __HAL_MRSUBG_SET_RX_TIMEOUT(HAL_MRSubG_Sequencer_Milliseconds(500));
-  HAL_MRSubG_SetRSSIThreshold(-139);
-
-  /* Set the SOC_WAKEUP_OFFSET */
-  __HAL_MRSUBG_SET_WAKEUP_OFFSET(6);
-
+  /* Load Sequencer Flowgraph Configuration */
+  msg_count++;
   memcpy((uint8_t*)databuf0, &msg_count, sizeof(msg_count));
-  __HAL_MRSUBG_SET_TX_MODE(TX_NORMAL);
-  __HAL_MRSUBG_SET_PKT_LEN(DATABUFFERS_SIZE);
+  SequencerConfig();
 
-  actioncfgSendMsg.NextAction1Ptr = &actioncfgWaitACK;
-  actioncfgSendMsg.NextAction1Ctrl = 0;
-  actioncfgSendMsg.NextAction1Mask = MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_TX_DONE_F;
-  actioncfgSendMsg.NextAction1Interval = 0;
-
-  actioncfgSendMsg.NextAction2Ptr = NULL;
-  actioncfgSendMsg.NextAction2Ctrl = 0;
-  actioncfgSendMsg.NextAction2Mask = SEQ_MASK_NEVER_MATCH;
-  actioncfgSendMsg.NextAction2Interval = 0;
-
-  actioncfgSendMsg.ActionTimeout = 0;
-  HAL_MRSubG_Sequencer_ApplyDynamicConfig(&actioncfgSendMsg, CMD_TX);
-
-  /*******************************/
-
-  __HAL_MRSUBG_SET_RX_MODE(RX_NORMAL);
-  __HAL_MRSUBG_SET_PKT_LEN(1);
-  __HAL_MRSUBG_SET_RFSEQ_IRQ_ENABLE(MR_SUBG_GLOB_DYNAMIC_RFSEQ_IRQ_ENABLE_RX_OK_E | MR_SUBG_GLOB_DYNAMIC_RFSEQ_IRQ_ENABLE_RX_CRC_ERROR_E | MR_SUBG_GLOB_DYNAMIC_RFSEQ_IRQ_ENABLE_RX_TIMEOUT_E);
-
-  actioncfgWaitACK.NextAction1Ptr = NULL;
-  actioncfgWaitACK.NextAction1Ctrl = 0;
-  actioncfgWaitACK.NextAction1Mask = MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F;
-  actioncfgWaitACK.NextAction1Interval = 0;
-
-  actioncfgWaitACK.NextAction2Ptr = NULL;
-  actioncfgWaitACK.NextAction2Ctrl = 0;
-  actioncfgWaitACK.NextAction2Mask = (MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_CRC_ERROR_F | MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_TIMEOUT_F);
-  actioncfgWaitACK.NextAction2Interval = 0;
-
-  actioncfgWaitACK.ActionTimeout = HAL_MRSubG_Sequencer_Milliseconds(1000);
-  HAL_MRSubG_Sequencer_ApplyDynamicConfig(&actioncfgWaitACK, CMD_RX);
-
-  /*******************************/
-
-  globalcfg.Flags = SEQ_FLAG_FORCERELOAD | SEQ_FLAG_CLEAREVENTS;
-  globalcfg.ActionConfigPtr = &actioncfgSendMsg;
-  HAL_MRSubG_Sequencer_ApplyStaticConfig(&globalcfg);
-  
-  __HAL_MRSUBG_SEQ_SET_GLOBAL_CONFIG(&globalcfg);
-  __HAL_MRSUBG_CLEAR_RFSEQ_IRQ_FLAG(0xffffffff);
+  /* Trigger sequencer */
+  printf("Triggering Sequencer!\r\n");
   __HAL_MRSUBG_SEQ_TRIGGER();
-
-  /*******************************/
-
-  /*
-   * Now the MRSUBG sequencer will take care of handling the whole 
-   * transmission acknowledgement process.
-   */
-  printf("Triggered sequencer, transmitting message and auto-waiting for ACK.\r\n");
-
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -211,12 +148,11 @@ int main(void)
       printf("Unexpected sequencer timeout!\r\n");
       restart_sequence = 1;
     }
-    
+       
     if (restart_sequence) {
       HAL_Delay(50); /* Allow other party to print the message */
       msg_count++;
       memcpy((uint8_t*)databuf0, &msg_count, sizeof(msg_count));
-      globalcfg.ActionConfigPtr = &actioncfgSendMsg;
       __HAL_MRSUBG_SEQ_TRIGGER();
     }
   }
@@ -342,30 +278,33 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_MRSubG_IRQ_Callback(void) {
-  uint32_t status = __HAL_MRSUBG_GET_RFSEQ_IRQ_STATUS();
-  
-  if (status & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_OK_F) {
-    ack_received = 1;
-  }
-  if (status & (MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_TIMEOUT_F |
-                MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_RX_CRC_ERROR_F)) {
-    ack_failed = 1;
-  }
-  if (status & MR_SUBG_GLOB_STATUS_RFSEQ_IRQ_STATUS_SEQ_F) {
-    uint32_t status_details = __HAL_MRSUBG_GET_RFSEQ_STATUS_DETAIL();
-    if (status_details & MR_SUBG_GLOB_STATUS_RFSEQ_STATUS_DETAIL_SEQ_ACTIONTIMEOUT_F) {
-      sequencer_timeout = 1;
-    }
-    __HAL_MRSUBG_SET_RFSEQ_STATUS_DETAIL(status_details);
-  }
-  
-  __HAL_MRSUBG_CLEAR_RFSEQ_IRQ_FLAG(status);
+
+void MRSUBG_RX_CRC_ERROR_IRQHandler(void);
+void MRSUBG_RX_CRC_ERROR_IRQHandler(void) {
+  ack_failed = 1;
 }
+
+void MRSUBG_RX_TIMEOUT_IRQHandler(void);
+void MRSUBG_RX_TIMEOUT_IRQHandler(void) {
+  ack_failed = 1;
+}
+
+void MRSUBG_TX_DONE_IRQHandler(void);
+void MRSUBG_TX_DONE_IRQHandler(void) {
+}
+
+void MRSUBG_RX_OK_IRQHandler(void);
+void MRSUBG_RX_OK_IRQHandler(void) {
+  ack_received = 1;
+}
+
+
+
 /* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
+  * @param  None
   * @retval None
   */
 void Error_Handler(void)

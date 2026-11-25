@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../../..//_htmresc/mini-st_2020.css" />
+</head>
+<body>
+<div class="row">
+<section id="lpm_button_deepstop-example-description"
+class="col-sm-12 col-lg-4">
+<h2><b>LPM_Button_DeepStop Example Description</b></h2>
+<p>This demonstration illustrates how to operate the STM32 Low Power
+Manager utility (LPM) to manage the device low power transitions.</p>
+<p>At startup, the application uses the LPM to send the SoC in Deepstop
+(with low-speed timer disabled) and configures Button 2 as a wakeup
+source. Before going to low power the LPM takes care of saving the CPU
+and some peripheral settings.</p>
+<p>Each time the button is pressed, the device exits from its Deepstop
+state, the peripheral and CPU contexts are restored and the execution
+resumes where it was when the devices entered the low power state.
+Deepstop exit is signaled via LD2 blinking and a console message. After
+that, the device is sent back to Deepstop.</p>
+<h3 id="keywords"><b>Keywords</b></h3>
+<p>PWR, LPM, Low Power Manager, Deepstop</p>
+<h3 id="directory-contents"><b>Directory contents</b></h3>
+<ul>
+<li>LPM_Button_DeepStop/Core/Inc/app_conf.h Application low-power and
+trace configuration file</li>
+<li>LPM_Button_DeepStop/Core/Inc/app_entry.h Application interface
+header</li>
+<li>LPM_Button_DeepStop/Core/Inc/main.h Main program header</li>
+<li>LPM_Button_DeepStop/Core/Inc/stm32_assert.h Assert description
+header</li>
+<li>LPM_Button_DeepStop/Core/Inc/stm32wl3x_hal_conf.h HAL configuration
+header</li>
+<li>LPM_Button_DeepStop/Core/Inc/stm32wl3x_it.h Interrupt handler
+header</li>
+<li>LPM_Button_DeepStop/Core/Inc/stm32wl3x_nucleo_conf.h BSP
+configuration header</li>
+<li>LPM_Button_DeepStop/Core/Inc/utilities_conf.h STM32 utilities
+configuration header</li>
+<li>LPM_Button_DeepStop/Core/Src/app_entry.c Application entry
+point</li>
+<li>LPM_Button_DeepStop/Core/Src/main.c Main program</li>
+<li>LPM_Button_DeepStop/Core/Src/stm32wl3x_hal_msp.c HAL MSP module</li>
+<li>LPM_Button_DeepStop/Core/Src/stm32wl3x_it.c Interrupt handlers</li>
+<li>LPM_Button_DeepStop/Core/Src/system_stm32wl3x.c STM32WL3x system
+clock configuration</li>
+<li>LPM_Button_DeepStop/System/Interfaces/stm32_lpm_if.c Low Power
+Manager interface implementation</li>
+<li>LPM_Button_DeepStop/System/Interfaces/stm32_lpm_if.h Low Power
+Manager interface header</li>
+<li>LPM_Button_DeepStop/System/Modules/asm.h Assembly macro
+definitions</li>
+<li>LPM_Button_DeepStop/System/Modules/osal.c OS abstraction layer
+implementation</li>
+<li>LPM_Button_DeepStop/System/Modules/osal.h OS abstraction layer
+header</li>
+<li>LPM_Button_DeepStop/System/Startup/cpu_context_switch.s CPU context
+switch implementation</li>
+<li>LPM_Button_DeepStop/System/Startup/device_context_switch.c Device
+context switch implementation</li>
+<li>LPM_Button_DeepStop/System/Startup/device_context_switch.h Device
+context switch header</li>
+</ul>
+<h3 id="hardware-and-software-environment"><b>Hardware and Software
+environment</b></h3>
+<ul>
+<li><p>This example runs on STM32WL33CCVx devices</p></li>
+<li><p>This example has been tested with the STMicroelectronics
+NUCLEO-WL33CCx application board and can be tailored to other supported
+devices and development boards</p></li>
+</ul>
+<h3 id="how-to-use-it"><b>How to use it ?</b></h3>
+<p>To run the demonstration:</p>
+<ol type="1">
+<li>Open the complete project in the <code>EWARM</code>,
+<code>MDK-ARM</code>, or <code>STM32CubeIDE</code> directory for your
+preferred toolchain.</li>
+<li>Build the project and program the target board.</li>
+<li>Connect a serial terminal to COM1 and configure it for 115200 bit/s,
+8 data bits, no parity, 1 stop bit, and no flow control.</li>
+<li>Reset or run the board and verify that the Low Power Manager banner
+is displayed before the device enters DeepStop.</li>
+<li>Press B2 to wake the device, observe LD2 light for 200 ms, and
+verify that the serial terminal reports the DeepStop exit count.</li>
+</ol>
+</section>
+</div>
+</body>
+</html>

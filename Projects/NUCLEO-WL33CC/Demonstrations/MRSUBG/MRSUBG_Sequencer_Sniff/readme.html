@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>README</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,9 +33,14 @@
 class="col-sm-12 col-lg-4">
 <h2><b>MRSUBG_Sequencer_Sniff Example Description</b></h2>
 <p>This example shows how to set the Sequencer to operate in sniff mode.
-This example demonstrates the receiver side and requires another device
-as a TX. Moreover, a Virtual Com stream is open. The receiver will write
-its own buffer on video every time a reception is performed.</p>
+This example demonstrates the receiver side and requires another TX
+device with compatible radio configuration. E.g, it can be tested using
+Firmware-WL33CC_RTC_Button_Tx. MRSUBG Sequencer configuration code for
+this demonstration has been generated using the <b>STM32CubeWiSE - Radio
+Code Generator </b> (STM32CubeWiSEcg) and the provided JSON project
+file.</p>
+<p>Moreover, a Virtual Com stream is open. The receiver will write its
+own buffer on video every time a reception is performed.</p>
 <h3 id="keywords"><b>Keywords</b></h3>
 <p>MRSUBG, radio</p>
 <h3 id="directory-contents"><b>Directory contents</b></h3>
@@ -45,6 +53,9 @@ Configuration file</li>
 stm32wl3x_it.c</li>
 <li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/main.h Header file for
 main.c</li>
+<li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/SequencerFlowgraph.h MRSUBG
+Sequencer header file<br />
+</li>
 <li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/stm32_assert.h Assert
 description file</li>
 <li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/app_conf.h STM32WPAN
@@ -60,6 +71,10 @@ module</li>
 <li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/main.c Main program</li>
 <li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/app_entry.c Application entry
 point file</li>
+<li>MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/SequencerFlowgraph.c MRSUBG
+Sequencer configuration</li>
+<li>MRSUBG/MRSUBG_Sequencer_Sniff/flowgraph_Sniffer.json
+STM32CubeWiSE-RadioCodeGenerator project file</li>
 </ul>
 <h3 id="hardware-and-software-environment"><b>Hardware and Software
 environment</b></h3>

@@ -306,6 +306,7 @@ static void configRTCWakeupTimer(uint32_t timeout)
 
 /**
   * @brief  This function is executed in case of error occurrence.
+  * @param  None
   * @retval None
   */
 void Error_Handler(void)

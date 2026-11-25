@@ -199,8 +199,8 @@ void PeriphCommonClock_Config(void)
   /** Initializes the peripherals clock
   */
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SMPS;
-  PeriphClkInitStruct.SmpsDivSelection = RCC_SMPSCLK_DIV2;
-  PeriphClkInitStruct.KRMRateMultiplier = 2;
+  PeriphClkInitStruct.SmpsDivSelection = RCC_SMPSCLK_DIV4;
+  PeriphClkInitStruct.KRMRateMultiplier = 4;
 
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
@@ -296,6 +296,7 @@ void HAL_SYSTICK_Callback(void)
 
 /**
   * @brief  This function is executed in case of error occurrence.
+  * @param  None
   * @retval None
   */
 void Error_Handler(void)

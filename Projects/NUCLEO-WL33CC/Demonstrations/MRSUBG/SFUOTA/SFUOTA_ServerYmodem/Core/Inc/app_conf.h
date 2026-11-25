@@ -173,8 +173,22 @@ typedef enum
 
 #define RT_DEBUG_GPIO_MODULE (0)
 
-#define OTA_DEBUG_ONLY                   (0U)
-#define YMODEM_DEBUG_ONLY                (0U)
+/******************************************************************************
+ * SFUOTA server operating mode
+ *
+ *  SFUOTA_MODE_FULL    Ymodem input over COM1 plus over-the-air transfer.
+ *  SFUOTA_MODE_YMODEM  Ymodem input only, radio left idle. Validates the
+ *                      serial path on its own.
+ *  SFUOTA_MODE_RADIO   Over-the-air transfer only, image content simulated by
+ *                      SFUOTA_Ymodem_Preset(). Validates the radio path
+ *                      without a host terminal.
+ ******************************************************************************/
+
+#define SFUOTA_MODE_FULL    (0U)
+#define SFUOTA_MODE_YMODEM  (1U)
+#define SFUOTA_MODE_RADIO   (2U)
+
+#define SFUOTA_SERVER_MODE  SFUOTA_MODE_FULL
 
 /* USER CODE BEGIN Defines */
 

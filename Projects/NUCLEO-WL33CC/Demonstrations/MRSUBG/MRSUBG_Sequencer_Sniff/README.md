@@ -2,7 +2,9 @@
 ::: {.col-sm-12 .col-lg-4}
 ## <b>MRSUBG_Sequencer_Sniff Example Description</b>
 
-This example shows how to set the Sequencer to operate in sniff mode. This example demonstrates the receiver side and requires another device as a TX. 
+This example shows how to set the Sequencer to operate in sniff mode. This example demonstrates the receiver side and requires another TX device with compatible radio configuration. E.g, it can be tested using Firmware\Projects\NUCLEO-WL33CC\Demonstrations\MRSUBG\MRSUBG_RTC_Button_Tx.
+MRSUBG Sequencer configuration code for this demonstration has been generated using the <b>STM32CubeWiSE - Radio Code Generator </b> (STM32CubeWiSEcg) and the provided JSON project file.
+
 Moreover, a Virtual Com stream is open. The receiver will write its own buffer on video every time a reception is performed.
 
 ### <b>Keywords</b>
@@ -15,6 +17,7 @@ MRSUBG, radio
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/stm32wl3x_hal_conf.h      HAL Configuration file
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/stm32wl3x_it.h            Header for stm32wl3x_it.c
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/main.h                    Header file for main.c
+  - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/SequencerFlowgraph.h      MRSUBG Sequencer header file                        
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/stm32_assert.h            Assert description file
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/app_conf.h                STM32WPAN middleware configuration file
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Inc/app_entry.h               Application interface
@@ -23,6 +26,8 @@ MRSUBG, radio
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/stm32wl3x_hal_msp.c       HAL MSP module
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/main.c                    Main program
   - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/app_entry.c               Application entry point file
+  - MRSUBG/MRSUBG_Sequencer_Sniff/Core/Src/SequencerFlowgraph.c      MRSUBG Sequencer configuration
+  - MRSUBG/MRSUBG_Sequencer_Sniff/flowgraph_Sniffer.json             STM32CubeWiSE-RadioCodeGenerator project file
 
 ### <b>Hardware and Software environment</b>
 

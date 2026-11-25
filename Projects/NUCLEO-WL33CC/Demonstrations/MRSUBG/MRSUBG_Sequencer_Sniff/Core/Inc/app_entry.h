@@ -62,12 +62,12 @@ void MX_APPE_Process(void);
 void MX_APPE_Idle(void);
 
 /* USER CODE BEGIN EF */
-void MR_SUBG_FAST_RX_TERM_IRQHandler(void);
-void MR_SUBG_RX_TIMEOUT_IRQHandler(void);
-void MR_SUBG_RX_OK_IRQHandler(void);
-void MR_SUBG_RX_CRC_ERROR_IRQHandler(void);
-void MR_SUBG_HW_ANA_FAILURE_IRQHandler(void);
-void MR_SUBG_SEQ_IRQHandler(void);
+void MRSUBG_FAST_RX_TERM_IRQHandler(void);
+void MRSUBG_RX_TIMEOUT_IRQHandler(void);
+void MRSUBG_RX_OK_IRQHandler(void);
+void MRSUBG_RX_CRC_ERROR_IRQHandler(void);
+void MRSUBG_HW_ANA_FAILURE_IRQHandler(void);
+void MRSUBG_SEQ_IRQHandler(void);
 /* USER CODE END EF */
 
 #ifdef __cplusplus

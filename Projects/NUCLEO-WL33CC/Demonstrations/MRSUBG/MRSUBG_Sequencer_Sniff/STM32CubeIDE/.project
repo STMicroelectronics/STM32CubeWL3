@@ -131,6 +131,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/stm32wl3x_hal_msp.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/Core/SequencerFlowgraph.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/SequencerFlowgraph.c</locationURI>
+		</link>
+		<link>
 			<name>Application/User/Core/stm32wl3x_it.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/stm32wl3x_it.c</locationURI>

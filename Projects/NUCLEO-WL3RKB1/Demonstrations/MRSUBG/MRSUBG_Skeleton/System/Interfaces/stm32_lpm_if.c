@@ -415,7 +415,7 @@ static void PWR_ExitStopMode( void )
   HAL_PWR_WKUP_IRQHandler();
 }
 
-void PWR_EnterSleepMode( void )
+static void PWR_EnterSleepMode( void )
 {
   /* USER CODE BEGIN PWR_EnterSleepMode */
   HAL_SuspendTick();

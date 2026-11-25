@@ -48,6 +48,10 @@ the sequencer back into the SendMsg state (after a short 50ms
 delay).</p>
 <p>TX and RX will “ping-pong” messages and ACKs back and forth until any
 message / ACK is lost, at which point the exchange will stop.</p>
+<p>MRSUBG Sequencer configuration code for both the Tx and the Rx
+examples has been generated using the <b>STM32CubeWiSE - Radio Code
+Generator </b> (STM32CubeWiSEcg) v1.3.1 and the provided JSON project
+file.</p>
 <h3 id="keywords"><b>Keywords</b></h3>
 <p>MRSUBG, radio, sequencer</p>
 <h3 id="directory-contents"><b>Directory contents</b></h3>
@@ -60,6 +64,8 @@ Configuration file</li>
 stm32wl3x_it.c</li>
 <li>MRSUBG/MRSUBG_SequencerAutoACK_Rx/Inc/main.h Header file for
 main.c</li>
+<li>MRSUBG/MRSUBG_SequencerAutoACK_Tx/Inc/SequencerFlowgraph.h MRSUBG
+Sequencer header file</li>
 <li>MRSUBG/MRSUBG_SequencerAutoACK_Rx/Inc/stm32_assert.h Assert
 description file</li>
 <li>MRSUBG/MRSUBG_SequencerAutoACK_Rx/Src/system_stm32wl3x.c STM32WL3x
@@ -69,6 +75,10 @@ handlers</li>
 <li>MRSUBG/MRSUBG_SequencerAutoACK_Rx/Src/stm32wl3x_hal_msp.c HAL MSP
 module</li>
 <li>MRSUBG/MRSUBG_SequencerAutoACK_Rx/Src/main.c Main program</li>
+<li>MRSUBG/MRSUBG_SequencerAutoACK_Tx/Src/SequencerFlowgraph.c MRSUBG
+Sequencer configuration</li>
+<li>MRSUBG/MRSUBG_SequencerAutoACK_Tx/flowgraph_autoack_RX.json
+STM32CubeWiSE-RadioCodeGenerator project file</li>
 </ul>
 <h3 id="hardware-and-software-environment"><b>Hardware and Software
 environment</b></h3>

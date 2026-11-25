@@ -1,13 +1,14 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    stm32wl3x_hal_msp.c
-  * @author  GPM WBL Application Team
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @file         stm32wl3x_hal_msp.c
+  * @author       MCD Application Team
+  * @brief        This file provides code for the MSP Initialization
+  *               and de-Initialization codes.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2024-2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -31,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN Define */
- 
+
 /* USER CODE END Define */
 
 /* Private macro -------------------------------------------------------------*/
@@ -84,24 +85,24 @@ void HAL_MspInit(void)
   */
 void HAL_LPAWUR_MspInit(void)
 {
-  
+
   /* USER CODE BEGIN LPAWUR_MspInit 0 */
-  
+
   /* USER CODE END LPAWUR_MspInit 0 */
-  
+
   /* Peripheral clock enable */
   if (__HAL_RCC_LPAWUR_IS_CLK_DISABLED())
   {
     /* LPAWUR Peripheral reset */
     __HAL_RCC_LPAWUR_FORCE_RESET();
     __HAL_RCC_LPAWUR_RELEASE_RESET();
-    
+
     /* Enable LPAWUR peripheral clock */
     __HAL_RCC_LPAWUR_CLK_ENABLE();
   }
-  
+
   /* USER CODE BEGIN LPAWUR_MspInit 1 */
-  
+
   /* USER CODE END LPAWUR_MspInit 1 */
 }
 
@@ -112,18 +113,18 @@ void HAL_LPAWUR_MspInit(void)
   */
 void HAL_LPAWUR_MspDeInit(void)
 {
-  
+
   /* USER CODE BEGIN LPAWUR_MspDeInit 0 */
-  
+
   /* USER CODE END LPAWUR_MspDeInit 0 */
-  
+
   /* Peripheral clock disable */
   __HAL_RCC_LPAWUR_CLK_DISABLE();
   __HAL_RCC_LPAWUR_FORCE_RESET();
   __HAL_RCC_LPAWUR_RELEASE_RESET();
-  
+
   /* USER CODE BEGIN LPAWUR_MspDeInit 1 */
-  
+
   /* USER CODE END LPAWUR_MspDeInit 1 */
 }
 
@@ -136,44 +137,42 @@ void HAL_LPAWUR_MspDeInit(void)
   */
 static void lowPowerIOSetup(void)
 {
-  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_A, 
-                       PWR_GPIO_BIT_0|
-                       PWR_GPIO_BIT_1|
-                       PWR_GPIO_BIT_2|
-                       PWR_GPIO_BIT_3|
-                       PWR_GPIO_BIT_11|
-                       PWR_GPIO_BIT_14|
-                       PWR_GPIO_BIT_15);
-  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A, 
-                       PWR_GPIO_BIT_4|
-                       PWR_GPIO_BIT_5|
-                       PWR_GPIO_BIT_6|
-                       PWR_GPIO_BIT_7|
-                       PWR_GPIO_BIT_8|
-                       PWR_GPIO_BIT_9|
-                       PWR_GPIO_BIT_10|
-                       PWR_GPIO_BIT_12|
-                       PWR_GPIO_BIT_13);
-  
-  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, 
-                       PWR_GPIO_BIT_0|
-                       PWR_GPIO_BIT_1|
-                       PWR_GPIO_BIT_2|
-                       PWR_GPIO_BIT_3|
-                       PWR_GPIO_BIT_6|
-                       PWR_GPIO_BIT_7|
-                       PWR_GPIO_BIT_8|
-                       PWR_GPIO_BIT_9|
-                       PWR_GPIO_BIT_10|
-                       PWR_GPIO_BIT_11|
-                       PWR_GPIO_BIT_12|
-                       PWR_GPIO_BIT_13|
-                       PWR_GPIO_BIT_14|
-                       PWR_GPIO_BIT_15);
-  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_B, 
-                       PWR_GPIO_BIT_4|
-                       PWR_GPIO_BIT_5);
+  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_A,
+                             PWR_GPIO_BIT_0 |
+                             PWR_GPIO_BIT_1 |
+                             PWR_GPIO_BIT_2 |
+                             PWR_GPIO_BIT_3 |
+                             PWR_GPIO_BIT_4 |
+                             PWR_GPIO_BIT_11 |
+                             PWR_GPIO_BIT_14 |
+                             PWR_GPIO_BIT_15);
+  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_A,
+                               PWR_GPIO_BIT_5 |
+                               PWR_GPIO_BIT_6 |
+                               PWR_GPIO_BIT_7 |
+                               PWR_GPIO_BIT_8 |
+                               PWR_GPIO_BIT_9 |
+                               PWR_GPIO_BIT_10 |
+                               PWR_GPIO_BIT_12 |
+                               PWR_GPIO_BIT_13);
+  HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B,
+                               PWR_GPIO_BIT_0 |
+                               PWR_GPIO_BIT_1 |
+                               PWR_GPIO_BIT_2 |
+                               PWR_GPIO_BIT_3 |
+                               PWR_GPIO_BIT_6 |
+                               PWR_GPIO_BIT_7 |
+                               PWR_GPIO_BIT_8 |
+                               PWR_GPIO_BIT_9 |
+                               PWR_GPIO_BIT_10 |
+                               PWR_GPIO_BIT_11 |
+                               PWR_GPIO_BIT_12 |
+                               PWR_GPIO_BIT_13 |
+                               PWR_GPIO_BIT_14 |
+                               PWR_GPIO_BIT_15);
+  HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_B,
+                             PWR_GPIO_BIT_4 |
+                             PWR_GPIO_BIT_5);
 }
 
 /* USER CODE END 1 */
-

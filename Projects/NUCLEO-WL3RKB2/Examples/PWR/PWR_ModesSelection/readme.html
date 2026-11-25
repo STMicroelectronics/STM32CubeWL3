@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PWR_ModesSelection</title>
+</head>
+<body>
+  <h3><b>PWR_ModesSelection Example Description</b></h3>
+  <p>How to select a power mode through USART1 and configure the system to
+     measure the MCU current consumption. The system clock is set to 64 MHz.</p>
+  <table>
+    <thead><tr><th>Selection</th><th>Configuration</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Run at 64 MHz, idle loop executing from Flash</td></tr>
+      <tr><td>2</td><td>Sleep at 64 MHz, no periodic wakeup</td></tr>
+      <tr><td>3</td><td>DeepStop, LSI and LSE off, SRAM retained</td></tr>
+      <tr><td>4</td><td>DeepStop, LSI on, LSE off, SRAM retained, RTC off</td></tr>
+      <tr><td>5</td><td>Shutdown, BOR off</td></tr>
+      <tr><td>6</td><td>Shutdown, BOR on</td></tr>
+      <tr><td>7</td><td>Ultra DeepStop, BOR off</td></tr>
+      <tr><td>8</td><td>Ultra DeepStop, BOR on</td></tr>
+    </tbody>
+  </table>
+  <p>After a valid selection, the application waits for 5 seconds, then disables
+     the USART, turns off the LEDs and prepares the GPIOs for measurement.
+     SysTick, interrupts, wakeup sources and debug retention are disabled.
+     External RESET is required to return to the menu; the USER push-buttons
+     and serial input do not wake up the MCU.</p>
+  <ul>
+    <li>All LEDs off: current measurement configuration active.</li>
+    <li>LD3 ON: configuration failed or a reset-only power mode unexpectedly
+        returned; the system enters an infinite loop and the measurement is not valid.</li>
+  </ul>
+  <h4><b>Notes</b></h4>
+  <ol>
+    <li>RC64MPLL supplies the 64 MHz system clock, with HSE enabled for Run and
+        Sleep. SMPS uses the board startup configuration. No radio, RTC,
+        watchdog or application timer is initialized. LSI is enabled only for
+        selection 4; LSE remains off. DeepStop uses the startup SRAM retention
+        configuration; Shutdown does not retain SRAM. Ultra DeepStop is an
+        additional low-power mode supported by STM32WL3R devices.</li>
+    <li>Measure the MCU supply path described in the board user manual, not the
+        complete board USB input current. Use a suitable instrument range and
+        burden voltage. Disconnect ST-LINK/SWD, the virtual COM port and external
+        circuitry during the 5-second delay while maintaining a valid MCU supply.
+        Avoid back-powering through GPIOs. Wait for the current to settle.</li>
+    <li>Match datasheet supply voltage, temperature, SMPS, clock, BOR, SRAM,
+        GPIO and wakeup conditions before comparing current. The Run idle loop
+        may differ from the datasheet workload. Typical values are not maximum
+        limits. Formal electrical validation against the datasheet remains pending.</li>
+    <li>SWD pin functions are disabled during measurement. To reprogram, connect
+        under reset. The menu remains active until a valid selection is received.</li>
+    <li>HAL_Delay() requires a 1 ms SysTick time base during initialization and
+        the preparation delay. SysTick is deliberately stopped for measurement.</li>
+    <li>The MSP lowPowerIOSetup() helper is called after console shutdown, not
+        from HAL_MspInit(), so the menu remains available until measurement preparation.</li>
+    <li>This example is manually maintained; no CubeMX .ioc file is provided.</li>
+  </ol>
+  <h3><b>Keywords</b></h3>
+  <p>Power, PWR, Run, Sleep, DeepStop, Shutdown, Ultra DeepStop, Low Power,
+     Current consumption, USART, BOR, External reset</p>
+  <h3><b>Directory contents</b></h3>
+  <ul>
+    <li>PWR/PWR_ModesSelection/Inc/stm32wl3r_nucleo_conf.h - BSP configuration file</li>
+    <li>PWR/PWR_ModesSelection/Inc/stm32wl3x_hal_conf.h - HAL configuration file</li>
+    <li>PWR/PWR_ModesSelection/Inc/stm32wl3x_it.h - Header for stm32wl3x_it.c</li>
+    <li>PWR/PWR_ModesSelection/Inc/main.h - Header file for main.c</li>
+    <li>PWR/PWR_ModesSelection/Src/system_stm32wl3x.c - System clock and startup configuration</li>
+    <li>PWR/PWR_ModesSelection/Src/stm32wl3x_it.c - Interrupt handlers</li>
+    <li>PWR/PWR_ModesSelection/Src/main.c - Main program</li>
+    <li>PWR/PWR_ModesSelection/Src/stm32wl3x_hal_msp.c - HAL MSP module and low-power IO setup</li>
+  </ul>
+  <h3><b>Hardware and Software environment</b></h3>
+  <ul>
+    <li>STM32WL3RKBVx devices, STMicroelectronics NUCLEO-WL3RKB2 board.</li>
+    <li>EWARM, MDK-ARM and STM32CubeIDE projects are provided.</li>
+    <li>USART1 virtual COM port: PA1 (TX), PB14 (RX). Refer to the board user
+        manual for solder-bridge routing and MCU current-measurement connections.</li>
+    <li>Terminal: 115200 baud, 8 data bits, no parity, 1 stop bit, no flow control.</li>
+  </ul>
+  <h3><b>How to use it ?</b></h3>
+  <ul>
+    <li>Open your preferred toolchain project for NUCLEO-WL3RKB2.</li>
+    <li>Rebuild all files and load your image into target memory.</li>
+    <li>Open the terminal, then run or reset the example.</li>
+    <li>Send one menu digit. No Enter key is required; CR and LF are ignored.
+        Invalid input is reported and selection remains active.</li>
+    <li>Disconnect debug and serial links during the 5-second delay, keeping
+        the MCU powered as described in the Notes.</li>
+    <li>Measure the settled MCU supply current.</li>
+    <li>Apply an external RESET to select another configuration.</li>
+  </ul>
+  <p>See also <a href="README.md">README.md</a>.</p>
+</body>
+</html>

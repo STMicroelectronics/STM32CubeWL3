@@ -60,7 +60,7 @@ __vector_table
 
         DCD     NMI_Handler               ; NMI Handler
         DCD     HardFault_Handler         ; Hard Fault Handler
-        DCD     (0xAA5555AA)              ; Reserved
+        DCD     (0xAA5555AA)              ; OTA_VALID_TAG
         DCD     0                         ; Reserved
         DCD     0                         ; Reserved
         DCD     0                         ; Reserved
